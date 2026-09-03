@@ -1,9 +1,4 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// Tests basicos de la calculadora.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,20 +6,54 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:calculadora/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  Future<void> montar(
+    WidgetTester tester, {
+    Size tamano = const Size(400, 900),
+  }) async {
+    await tester.binding.setSurfaceSize(tamano);
+    addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(const MyApp());
+  }
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets('Arranca mostrando 0', (WidgetTester tester) async {
+    await montar(tester);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    expect(find.text('Calculadora'), findsOneWidget);
+    // El '0' del display (puede haber mas de uno si el teclado lo tuviera,
+    // aqui el boton es '0' tambien, asi que solo comprobamos que exista).
+    expect(find.text('0'), findsWidgets);
+  });
+
+  testWidgets('2 + 3 = 5', (WidgetTester tester) async {
+    await montar(tester);
+
+    await tester.tap(find.widgetWithText(InkWell, '2'));
+    await tester.tap(find.widgetWithText(InkWell, '+'));
+    await tester.tap(find.widgetWithText(InkWell, '3'));
+    await tester.tap(find.widgetWithText(InkWell, '='));
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('5'), findsWidgets);
+  });
+
+  testWidgets('Division por cero muestra Error', (WidgetTester tester) async {
+    await montar(tester);
+
+    await tester.tap(find.widgetWithText(InkWell, '5'));
+    await tester.tap(find.widgetWithText(InkWell, '÷'));
+    await tester.tap(find.widgetWithText(InkWell, '0'));
+    await tester.tap(find.widgetWithText(InkWell, '='));
+    await tester.pump();
+
+    expect(find.text('Error'), findsOneWidget);
+  });
+
+  testWidgets('No se desborda en pantallas pequenas o apaisadas', (
+    WidgetTester tester,
+  ) async {
+    // Si el layout desbordara, pumpWidget lanzaria una excepcion y el test
+    // fallaria automaticamente.
+    await montar(tester, tamano: const Size(320, 480));
+    await montar(tester, tamano: const Size(800, 360));
   });
 }

@@ -74,7 +74,8 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
   void _borrarUltimo() {
     setState(() {
       if (empezarNuevoNumero) return;
-      if (display.length <= 1 || (display.length == 2 && display.startsWith('-'))) {
+      if (display.length <= 1 ||
+          (display.length == 2 && display.startsWith('-'))) {
         display = '0';
         empezarNuevoNumero = true;
       } else {
@@ -162,14 +163,13 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Calculadora'),
-      ),
+      appBar: AppBar(title: const Text('Calculadora')),
       body: SafeArea(
         child: Column(
           children: [
             // PANTALLA
             Expanded(
+              flex: 2,
               child: Container(
                 alignment: Alignment.bottomRight,
                 padding: const EdgeInsets.all(24),
@@ -188,47 +188,85 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
             ),
 
             // TECLADO
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                children: [
-                  _fila([
-                    _BotonCalc('C', color: _Tipo.funcion, onTap: _limpiarTodo),
-                    _BotonCalc('+/-', color: _Tipo.funcion, onTap: _cambiarSigno),
-                    _BotonCalc('%', color: _Tipo.funcion, onTap: _porcentaje),
-                    _BotonCalc('÷',
-                        color: _Tipo.operador,
-                        onTap: () => _pulsarOperador('÷')),
-                  ]),
-                  _fila([
-                    _BotonCalc('7', onTap: () => _pulsarDigito('7')),
-                    _BotonCalc('8', onTap: () => _pulsarDigito('8')),
-                    _BotonCalc('9', onTap: () => _pulsarDigito('9')),
-                    _BotonCalc('×',
-                        color: _Tipo.operador,
-                        onTap: () => _pulsarOperador('×')),
-                  ]),
-                  _fila([
-                    _BotonCalc('4', onTap: () => _pulsarDigito('4')),
-                    _BotonCalc('5', onTap: () => _pulsarDigito('5')),
-                    _BotonCalc('6', onTap: () => _pulsarDigito('6')),
-                    _BotonCalc('-',
-                        color: _Tipo.operador, onTap: () => _pulsarOperador('-')),
-                  ]),
-                  _fila([
-                    _BotonCalc('1', onTap: () => _pulsarDigito('1')),
-                    _BotonCalc('2', onTap: () => _pulsarDigito('2')),
-                    _BotonCalc('3', onTap: () => _pulsarDigito('3')),
-                    _BotonCalc('+',
-                        color: _Tipo.operador, onTap: () => _pulsarOperador('+')),
-                  ]),
-                  _fila([
-                    _BotonCalc('⌫', color: _Tipo.funcion, onTap: _borrarUltimo),
-                    _BotonCalc('0', onTap: () => _pulsarDigito('0')),
-                    _BotonCalc('.', onTap: _pulsarPunto),
-                    _BotonCalc('=', color: _Tipo.igual, onTap: _igual),
-                  ]),
-                ],
+            Expanded(
+              flex: 5,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 480),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          _fila([
+                            _BotonCalc(
+                              'C',
+                              color: _Tipo.funcion,
+                              onTap: _limpiarTodo,
+                            ),
+                            _BotonCalc(
+                              '+/-',
+                              color: _Tipo.funcion,
+                              onTap: _cambiarSigno,
+                            ),
+                            _BotonCalc(
+                              '%',
+                              color: _Tipo.funcion,
+                              onTap: _porcentaje,
+                            ),
+                            _BotonCalc(
+                              '÷',
+                              color: _Tipo.operador,
+                              onTap: () => _pulsarOperador('÷'),
+                            ),
+                          ]),
+                          _fila([
+                            _BotonCalc('7', onTap: () => _pulsarDigito('7')),
+                            _BotonCalc('8', onTap: () => _pulsarDigito('8')),
+                            _BotonCalc('9', onTap: () => _pulsarDigito('9')),
+                            _BotonCalc(
+                              '×',
+                              color: _Tipo.operador,
+                              onTap: () => _pulsarOperador('×'),
+                            ),
+                          ]),
+                          _fila([
+                            _BotonCalc('4', onTap: () => _pulsarDigito('4')),
+                            _BotonCalc('5', onTap: () => _pulsarDigito('5')),
+                            _BotonCalc('6', onTap: () => _pulsarDigito('6')),
+                            _BotonCalc(
+                              '-',
+                              color: _Tipo.operador,
+                              onTap: () => _pulsarOperador('-'),
+                            ),
+                          ]),
+                          _fila([
+                            _BotonCalc('1', onTap: () => _pulsarDigito('1')),
+                            _BotonCalc('2', onTap: () => _pulsarDigito('2')),
+                            _BotonCalc('3', onTap: () => _pulsarDigito('3')),
+                            _BotonCalc(
+                              '+',
+                              color: _Tipo.operador,
+                              onTap: () => _pulsarOperador('+'),
+                            ),
+                          ]),
+                          _fila([
+                            _BotonCalc(
+                              '⌫',
+                              color: _Tipo.funcion,
+                              onTap: _borrarUltimo,
+                            ),
+                            _BotonCalc('0', onTap: () => _pulsarDigito('0')),
+                            _BotonCalc('.', onTap: _pulsarPunto),
+                            _BotonCalc('=', color: _Tipo.igual, onTap: _igual),
+                          ]),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
@@ -238,18 +276,18 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
   }
 
   Widget _fila(List<Widget> botones) {
-    return Row(
-      children: botones
-          .map((b) => Expanded(child: b))
-          .toList(),
-    );
+    return Row(children: botones.map((b) => Expanded(child: b)).toList());
   }
 }
 
 enum _Tipo { numero, funcion, operador, igual }
 
 class _BotonCalc extends StatelessWidget {
-  const _BotonCalc(this.texto, {this.color = _Tipo.numero, required this.onTap});
+  const _BotonCalc(
+    this.texto, {
+    this.color = _Tipo.numero,
+    required this.onTap,
+  });
 
   final String texto;
   final _Tipo color;
