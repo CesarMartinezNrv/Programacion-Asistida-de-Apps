@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,10 +13,30 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Contador de golpes',
+      title: 'Golpes',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        brightness: Brightness.dark,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.amber,
+          brightness: Brightness.dark,
+        ),
         useMaterial3: true,
+        scaffoldBackgroundColor: const Color(0xFF101010),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF181818),
+          foregroundColor: Colors.amber,
+          centerTitle: true,
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Colors.amber,
+          foregroundColor: Colors.black,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.amber,
+            foregroundColor: Colors.black,
+          ),
+        ),
       ),
       home: const CounterPage(),
     );
@@ -30,6 +52,8 @@ class CounterPage extends StatefulWidget {
 
 class _CounterPageState extends State<CounterPage> {
   int contador = 0;
+  bool mostrarGolpe = false;
+  Timer? temporizadorGolpe;
 
   void restar() {
     if (contador == 0) {
@@ -53,10 +77,33 @@ class _CounterPageState extends State<CounterPage> {
     });
   }
 
+  void golpear() {
+    temporizadorGolpe?.cancel();
+
+    setState(() {
+      contador++;
+      mostrarGolpe = true;
+    });
+
+    temporizadorGolpe = Timer(const Duration(milliseconds: 700), () {
+      if (mounted) {
+        setState(() {
+          mostrarGolpe = false;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    temporizadorGolpe?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Contador de golpes')),
+      appBar: AppBar(title: const Text('Golpes')),
       body: Stack(
         children: [
           Center(
@@ -80,19 +127,39 @@ class _CounterPageState extends State<CounterPage> {
             ),
           ),
           Positioned(
+            top: 30,
+            left: 24,
+            child: AnimatedOpacity(
+              opacity: mostrarGolpe ? 1 : 0,
+              duration: const Duration(milliseconds: 150),
+              child: const Text(
+                '¡GOLPE!',
+                style: TextStyle(
+                  color: Colors.redAccent,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
             top: 20,
             right: 20,
             child: InkWell(
-              onTap: sumar,
+              onTap: golpear,
               borderRadius: BorderRadius.circular(16),
               child: Ink(
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primaryContainer,
+                  color: Colors.red.shade700,
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child: const Icon(Icons.sports_mma, size: 56),
+                child: const Icon(
+                  Icons.sports_mma,
+                  size: 56,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
