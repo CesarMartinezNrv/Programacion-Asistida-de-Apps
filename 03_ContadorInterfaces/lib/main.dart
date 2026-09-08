@@ -6,8 +6,23 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  static const String counterRoute = '/contador';
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final ValueNotifier<int> contador = ValueNotifier<int>(0);
+
+  @override
+  void dispose() {
+    contador.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,50 +53,77 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const CounterPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+        MyApp.counterRoute: (context) => CounterPage(contador: contador),
+      },
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Inicio')),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              'Presiona para empezar',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton.icon(
+              onPressed: () {
+                Navigator.pushNamed(context, MyApp.counterRoute);
+              },
+              icon: const Icon(Icons.sports_mma),
+              label: const Text('Empezar'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
 
 class CounterPage extends StatefulWidget {
-  const CounterPage({super.key});
+  const CounterPage({super.key, required this.contador});
+
+  final ValueNotifier<int> contador;
 
   @override
   State<CounterPage> createState() => _CounterPageState();
 }
 
 class _CounterPageState extends State<CounterPage> {
-  int contador = 0;
   bool mostrarGolpe = false;
   Timer? temporizadorGolpe;
 
   void restar() {
-    if (contador == 0) {
-      return;
+    if (widget.contador.value > 0) {
+      widget.contador.value--;
     }
-
-    setState(() {
-      contador--;
-    });
   }
 
   void resetear() {
-    setState(() {
-      contador = 0;
-    });
+    widget.contador.value = 0;
   }
 
   void sumar() {
-    setState(() {
-      contador++;
-    });
+    widget.contador.value++;
   }
 
   void golpear() {
     temporizadorGolpe?.cancel();
+    widget.contador.value++;
 
     setState(() {
-      contador++;
       mostrarGolpe = true;
     });
 
@@ -115,13 +157,18 @@ class _CounterPageState extends State<CounterPage> {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 10),
-                Text(
-                  '$contador',
-                  key: const ValueKey('contador'),
-                  style: const TextStyle(
-                    fontSize: 70,
-                    fontWeight: FontWeight.bold,
-                  ),
+                ValueListenableBuilder<int>(
+                  valueListenable: widget.contador,
+                  builder: (context, valor, child) {
+                    return Text(
+                      '$valor',
+                      key: const ValueKey('contador'),
+                      style: const TextStyle(
+                        fontSize: 70,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -176,10 +223,7 @@ class _CounterPageState extends State<CounterPage> {
                   tooltip: 'Restar',
                   child: const Icon(Icons.remove),
                 ),
-                ElevatedButton(
-                  onPressed: resetear,
-                  child: const Text('Reset'),
-                ),
+                ElevatedButton(onPressed: resetear, child: const Text('Reset')),
                 FloatingActionButton(
                   heroTag: 'sumar',
                   onPressed: sumar,
