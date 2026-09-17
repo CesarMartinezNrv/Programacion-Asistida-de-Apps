@@ -8,13 +8,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_arquitectura/main.dart';
+import 'package:flutter_arquitectura/data/repositories/usuario_memoria.dart';
+import 'package:flutter_arquitectura/domain/usecases/obtener_usuarios_con_vocal.dart';
+import 'package:flutter_arquitectura/presentation/pantalla_usuarios.dart';
 
 void main() {
   testWidgets('muestra la pantalla de usuarios', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(
+      const AplicacionUsuarios(
+        obtenerUsuariosConVocal: ObtenerUsuariosConVocal(UsuarioMemoria()),
+      ),
+    );
 
     expect(find.text('Usuarios con nombre vocal'), findsOneWidget);
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
+
+    await tester.pumpAndSettle();
+
+    expect(find.text('Ana Torres'), findsOneWidget);
+    expect(find.text('Isabel Ruiz'), findsOneWidget);
+    expect(find.text('Bruno Diaz'), findsNothing);
   });
 }
