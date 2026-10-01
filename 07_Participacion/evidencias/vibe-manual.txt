@@ -1,0 +1,7 @@
+UI http://127.0.0.1:8078 verificada mediante navegador:
+1. 100 / 4 / 10 -> 27.50 PASS
+2. 90 / 3 / 0 -> 30.00 PASS
+3. 50 / 0 -> Debe haber al menos una persona, sin resultado PASS
+4. abc -> Monto inválido, sin resultado PASS
+5. 10 / 3 / 0 -> 3.33 PASS
+6. No existe selector hacia arriba; permanece 3.33, no se puede obtener 4.00 FAIL

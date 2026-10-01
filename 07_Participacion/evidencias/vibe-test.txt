@@ -1,0 +1,3 @@
+00:00 +0: loading C:/Programacion de apps/07_Participacion/divisor_cuenta/test/widget_test.dart
+00:00 +0: Muestra el divisor
+00:01 +1: All tests passed!

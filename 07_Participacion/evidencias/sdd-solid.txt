@@ -1,0 +1,16 @@
+SDD: domain Flutter imports (expected none)
+
+SDD: presentation data imports (expected none)
+
+SDD: concrete constructors (declarations included by textual grep)
+lib\main.dart:19:      'exacto': RedondeoExacto(),
+lib\main.dart:20:      'arriba': RedondeoHaciaArriba(),
+lib\data\redondeo_hacia_arriba.dart:4:  const RedondeoHaciaArriba();
+lib\data\redondeo_exacto.dart:4:  const RedondeoExacto();
+
+SDD: casts, formatting and validation in calculation (expected none)
+
+Dart lib files: 
+11
+Dart lib lines: 
+289

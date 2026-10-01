@@ -1,0 +1,18 @@
+VIBE: Flutter imports
+lib\main.dart:1:import 'package:flutter/material.dart';
+
+VIBE: domain exists: 
+False
+VIBE: layers
+main.dart
+
+VIBE: mixed calculation/validation/formatting
+28:  void calcular() {
+36:        error = 'Monto inválido';
+38:        error = 'Debe haber al menos una persona';
+42:        resultado = (total * (1 + porcentaje / 100) / cantidad).toStringAsFixed(
+
+Dart lib files: 
+1
+Dart lib lines: 
+100

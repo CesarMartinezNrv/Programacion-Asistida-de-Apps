@@ -1,0 +1,2 @@
+-j/--concurrency was parsed but will be ignored, this option is not supported when running Integration Tests or web tests.
+00:00 +0: loading C:/Programacion de apps/07_Participacion/divisor_cuenta/test/division_test.dart

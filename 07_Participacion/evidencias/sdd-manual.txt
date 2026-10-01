@@ -1,0 +1,8 @@
+UI en http://127.0.0.1:8077, verificada mediante navegador:
+1. 100 / 4 / 10 exacto -> 27.50 PASS
+2. 90 / 3 / 0 exacto -> 30.00 PASS
+3. 50 / 0 -> Debe haber al menos una persona, sin resultado PASS
+4. abc -> Monto inválido, sin resultado PASS
+5. 10 / 3 / 0 exacto -> 3.33 PASS
+6. 10 / 3 / 0 arriba -> 4.00 PASS
+

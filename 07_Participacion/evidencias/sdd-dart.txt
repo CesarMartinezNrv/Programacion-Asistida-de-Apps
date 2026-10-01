@@ -1,0 +1,7 @@
+PASS 1. reparto normal
+PASS 2. sin propina
+PASS 3. cero personas
+PASS 4. monto no numerico
+PASS 5. redondeo exacto
+PASS 6. redondeo hacia arriba
+PASS LSP; 7 comprobaciones Dart puro
