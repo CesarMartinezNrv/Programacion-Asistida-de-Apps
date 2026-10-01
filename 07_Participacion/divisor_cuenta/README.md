@@ -1,17 +1,10 @@
-# divisor_cuenta
+# Divisor de cuenta — vibe
 
-A new Flutter project.
+Petición de partida: «Hazme una app en Flutter para dividir la cuenta entre varias personas».
 
-## Getting Started
+Implementación conversacional en un único archivo: entradas, validación, cálculo y presentación.
+El agente decidió incluir propina, dos decimales y validaciones. No se solicitó ni implementó selección de redondeo.
+Esta reproducción está condicionada por haber leído antes la guía completa; no constituye un experimento ciego.
 
-This project is a starting point for a Flutter application.
+Ejecutar desde esta carpeta: `flutter run`. Comprobar: `flutter analyze` y `flutter test`.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
