@@ -1,0 +1,22 @@
+00:00 +0: loading C:/Programacion de apps/07_Participacion/divisor_cuenta/test/division_test.dart
+00:00 +0: test\division_test.dart: 1. reparto normal
+00:00 +1: test\division_test.dart: 2. sin propina
+00:00 +2: test\division_test.dart: 3. cero personas
+00:00 +3: test\division_test.dart: 4. monto no numerico
+00:00 +4: test\division_test.dart: 5. redondeo exacto
+00:00 +5: test\division_test.dart: 6. redondeo hacia arriba
+00:00 +6: test\division_test.dart: LSP: mismo cálculo, estrategias sustituibles sin casts
+00:00 +7: loading C:/Programacion de apps/07_Participacion/divisor_cuenta/test/entrada_test.dart
+00:07 +7: test\entrada_test.dart: Cero es válido
+00:07 +8: test\entrada_test.dart: Punto y coma decimal tienen igual resultado
+00:07 +9: test\entrada_test.dart: Negativos y valores no finitos se rechazan
+00:07 +10: test\entrada_test.dart: Personas fraccionarias y vacías se rechazan
+00:07 +11: test\entrada_test.dart: Error posterior borra resultado anterior
+00:07 +12: test\entrada_test.dart: Campos vacíos e importe excesivo no producen resultado
+00:07 +13: loading C:/Programacion de apps/07_Participacion/divisor_cuenta/test/pantalla_test.dart
+00:14 +13: test\pantalla_test.dart: 100, 4, 10 muestra 27.50
+00:15 +14: test\pantalla_test.dart: 50 y cero personas muestra error sin resultado
+00:16 +15: test\pantalla_test.dart: abc muestra Monto inválido
+00:16 +16: test\pantalla_test.dart: Selector hacia arriba muestra 4.00
+00:17 +17: test\pantalla_test.dart: La composición real inicia la pantalla
+00:17 +18: All tests passed!

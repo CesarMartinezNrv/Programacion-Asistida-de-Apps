@@ -1,0 +1,4 @@
+PASS navegador real: 27.50, 4.00 y Monto inválido
+PASS cálculo con red desactivada
+PASS viewport 390px sin desbordamiento horizontal
+PASS sin errores JavaScript

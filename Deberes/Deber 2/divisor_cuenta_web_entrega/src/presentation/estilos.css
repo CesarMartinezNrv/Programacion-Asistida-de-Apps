@@ -1,0 +1,27 @@
+:root { font-family: 'Segoe UI', sans-serif; color: #193b31; background: #f4f6f0; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+.contenedor { width: min(100% - 40px, 560px); margin: 60px auto 28px; }
+.encabezado { display: flex; align-items: center; gap: 18px; margin-bottom: 30px; }
+.marca { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 18px; font-size: 43px; background: #193b31; color: #d6edb4; }
+.antetitulo { font-size: 12px; letter-spacing: .08em; margin: 0 0 5px; color: #567267; }
+h1 { margin: 0; font-size: 28px; letter-spacing: -.8px; }
+.tarjeta { background: #fff; padding: 32px; border: 1px solid #dde5dc; border-radius: 24px; box-shadow: 0 12px 32px #193b3108; }
+h2 { margin: 0 0 10px; font-size: 22px; letter-spacing: -.5px; }
+.intro p { color: #61746b; font-size: 14px; line-height: 1.6; margin: 0 0 28px; }
+.campo { display: flex; flex-direction: column; gap: 9px; font-size: 14px; font-weight: 600; margin-bottom: 22px; }
+input, select { width: 100%; border: 1px solid #cbd8cf; border-radius: 10px; padding: 14px; font: inherit; font-weight: 400; color: #193b31; background: #fcfdfb; }
+input::placeholder { color: #8a9991; }
+input:focus, select:focus { outline: 3px solid #daeaba; border-color: #587845; }
+.dos-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+button { display: flex; justify-content: space-between; width: 100%; padding: 16px 20px; border: none; border-radius: 12px; background: #214e3d; color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+button:hover { background: #173c2d; }
+button:focus-visible { outline: 3px solid #91b856; outline-offset: 3px; }
+.salida { margin-top: 26px; border-top: 1px solid #e5ebe1; padding-top: 22px; min-height: 94px; }
+.espera { margin: 10px 0; font-size: 13px; color: #7c8982; text-align: center; }
+.resultado { padding: 18px 22px; border-radius: 14px; background: #eef5e5; overflow-wrap: anywhere; }
+.resultado p { margin: 0 0 7px; color: #49643e; font-size: 13px; }
+output { font-size: 36px; font-weight: 650; letter-spacing: -1px; }
+.error { border-radius: 10px; padding: 16px; color: #963b2e; background: #fff1ed; font-size: 14px; }
+footer { text-align: center; font-size: 12px; color: #7c8982; margin-top: 22px; }
+@media (max-width: 480px) { .contenedor { margin-top: 28px; } .tarjeta { padding: 24px; } h1 { font-size: 25px; } .dos-columnas { gap: 12px; } }

@@ -1,0 +1,16 @@
+
+ RUN  v5.0.3 C:/Programacion de apps/Deberes/Deber 2/divisor_cuenta_web
+
+ ✓ test/division.test.js > Seis casos de aceptación de la spec > 1. reparto normal 4ms
+ ✓ test/division.test.js > Seis casos de aceptación de la spec > 2. sin propina 0ms
+ ✓ test/division.test.js > Seis casos de aceptación de la spec > 3. cero personas 1ms
+ ✓ test/division.test.js > Seis casos de aceptación de la spec > 4. monto no numerico 0ms
+ ✓ test/division.test.js > Seis casos de aceptación de la spec > 5. redondeo exacto 1ms
+ ✓ test/division.test.js > Seis casos de aceptación de la spec > 6. redondeo hacia arriba 1ms
+ ✓ test/division.test.js > LSP: el mismo cálculo sustituye estrategias sin comprobar su tipo 0ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  10:36:06
+   Duration  3.21s (environment 78%, setup 14%, transform 6%, worker 1%, import 1%)
+

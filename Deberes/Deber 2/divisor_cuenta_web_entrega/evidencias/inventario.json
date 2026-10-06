@@ -1,0 +1,456 @@
+{
+  "spec": [
+    [
+      "Input",
+      "Una pantalla sin conexión."
+    ],
+    [
+      "Clarifications",
+      "Aceptar monto cero."
+    ],
+    [
+      "Clarifications",
+      "Aceptar propina cero."
+    ],
+    [
+      "Clarifications",
+      "Rechazar valores negativos."
+    ],
+    [
+      "Clarifications",
+      "Permitir coma o punto decimal."
+    ],
+    [
+      "US1",
+      "Ingresar monto, personas y propina, calcular y ver el pago individual."
+    ],
+    [
+      "US1 Independent Test",
+      "Entradas válidas producen el resultado en la misma pantalla."
+    ],
+    [
+      "AC1",
+      "100.00, 4 personas, 10%, exacto → 27.50."
+    ],
+    [
+      "AC2",
+      "90.00, 3 personas, 0%, exacto → 30.00."
+    ],
+    [
+      "AC5",
+      "10.00, 3 personas, 0%, exacto → 3.33."
+    ],
+    [
+      "US2 Independent Test",
+      "Los errores aparecen sin resultado."
+    ],
+    [
+      "AC3",
+      "50.00 y 0 personas → Debe haber al menos una persona, sin resultado."
+    ],
+    [
+      "AC4",
+      "Monto abc → Monto inválido, sin resultado."
+    ],
+    [
+      "US3 Independent Test",
+      "Cambiar de modo cambia el resultado del mismo reparto."
+    ],
+    [
+      "AC6",
+      "10.00, 3 personas, 0%, hacia arriba → 4.00."
+    ],
+    [
+      "Edge Cases",
+      "Cero monto es válido."
+    ],
+    [
+      "Edge Cases",
+      "Cero propina es válido."
+    ],
+    [
+      "Edge Cases",
+      "Negativos son inválidos."
+    ],
+    [
+      "Edge Cases",
+      "Valores no finitos son inválidos."
+    ],
+    [
+      "Edge Cases",
+      "Personas debe ser un entero mayor o igual a uno."
+    ],
+    [
+      "Edge Cases",
+      "Campos vacíos se rechazan."
+    ],
+    [
+      "Edge Cases",
+      "Desbordamiento muestra El monto calculado es demasiado grande, sin resultado."
+    ],
+    [
+      "Edge Cases",
+      "Coma y punto son separadores decimales alternativos."
+    ],
+    [
+      "Edge Cases",
+      "No aceptar separadores de miles."
+    ],
+    [
+      "Edge Cases",
+      "Al editar datos se oculta el resultado anterior hasta calcular."
+    ],
+    [
+      "Edge Cases",
+      "Al cambiar modo se oculta el resultado anterior hasta calcular."
+    ],
+    [
+      "FR-001",
+      "Una sola pantalla contiene tres entradas, modo y botón Calcular."
+    ],
+    [
+      "FR-002",
+      "Calcular monto × (1 + propina / 100) / personas."
+    ],
+    [
+      "FR-003",
+      "Exacto redondea a centavos."
+    ],
+    [
+      "FR-003",
+      "Hacia arriba redondea al entero siguiente."
+    ],
+    [
+      "FR-004",
+      "Mostrar siempre dos decimales."
+    ],
+    [
+      "FR-004",
+      "Usar punto en la salida."
+    ],
+    [
+      "FR-005",
+      "Personas inválidas muestran Debe haber al menos una persona."
+    ],
+    [
+      "FR-006",
+      "Monto inválido muestra Monto inválido."
+    ],
+    [
+      "FR-006",
+      "Propina inválida muestra Propina inválida."
+    ],
+    [
+      "FR-007",
+      "Un error impide calcular."
+    ],
+    [
+      "FR-007",
+      "Un error elimina resultados previos."
+    ],
+    [
+      "FR-008",
+      "Aceptar cero."
+    ],
+    [
+      "FR-008",
+      "Rechazar negativos."
+    ],
+    [
+      "FR-008",
+      "Aceptar punto o coma en monto/propina."
+    ],
+    [
+      "FR-009",
+      "No usar red."
+    ],
+    [
+      "FR-009",
+      "No usar almacenamiento."
+    ],
+    [
+      "FR-009",
+      "No usar login."
+    ],
+    [
+      "FR-009",
+      "No usar historial."
+    ],
+    [
+      "FR-009",
+      "No añadir monedas."
+    ],
+    [
+      "FR-009",
+      "No añadir otras pantallas."
+    ],
+    [
+      "Cuenta",
+      "Monto no negativo y finito."
+    ],
+    [
+      "Cuenta",
+      "Personas entero positivo."
+    ],
+    [
+      "Cuenta",
+      "Propina no negativa y finita."
+    ],
+    [
+      "Resultado",
+      "Importe individual después de la estrategia elegida."
+    ],
+    [
+      "SC-001",
+      "Los seis escenarios devuelven exactamente los mensajes o importes definidos."
+    ],
+    [
+      "SC-002",
+      "Ningún error conserva un resultado visible."
+    ],
+    [
+      "SC-003",
+      "Ambas reglas se seleccionan."
+    ],
+    [
+      "SC-003",
+      "Ambas reglas funcionan sin conexión."
+    ],
+    [
+      "SC-004",
+      "Cero tiene verificación ejecutable."
+    ],
+    [
+      "SC-004",
+      "Coma decimal tiene verificación ejecutable."
+    ],
+    [
+      "SC-004",
+      "Negativos tienen verificación ejecutable."
+    ],
+    [
+      "SC-004",
+      "Entradas vacías tienen verificación ejecutable."
+    ],
+    [
+      "Assumptions",
+      "Modo inicial exacto."
+    ],
+    [
+      "Assumptions",
+      "Dos personas inicialmente."
+    ],
+    [
+      "Assumptions",
+      "Propina cero inicialmente."
+    ],
+    [
+      "Assumptions",
+      "Monto inicialmente vacío."
+    ],
+    [
+      "Assumptions",
+      "Validación en orden monto, personas, propina."
+    ],
+    [
+      "Assumptions",
+      "El redondeo a centavos no reparte sobrantes; 3 × 3.33 = 9.99 se acepta."
+    ]
+  ],
+  "constitution": [
+    [
+      "SRP",
+      "Cada clase tiene una razón de cambio.",
+      "Cada función o módulo tiene una razón de cambio.",
+      "adaptada en redacción",
+      "JavaScript usa funciones y módulos."
+    ],
+    [
+      "SRP",
+      "CalcularDivision únicamente aplica la fórmula y delega el redondeo: no valida ni formatea.",
+      "calcularDivision únicamente aplica la fórmula y delega el redondeo: no valida ni formatea.",
+      "adaptada en redacción",
+      "Cambia el identificador; se conserva la responsabilidad."
+    ],
+    [
+      "SRP",
+      "ValidarEntrada valida y FormateadorMoneda formatea.",
+      "validarEntrada valida y formateadorMoneda formatea.",
+      "adaptada en redacción",
+      "Identificadores JavaScript."
+    ],
+    [
+      "OCP",
+      "Una nueva regla de redondeo se agrega implementando EstrategiaRedondeo en un archivo nuevo.",
+      "Una nueva regla de redondeo se agrega implementando el contrato estrategiaRedondeo en un archivo nuevo.",
+      "adaptada en redacción",
+      "Contrato estructural en vez de interfaz Dart."
+    ],
+    [
+      "OCP",
+      "No se modifican CalcularDivision ni las estrategias existentes.",
+      "No se modifican calcularDivision ni las estrategias existentes.",
+      "adaptada en redacción",
+      "Misma extensión sin modificar consumidores."
+    ],
+    [
+      "LSP",
+      "Todas las estrategias reciben un importe finito no negativo y devuelven un importe finito no negativo.",
+      "Todas las estrategias reciben un importe finito no negativo y devuelven un importe finito no negativo.",
+      "idéntica",
+      "Precondición independiente de tecnología."
+    ],
+    [
+      "LSP",
+      "El consumidor usa la interfaz sin if de tipo ni casts concretos.",
+      "El consumidor usa la interfaz sin if de tipo ni casts concretos.",
+      "idéntica",
+      "Regla de sustitución."
+    ],
+    [
+      "LSP",
+      "Una prueba debe intercambiar exacto y hacia arriba en el mismo caso de uso.",
+      "Una prueba debe intercambiar exacto y hacia arriba en el mismo caso de uso.",
+      "idéntica",
+      "Caso de prueba reusable."
+    ],
+    [
+      "ISP",
+      "EstrategiaRedondeo declara únicamente redondear(double importe).",
+      "estrategiaRedondeo declara únicamente aplicar(valor).",
+      "adaptada en redacción",
+      "Se adapta firma Dart al contrato requerido por la guía React."
+    ],
+    [
+      "ISP",
+      "No incluye validación, formateo, persistencia ni métodos ajenos al redondeo.",
+      "No incluye validación, formateo, persistencia ni métodos ajenos al redondeo.",
+      "idéntica",
+      "Interfaz pequeña."
+    ],
+    [
+      "DIP",
+      "presentation depende de domain, nunca de data.",
+      "presentation depende de domain, nunca de data.",
+      "idéntica",
+      "Dirección de dependencia."
+    ],
+    [
+      "DIP",
+      "domain no importa package:flutter ni data.",
+      "src/domain no importa react, DOM ni data; es JavaScript puro.",
+      "adaptada en redacción",
+      "Conserva aislamiento del dominio."
+    ],
+    [
+      "DIP",
+      "main.dart es el único punto que instancia implementaciones concretas y conecta dependencias.",
+      "src/main.jsx es el único punto que instancia implementaciones concretas y conecta dependencias.",
+      "adaptada en redacción",
+      "Cambia punto de composición."
+    ],
+    [
+      "DIP",
+      "Se permite instanciar objetos de valor Cuenta y Resultado donde corresponde y widgets en la presentación; la regla de composición se aplica a servicios y estrategias inyectables.",
+      "Se permite crear objetos de valor cuenta y resultado donde corresponde y elementos JSX en presentación; la regla de composición se aplica a servicios y estrategias inyectables.",
+      "adaptada en redacción",
+      "JSX sustituye widgets; no se inyectan objetos de valor."
+    ],
+    [
+      "Arquitectura",
+      "Capas obligatorias: presentation -> domain <- data.",
+      "Capas obligatorias: src/presentation -> src/domain <- src/data.",
+      "adaptada en redacción",
+      "Rutas src en lugar de lib."
+    ],
+    [
+      "Arquitectura",
+      "Dominio Dart puro.",
+      "Dominio JavaScript puro.",
+      "adaptada en redacción",
+      "Lenguaje reemplazado; aislamiento conservado."
+    ],
+    [
+      "Seguridad",
+      "No guardar secretos ni API keys.",
+      "No guardar secretos ni API keys.",
+      "idéntica",
+      "Regla independiente del framework."
+    ],
+    [
+      "Arquitectura",
+      "Una pantalla sin red ni base de datos.",
+      "Una pantalla sin red ni base de datos.",
+      "idéntica",
+      "Mismo alcance."
+    ],
+    [
+      "Dependencias",
+      "El SDK y sus dependencias generadas son la base; no agregar paquetes externos.",
+      "Usar React con Vite, Vitest, Testing Library y jsdom; sin librerías de estado externas.",
+      "reemplazada",
+      "La prohibición de paquetes Flutter impediría usar las herramientas React exigidas. Se limita explícitamente al stack autorizado."
+    ],
+    [
+      "Pruebas",
+      "Los seis criterios de aceptación se traducen a pruebas ejecutables y separadas de sus datos.",
+      "Los seis criterios de aceptación se traducen a pruebas ejecutables y separadas de sus datos.",
+      "idéntica",
+      "Datos separados del runner."
+    ],
+    [
+      "Pruebas",
+      "Incluir la prueba LSP y las tres pruebas de widget solicitadas.",
+      "Incluir la prueba LSP y las tres pruebas de pantalla solicitadas con Testing Library.",
+      "adaptada en redacción",
+      "Widgets Flutter se sustituyen por DOM."
+    ],
+    [
+      "Materia",
+      "Toda función generada debe ser explicable: propósito, entrada, salida y errores.",
+      "Toda función generada debe ser explicable: propósito, entrada, salida y errores.",
+      "idéntica",
+      "Se incluye catálogo explicativo."
+    ],
+    [
+      "Calidad",
+      "Los errores de validación deben impedir el cálculo y ocultar cualquier resultado anterior.",
+      "Los errores de validación deben impedir el cálculo y ocultar cualquier resultado anterior.",
+      "idéntica",
+      "Comportamiento verificable."
+    ],
+    [
+      "Governance",
+      "La constitución rige spec, plan, tareas y código.",
+      "La constitución rige spec, plan, tareas y código.",
+      "idéntica",
+      "Mismo gobierno."
+    ],
+    [
+      "Governance",
+      "Ante un incumplimiento se corrige primero el artefacto que define la regla.",
+      "Ante un incumplimiento se corrige primero el artefacto que define la regla.",
+      "idéntica",
+      "Mismo proceso."
+    ],
+    [
+      "Governance",
+      "Revisar el cumplimiento antes y después de implementar.",
+      "Revisar el cumplimiento antes y después de implementar.",
+      "idéntica",
+      "Analyze y converge."
+    ],
+    [
+      "Governance",
+      "Cambios de principios incompatibles aumentan MAJOR; ampliaciones MINOR; aclaraciones PATCH.",
+      "Cambios de principios incompatibles aumentan MAJOR; ampliaciones MINOR; aclaraciones PATCH.",
+      "idéntica",
+      "Mismo versionado."
+    ]
+  ],
+  "counts": {
+    "idéntica": 14,
+    "adaptada en redacción": 12,
+    "reemplazada": 1
+  }
+}

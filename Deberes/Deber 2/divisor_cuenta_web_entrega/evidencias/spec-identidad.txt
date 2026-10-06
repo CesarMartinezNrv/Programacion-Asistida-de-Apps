@@ -1,0 +1,7 @@
+Comando: git diff --no-index -- <Flutter>/specs/001-dividir-cuenta/spec.md <React>/specs/001-dividir-cuenta/spec.md
+Exit code: 0
+stdout: vacío (0 bytes)
+
+SHA256:
+divisor_cuenta\specs\001-dividir-cuenta\spec.md: a2b5bedfb7e20ca617724d5c0aca02014b82d3162ad733813779974984fa33a8
+divisor_cuenta_web\specs\001-dividir-cuenta\spec.md: a2b5bedfb7e20ca617724d5c0aca02014b82d3162ad733813779974984fa33a8

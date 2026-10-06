@@ -1,0 +1,103 @@
+{
+  "iguales": true,
+  "flutter": [
+    {
+      "nombre": "1. reparto normal",
+      "monto": 100.0,
+      "personas": 4.0,
+      "propina": 10.0,
+      "modo": "exacto",
+      "esperado": 27.5
+    },
+    {
+      "nombre": "2. sin propina",
+      "monto": 90.0,
+      "personas": 3.0,
+      "propina": 0.0,
+      "modo": "exacto",
+      "esperado": 30.0
+    },
+    {
+      "nombre": "3. cero personas",
+      "monto": 50.0,
+      "personas": 0.0,
+      "propina": 0.0,
+      "modo": "exacto",
+      "errorEsperado": "Debe haber al menos una persona"
+    },
+    {
+      "nombre": "4. monto no numerico",
+      "monto": "NaN",
+      "personas": 4.0,
+      "propina": 0.0,
+      "modo": "exacto",
+      "errorEsperado": "Monto inválido"
+    },
+    {
+      "nombre": "5. redondeo exacto",
+      "monto": 10.0,
+      "personas": 3.0,
+      "propina": 0.0,
+      "modo": "exacto",
+      "esperado": 3.33
+    },
+    {
+      "nombre": "6. redondeo hacia arriba",
+      "monto": 10.0,
+      "personas": 3.0,
+      "propina": 0.0,
+      "modo": "arriba",
+      "esperado": 4.0
+    }
+  ],
+  "react": [
+    {
+      "nombre": "1. reparto normal",
+      "monto": 100,
+      "personas": 4,
+      "propina": 10,
+      "modo": "exacto",
+      "esperado": 27.5
+    },
+    {
+      "nombre": "2. sin propina",
+      "monto": 90,
+      "personas": 3,
+      "propina": 0,
+      "modo": "exacto",
+      "esperado": 30
+    },
+    {
+      "nombre": "3. cero personas",
+      "monto": 50,
+      "personas": 0,
+      "propina": 0,
+      "modo": "exacto",
+      "errorEsperado": "Debe haber al menos una persona"
+    },
+    {
+      "nombre": "4. monto no numerico",
+      "monto": "NaN",
+      "personas": 4,
+      "propina": 0,
+      "modo": "exacto",
+      "errorEsperado": "Monto inválido"
+    },
+    {
+      "nombre": "5. redondeo exacto",
+      "monto": 10,
+      "personas": 3,
+      "propina": 0,
+      "modo": "exacto",
+      "esperado": 3.33
+    },
+    {
+      "nombre": "6. redondeo hacia arriba",
+      "monto": 10,
+      "personas": 3,
+      "propina": 0,
+      "modo": "arriba",
+      "esperado": 4
+    }
+  ]
+}

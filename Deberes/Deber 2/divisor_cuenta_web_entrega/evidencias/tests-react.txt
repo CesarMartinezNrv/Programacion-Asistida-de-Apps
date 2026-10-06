@@ -1,0 +1,47 @@
+npm notice run divisor_cuenta_web@0.0.0 test
+npm notice run vitest run --reporter=verbose
+
+ RUN  v5.0.3 C:/Programacion de apps/Deberes/Deber 2/divisor_cuenta_web
+
+ ✓ test/entrada.test.js > validación de 0/1/0 3ms
+ ✓ test/entrada.test.js > validación de -1/1/0 0ms
+ ✓ test/entrada.test.js > validación de Infinity/1/0 0ms
+ ✓ test/entrada.test.js > validación de 1/0/0 0ms
+ ✓ test/entrada.test.js > validación de 1/2.5/0 0ms
+ ✓ test/entrada.test.js > validación de 1/1/-1 0ms
+ ✓ test/entrada.test.js > validación de 1/1/NaN 0ms
+ ✓ test/entrada.test.js > validación de NaN/0/-1 0ms
+ ✓ test/entrada.test.js > formato grande conserva dos decimales sin exponente 26ms
+ ✓ test/division.test.js > Seis casos de aceptación de la spec > 1. reparto normal 4ms
+ ✓ test/division.test.js > Seis casos de aceptación de la spec > 2. sin propina 1ms
+ ✓ test/division.test.js > Seis casos de aceptación de la spec > 3. cero personas 1ms
+ ✓ test/division.test.js > Seis casos de aceptación de la spec > 4. monto no numerico 0ms
+ ✓ test/division.test.js > Seis casos de aceptación de la spec > 5. redondeo exacto 0ms
+ ✓ test/division.test.js > Seis casos de aceptación de la spec > 6. redondeo hacia arriba 0ms
+ ✓ test/division.test.js > LSP: el mismo cálculo sustituye estrategias sin comprobar su tipo 0ms
+ ✓ test/pantalla.test.jsx > Tres pruebas obligatorias de pantalla > 100, 4, 10 muestra 27.50 263ms
+ ✓ test/pantalla.test.jsx > Tres pruebas obligatorias de pantalla > cero personas muestra error sin resultado y sin calcular 37ms
+ ✓ test/pantalla.test.jsx > Tres pruebas obligatorias de pantalla > abc muestra Monto inválido 27ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > cero y coma decimal se aceptan 45ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > monto  se rechaza sin calcular 24ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > monto -1 se rechaza sin calcular 24ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > monto 12abc se rechaza sin calcular 25ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > monto Infinity se rechaza sin calcular 24ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > monto 1,000.00 se rechaza sin calcular 23ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > monto 0x10 se rechaza sin calcular 24ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > personas  se rechaza 24ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > personas -1 se rechaza 23ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > personas 2.5 se rechaza 21ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > personas abc se rechaza 22ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > propina  se rechaza 25ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > propina -1 se rechaza 23ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > propina abc se rechaza 25ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > edición y modo eliminan resultado; hacia arriba devuelve 4.00 37ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > un error tras un resultado lo elimina y corregirlo vuelve a calcular 47ms
+ ✓ test/pantalla.test.jsx > Aclaraciones y transiciones de la spec > desbordamiento muestra mensaje sin invocar cálculo 21ms
+
+ Test Files  3 passed (3)
+      Tests  36 passed (36)
+   Start at  10:36:34
+   Duration  4.27s (environment 70%, setup 13%, tests 9%, transform 5%, import 3%, worker 1%)
+

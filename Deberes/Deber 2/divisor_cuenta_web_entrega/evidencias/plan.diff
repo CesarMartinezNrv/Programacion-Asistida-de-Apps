@@ -1,0 +1,122 @@
+diff --git a/evidencias/plan-flutter.md b/specs/001-dividir-cuenta/plan.md
+index 093dbf3..938e62d 100644
+--- a/evidencias/plan-flutter.md
++++ b/specs/001-dividir-cuenta/plan.md
+@@ -1,67 +1,73 @@
+-# Implementation Plan: Dividir cuenta
+-**Branch**: `sdd` | **Date**: 2026-10-01 | **Spec**: [spec.md](spec.md)
+-**Input**: especificación aclarada del divisor.
++# Implementation Plan: Dividir cuenta en React
++**Branch**: `main` | **Date**: 2026-10-06 | **Spec**: [spec.md](spec.md)
++**Input**: copia idéntica de la especificación aclarada Flutter sdd.
+ 
+ ## Summary
+-Flutter estable, una pantalla, setState y dependencias por constructor.
++React con Vite, JavaScript, una pantalla y estado local con useState.
+ Cálculo puro y estrategia de redondeo intercambiable.
+ 
+ ## Technical Context
+-**Language/Version**: Dart 3.13.1, Flutter 3.47.1 estable.
+-**Primary Dependencies**: SDK Flutter y dependencias de plantilla, sin paquetes adicionales.
++**Language/Version**: JavaScript ES modules; Node v24.19.0.
++**Primary Dependencies**: React 19, React DOM 19, Vite 8, sin librerías externas de estado.
+ **Storage**: ninguno.
+-**Testing**: flutter_test para widgets; test_api (dependencia del SDK) para dominio sin widgets.
+-**Target Platform**: Android y web para verificación alternativa.
+-**Project Type**: app móvil de una pantalla.
++**Testing**: Vitest; Testing Library y jest-dom para pantalla; jsdom como entorno.
++**Target Platform**: navegador web moderno.
++**Project Type**: página web estática de una pantalla.
+ **Performance Goals**: cálculo síncrono constante, sin operaciones de red.
+-**Constraints**: offline; no modificar android/ios ni agregar paquetes.
++**Constraints**: offline durante el uso; sin almacenamiento, login, historial ni backend.
+ **Scale/Scope**: tres entradas, dos modos, un resultado.
+ 
+ ## Constitution Check
+-Antes y después del diseño: SRP cálculo/validación/formato separados; OCP interfaz;
+-LSP sin cast; ISP un método; DIP presentación solo dominio; composición en main.
+-Objetos de valor y widgets pueden construirse en sus consumidores.
+-Las pruebas de dominio importan test_api y no flutter_test: no dependen del motor.
++Antes y después del diseño: SRP cálculo/validación/formato separados; OCP contrato;
++LSP sin cast; ISP aplicar(valor); DIP presentación solo dominio; composición en main.jsx.
++Objetos de valor y elementos JSX pueden construirse en sus consumidores.
++Dominio JavaScript puro, sin React, DOM ni data.
+ No secretos, persistencia ni red. Casos críticos convertidos en pruebas.
++Gate previo y posterior al diseño: PASS; no contradicción de la spec con React.
++La constitución reemplaza explícitamente la prohibición de paquetes Flutter por el stack requerido.
+ 
+ ## Project Structure
+ ```text
+-lib/
+-  domain/cuenta.dart
+-  domain/resultado.dart
+-  domain/estrategia_redondeo.dart
+-  domain/calcular_division.dart
+-  domain/validar_entrada.dart
+-  data/redondeo_exacto.dart
+-  data/redondeo_hacia_arriba.dart
+-  presentation/divisor_controller.dart
+-  presentation/formateador_moneda.dart
+-  presentation/pantalla_divisor.dart
+-  main.dart
++src/
++  domain/cuenta.js
++  domain/resultado.js
++  domain/estrategiaRedondeo.js
++  domain/calcularDivision.js
++  domain/validarEntrada.js
++  data/redondeoExacto.js
++  data/redondeoHaciaArriba.js
++  presentation/useDivisor.js
++  presentation/formateadorMoneda.js
++  presentation/PantallaDivisor.jsx
++  presentation/estilos.css
++  main.jsx
+ test/
+-  casos_de_prueba.dart
+-  division_test.dart
+-  pantalla_test.dart
+-  entrada_test.dart
++  setup.js
++  casosDePrueba.js
++  division.test.js
++  pantalla.test.jsx
++  entrada.test.js
+ tool/
+-  verificar_domain.dart
++  verificarArquitectura.js
+ ```
+-**Structure Decision**: estructura solicitada, más pruebas de aclaraciones y comprobador
+-Dart puro por el bloqueo de flutter_tester.exe.
++**Structure Decision**: mismas responsabilidades, rutas src y archivos JavaScript/JSX.
++Sin servidor, llamadas de red en runtime ni persistencia.
+ 
+ ## Phase 0: Research
+-Ver [research.md](research.md). No desconocidos pendientes.
++Ver [research.md](research.md). Stack definido por la guía; no desconocidos pendientes.
+ ## Phase 1: Design
+ Ver [data-model.md](data-model.md), [contracts/ui.md](contracts/ui.md) y [quickstart.md](quickstart.md).
+-Controller convierte texto, invoca validación, delega cálculo a la estrategia elegida y expone
+-error/resultado. Pantalla recibe controller y formateador por constructor.
+-main crea validación, cálculo, estrategias, controller y formateador.
+-ValidarEntrada devuelve String?; null significa válido.
+-RedondeoExacto usa (importe * 100).round() / 100.
+-CalcularDivision devuelve Resultado sin validar o formatear.
+-Controller rechaza desbordamientos antes de invocar CalcularDivision.
++useDivisor convierte texto, valida, delega cálculo y expone error/resultado mediante useState.
++La pantalla importa el hook estáticamente y recibe servicios ordinarios como dependencias.
++main.jsx crea validación, cálculo, estrategias y formateador y los inyecta en la pantalla.
++validarEntrada devuelve string o null; null significa válido.
++redondeoExacto usa Math.round(valor * 100) / 100; hacia arriba usa Math.ceil(valor).
++calcularDivision devuelve resultado sin validar ni formatear y llama estrategia.aplicar(valor).
++El hook comprueba finitud de importe e importe * 100 antes de calcular, como el controller Flutter.
++La conversión rechaza texto vacío, hexadecimales, separadores de miles y sufijos no numéricos.
++La edición y el cambio de modo eliminan el resultado anterior.
++El formateador garantiza dos decimales, también para importes >= 1e21 sin notación exponencial.
+ 
+ ## Complexity Tracking
+-Sin infracciones aceptadas. El bloqueo del motor nativo requiere verificación alternativa:
+-intentar flutter test --platform chrome y ejecutar el comprobador puro con dart.
+-
++Sin infracciones aceptadas. Windows bloquea flutter_tester.exe; validación Flutter web registrada
++por separado y no asumida a partir de los resultados React.

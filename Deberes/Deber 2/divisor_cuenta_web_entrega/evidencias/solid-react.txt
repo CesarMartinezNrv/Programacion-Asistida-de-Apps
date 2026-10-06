@@ -1,0 +1,4 @@
+PASS DIP: domain sin React, DOM ni data; presentation sin data
+PASS composición: estrategias concretas solo en data y main.jsx
+PASS OCP/LSP: cálculo sin comprobaciones de tipo o modo
+PASS SRP: cálculo sin validación ni formato

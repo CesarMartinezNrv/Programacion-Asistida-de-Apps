@@ -1,0 +1,17 @@
+{
+  "inicio": "2026-10-06T15:26:00.396988+00:00",
+  "primer_build": "2026-10-06T15:35:50.285451+00:00",
+  "seis_casos": "2026-10-06T15:36:09.633348+00:00",
+  "minutos_build": 9.831474383333333,
+  "minutos_seis": 10.153939333333334,
+  "spec_total": 64,
+  "spec_modificados": 0,
+  "constitution_total": 27,
+  "constitution_modificadas": 13,
+  "plan_total": 54,
+  "plan_modificados": 40,
+  "lineas_plan_anadidas": 50,
+  "lineas_plan_eliminadas": 44,
+  "react_pruebas": 36,
+  "flutter_pruebas": 18
+}
