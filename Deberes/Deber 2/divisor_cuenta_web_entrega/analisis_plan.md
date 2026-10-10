@@ -1,6 +1,8 @@
 # Inventario de decisiones del plan
 
-Se cuenta cada decisión independiente del plan original, incluidos archivos concretos como decisiones de estructura. Se separan frases con varias decisiones. Las referencias a otros documentos no se cuentan; su contenido se evalúa en su artefacto. Las rutas agrupadas y exclusiones son decisiones distintas. El cálculo no deduplica ideas repetidas en resumen y diseño.
+Para comparar los planes, conté cada decisión por separado. Por ejemplo, el lenguaje, las herramientas y la organización de archivos son decisiones distintas. Si una frase tiene varias decisiones, las separé. Las ideas repetidas se cuentan donde aparecen.
+
+Las referencias a otros documentos no se cuentan aquí. Cada documento se revisa por separado. La tabla conserva los nombres de las herramientas y archivos para que se vea qué se mantuvo y qué cambió.
 
 | ID | Flutter | React | Resultado |
 |---|---|---|---|
@@ -59,6 +61,6 @@ Se cuenta cada decisión independiente del plan original, incluidos archivos con
 | P53 | Controller rechaza desbordamiento antes de calcular | Hook rechaza desbordamiento antes de calcular | adaptado |
 | P54 | Bloqueo flutter_tester: intentar Chrome y Dart puro | React Vitest/jsdom + Chrome real; problema Flutter documentado aparte | reemplazado |
 
-Total: 54 enunciados; modificados/adaptados: 40; intactos: 14. No se agregan como originales las nuevas decisiones React de formato grande, parseo estricto o CSS; se describen en el plan nuevo y se justifican por FR-004, entradas inválidas y presentación.
+De las 54 decisiones del plan original, cambiaron 40 y se mantuvieron 14. Las decisiones nuevas de React, como el formato de números grandes, la lectura de los datos y los estilos, se explican en el plan nuevo. No se suman al total del plan de Flutter.
 
-Diff físico: 50 líneas añadidas y 44 eliminadas (94 operaciones de línea); NO equivale a 94 decisiones ni a un número único de líneas reemplazadas. La guía alterna ambas métricas; se reportan separadas.
+La comparación muestra 50 líneas agregadas y 44 eliminadas. Eso no significa que cambiaron 94 decisiones: una decisión puede ocupar varias líneas. Por eso presenté los dos conteos por separado.
