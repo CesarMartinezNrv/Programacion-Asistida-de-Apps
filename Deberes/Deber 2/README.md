@@ -1,13 +1,12 @@
 # Entrega del Deber 2
 
-Para leer el deber resuelto, abre **[respuestas.md](divisor_cuenta_web_entrega/respuestas.md)**. Contiene las seis respuestas, el cronómetro, los pasos de la práctica y las salidas de pruebas. También está disponible el [informe en PDF](output/pdf/Informe_Deber2.pdf), con las respuestas y los pasos; las salidas completas quedan en el Markdown.
+Para leer el deber resuelto, abre **[respuestas.md](divisor_cuenta_web_entrega/respuestas.md)**. Contiene las seis respuestas, el cronómetro, los pasos de la práctica y las salidas de pruebas.
 
 | Carpeta | Qué contiene |
 |---|---|
 | `divisor_cuenta/` | Proyecto Flutter tomado del laboratorio. |
 | `divisor_cuenta_web_entrega/` | Proyecto React publicado en GitHub, con sus respuestas y evidencias. Esta es la carpeta para revisar la entrega de React. |
 | `divisor_cuenta_web/` | Copia local de trabajo de React, con su propio historial Git. |
-| `output/pdf/` | Informe para leer o entregar como documento. |
 | `entrega/` | Copia del historial Git de React y lista de archivos exportados. |
 
 Las dos carpetas React corresponden a la misma aplicación. Se conserva una para trabajar localmente y otra para incluir sus archivos en el repositorio principal.
