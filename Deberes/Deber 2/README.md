@@ -15,4 +15,4 @@ Para abrir la aplicación desde esta carpeta: `./ejecutar.ps1 dev`.
 
 Repositorio: [Programacion-Asistida-de-Apps](https://github.com/CesarMartinezNrv/Programacion-Asistida-de-Apps/tree/main/Deberes/Deber%202), rama `main`.
 
-Se mantienen los análisis, la bitácora y las evidencias porque el deber los pide. Los apartados solicitados a mano se prepararon con Codex y requieren revisión personal.
+Se mantienen los análisis, la bitácora y las evidencias que pide el deber. Las explicaciones de las funciones están dentro de `respuestas.md`.

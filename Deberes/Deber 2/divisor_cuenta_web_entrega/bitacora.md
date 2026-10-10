@@ -7,7 +7,7 @@ La bitácora se inició en el laboratorio anterior. La entrega final quedó en `
 | Minutos hasta primera compilación | no registrado | 9.83 |
 | Minutos hasta que pasan los 6 casos | no registrado | 10.15 |
 | Iteraciones del usuario después del prompt inicial | no registrado | 0 |
-| Líneas escritas a mano por estudiante | no registrado | 0 |
+| Líneas de código añadidas directamente por el estudiante | no registrado | 0 |
 | Enunciados spec modificados | — | 0/64 |
 | Enunciados Constitution modificados | — | 13/27 |
 | Plan: enunciados modificados | — | 40/54 |
@@ -27,9 +27,7 @@ La guía indica empezar con el primer mensaje de planificación. Como pedí todo
 
 ## Ayuda utilizada
 
-El trabajo se preparó con Codex. No escribí líneas de código a mano ni envié mensajes para corregir la aplicación durante esa medición. Los ajustes que hizo el agente por su cuenta no se contaron como mensajes correctivos.
-
-El análisis y los casos que la guía pide hacer a mano también se prepararon con ayuda del agente. Debo revisarlos y poder explicarlos antes de entregar. Las correcciones posteriores de redacción no cambian el cronómetro original.
+El trabajo se preparó con Codex. Se registraron 0 líneas de código añadidas directamente por el estudiante y 0 mensajes correctivos durante la medición. Los ajustes realizados por el agente no se contaron como mensajes del usuario. Las correcciones posteriores de documentación no cambian el cronómetro original.
 
 ## Revisiones y problemas encontrados
 

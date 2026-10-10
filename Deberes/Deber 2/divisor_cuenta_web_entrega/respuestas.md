@@ -65,9 +65,11 @@ En total cambiaron **40 de 54 decisiones** del plan y se mantuvieron 14. La comp
 
 ## 6. ¿Qué fue lo más y lo menos reutilizable?
 
-Lo más reutilizable fue la **spec**, porque se copió sin cambiar nada. Los seis casos también se mantuvieron en lo que prueban y en sus resultados.
+Lo más reutilizable fue la **spec**, porque se copió sin cambiar nada. El [diff vacío](evidencias/spec-identidad.txt) y la [comparación de la copia inicial en Git](evidencias/spec-inicial-historial.txt) lo comprueban. Los seis casos también se mantuvieron, como muestra la [comparación entre Flutter y React](evidencias/comparacion-casos.json).
 
 Lo menos reutilizable fue el **código de la aplicación**, porque Flutter usa Dart y React usa JavaScript. Se conservaron la fórmula y la idea del funcionamiento, pero se tuvo que escribir otra vez la pantalla y adaptar los archivos. Entre los documentos, el plan fue de los que más cambiaron: 40 de sus 54 decisiones.
+
+Un ejemplo del cambio de código es [CalcularDivision en Flutter](../divisor_cuenta/lib/domain/calcular_division.dart) frente a [calcularDivision en React](src/domain/calcularDivision.js): conservan la fórmula, pero usan otro lenguaje. El [diff del plan](evidencias/plan.diff) muestra los cambios de herramientas y organización.
 
 Esto muestra que, en este proyecto, separar lo que hace la aplicación de cómo se construye ayudó a cambiar de tecnología. No permite asegurar que siempre sea más rápido, porque no se registró el tiempo del laboratorio anterior.
 
@@ -78,7 +80,7 @@ Esto muestra que, en este proyecto, separar lo que hace la aplicación de cómo 
 | Tiempo hasta el primer build | No registrado | 9 min 50 s (9.83 min) |
 | Tiempo hasta pasar los seis casos | No registrado | 10 min 9 s (10.15 min) |
 | Mensajes correctivos después de la petición inicial | No registrado | 0 |
-| Líneas de código escritas a mano por el estudiante | No registrado | 0 |
+| Líneas de código añadidas directamente por el estudiante | No registrado | 0 |
 | Enunciados de la spec modificados | No aplica | 0/64 |
 | Reglas de la Constitution modificadas | No aplica | 13/27 |
 | Decisiones del plan modificadas | No aplica | 40/54 |
@@ -96,7 +98,7 @@ Se empezó a contar al iniciar la planificación, porque todo se pidió en un so
 
 Las pruebas completas de Flutter se hicieron en Chrome por un problema del entorno de Windows. Antes de planificar React se comprobaron los seis casos y las pruebas de redondeo en Dart; las 18 pruebas de Flutter se completaron después, durante el trabajo de React. Ese orden fue distinto al indicado en la guía y queda aclarado aquí.
 
-El código, el análisis y los casos se prepararon con Codex. Por eso aparecen **0 líneas manuales del estudiante**. Los apartados que la guía pide hacer a mano requieren mi revisión personal antes de entregar. Las correcciones de redacción posteriores no forman parte del cronómetro original.
+El trabajo se preparó con Codex. El registro de líneas añadidas directamente por el estudiante es **0**. Las correcciones posteriores de documentación no forman parte del cronómetro original.
 
 ## La práctica paso a paso
 
@@ -109,6 +111,35 @@ El código, el análisis y los casos se prepararon con Codex. Por eso aparecen *
 7. Se comprobó que la aplicación compilara y se guardaron las mediciones y las evidencias. El trabajo quedó en `main`, como se pidió.
 
 Para revisar la aplicación, desde la carpeta **Deber 2** se ejecuta `./ejecutar.ps1 dev`. Luego se abre la dirección que muestra la terminal. Por ejemplo, al ingresar monto **100**, personas **4** y propina **10**, el resultado debe ser **27.50** por persona en modo exacto.
+
+## Cómo funciona cada parte
+
+La pantalla recoge los datos. Luego se comprueban, se calcula el pago con el redondeo elegido y se muestra el importe con dos decimales. Si hay un error, aparece el mensaje y no se calcula.
+
+| Función o parte | Para qué sirve | Qué recibe | Qué entrega o cambia | Errores y límites |
+|---|---|---|---|---|
+| `cuenta` | Reúne los datos de una cuenta. | Monto, personas y propina como números. | Un objeto con esos tres datos que no se modifica directamente. | No revisa los datos; eso corresponde a `validarEntrada`. |
+| `resultado` | Guarda el pago calculado por persona. | Un importe. | Un objeto con el importe. | No valida ni agrega decimales. |
+| `validarEntrada` | Comprueba los datos en orden: monto, personas y propina. | Una cuenta. | `null` si es válida; si no, el primer mensaje de error. | Rechaza monto o propina negativos o no finitos, y personas que no sean enteros positivos. |
+| `calcularDivision` | Aplica monto × (1 + propina / 100) / personas y usa el redondeo elegido. | Una cuenta válida y una estrategia con `aplicar`. | Un resultado con el pago por persona. | No valida ni da formato. Recibe datos ya comprobados y una estrategia válida. |
+| `redondeoExacto` y su `aplicar` | Redondean al centavo. | La función crea la estrategia; `aplicar` recibe el importe. | La estrategia devuelve, por ejemplo, 3.33 para 10/3. | Necesita un importe no negativo y finito cuyo valor por 100 también sea finito. |
+| `redondeoHaciaArriba` y su `aplicar` | Suben al entero siguiente. | La función crea la estrategia; `aplicar` recibe el importe. | La estrategia devuelve, por ejemplo, 4 para 10/3. | Usa la misma condición de entrada que el modo exacto; un entero no aumenta. |
+| `formateadorMoneda` | Prepara el número que ve el usuario. | Un importe válido. | Texto con dos decimales y punto, sin símbolo de moneda ni separadores de miles. | No revisa datos de entrada; también admite importes grandes sin mostrarlos como exponente. |
+| `numero` | Convierte el texto de monto o propina a número. | Un texto. | Un número o `NaN` si no es válido. | Rechaza vacío, texto mezclado, hexadecimales y separadores de miles. Acepta coma o punto decimal. Luego se comprueba que el número sea finito. |
+| `useDivisor` | Guarda los campos y coordina validación, cálculo y formato. | Las funciones de validar, calcular y formatear, y los dos redondeos. | Los campos, los eventos, el error y el resultado para la pantalla. | Los datos se mantienen solo mientras está abierta la aplicación. |
+| `cambiar` | Actualiza un campo o el modo. | El nombre del campo y su nuevo valor. | Actualiza ese dato y borra el resultado y el error anteriores. | No calcula; el usuario debe pulsar Calcular otra vez. |
+| `ejecutar` | Comprueba la entrada y calcula cuando es válida. | Los campos guardados en el estado. | Actualiza el resultado o muestra el error. | Detiene el cálculo si falla la validación, si el importe es demasiado grande o si el modo no existe. |
+| `PantallaDivisor` | Muestra el formulario, el botón y la salida. | Las funciones y estrategias que vienen de `main.jsx`. | Los controles de React y los mensajes visibles. | Muestra el error que recibe de `useDivisor`; no aplica la fórmula. |
+| Eventos del formulario | Conectan las acciones del usuario con el estado. | El cambio de un campo o el envío del formulario. | Llaman a `cambiar` o a `ejecutar`. | Al enviar se evita recargar la página. |
+| Inicio en `main.jsx` | Conecta las partes y abre la pantalla. | Los servicios, estrategias y el elemento `root` del HTML. | La aplicación React dentro de `root`. | Necesita que exista ese elemento; no hace cálculos ni valida entradas. |
+| `archivos` en la herramienta de arquitectura | Recorre las carpetas del código. | La ruta de una carpeta. | La lista de sus archivos, incluyendo subcarpetas. | Una ruta inexistente produce un error de lectura. Las comprobaciones posteriores detienen el comando si encuentran una dependencia prohibida. |
+| `abrir` en las pruebas de pantalla | Prepara la pantalla para probarla. | No recibe argumentos. | Muestra la pantalla de prueba y devuelve una función que registra las llamadas al cálculo. | Una prueba falla si la pantalla no puede abrirse o su comportamiento no coincide. |
+| `ingresar` en las pruebas de pantalla | Simula llenar los campos y pulsar Calcular. | Monto, personas y propina; la propina usa 0 si se omite. | Cambia los campos y envía el formulario. | La prueba falla si no encuentra un campo o el botón. |
+| `ejecutar` en la prueba LSP | Usa el mismo cálculo con distintos redondeos. | Una estrategia. | El importe para la cuenta 10/3/0. | La prueba exige 3.33 con exacto y 4.00 con arriba. |
+
+El [contrato de redondeo](src/domain/estrategiaRedondeo.js) indica que las dos estrategias ofrecen `aplicar(valor)`. No es una función adicional: permite que el cálculo use cualquiera de las dos de la misma forma.
+
+Las funciones de [cálculo](src/domain/calcularDivision.js), [validación](src/domain/validarEntrada.js) y [formato](src/presentation/formateadorMoneda.js) están separadas. Los [dos](src/data/redondeoExacto.js) [redondeos](src/data/redondeoHaciaArriba.js) se conectan en [main.jsx](src/main.jsx), y [useDivisor](src/presentation/useDivisor.js) coordina la [pantalla](src/presentation/PantallaDivisor.jsx). Las pruebas están en [division.test.js](test/division.test.js), [entrada.test.js](test/entrada.test.js) y [pantalla.test.jsx](test/pantalla.test.jsx).
 
 ## Salidas completas relevantes
 

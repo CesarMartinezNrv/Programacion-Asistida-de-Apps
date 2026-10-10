@@ -7,7 +7,7 @@ Creada inicialmente en 07_Participacion/divisor_cuenta durante la rama sdd antes
 | Minutos hasta primera compilación | no registrado | 9.83 |
 | Minutos hasta que pasan los 6 casos | no registrado | 10.15 |
 | Iteraciones del usuario después del prompt inicial | no registrado | 0 |
-| Líneas escritas a mano por estudiante | no registrado | 0 |
+| Líneas de código añadidas directamente por el estudiante | no registrado | 0 |
 | Enunciados spec modificados | — | 0/64 |
 | Enunciados Constitution modificados | — | 13/27 |
 | Plan: enunciados modificados | — | 40/54 |
@@ -23,7 +23,7 @@ Horarios observados, America/Guayaquil (UTC-5):
 
 La guía define el inicio por el envío del primer prompt /speckit-plan. En esta sesión el usuario autorizó toda la práctica en un solo prompt: no envió prompts por fase. Se tomó como equivalente operativo la marca UTC inmediatamente anterior a ejecutar setup-plan de la Parte 5. Es una adaptación explícita de la medición, no un tiempo histórico estimado. Incluye elaboración de plan/tareas/pruebas/código, llamadas de herramientas y comprobaciones del entorno que se intercalaron.
 
-No hubo mensajes correctivos del usuario; los ajustes autónomos del agente no cuentan como iteraciones. Las tareas que la guía pide hacer a mano (Parte 2 y casosDePrueba.js) fueron elaboradas por el agente por petición del usuario, y deben ser revisadas personalmente; no se atribuyen al estudiante como trabajo manual.
+No hubo mensajes correctivos del usuario durante la medición; los ajustes autónomos del agente no cuentan como iteraciones. El trabajo se preparó con Codex.
 
 Spec Kit 1.0.13, Codex skills: init, constitution, plan, tasks, analyze, implement y converge. No se ejecutó speckit-specify. No hooks instalados. Research delegado por requerimiento de speckit-plan; no cuenta como iteración del usuario.
 

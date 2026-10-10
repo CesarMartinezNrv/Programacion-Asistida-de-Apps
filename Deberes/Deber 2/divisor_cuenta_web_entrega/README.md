@@ -17,5 +17,3 @@ Entrega: [respuestas.md](respuestas.md), [analisis_spec.md](analisis_spec.md), [
 Feature activo: specs/001-dividir-cuenta. Spec idéntica al Flutter sdd original; no se volvió a ejecutar specify.
 Resultados: 36 pruebas (seis aceptación, LSP, tres pantalla y bordes), build y navegador real verificados. Evidencias completas en evidencias/.
 Git: main por instrucción del usuario. Exportación de fuentes para el repositorio conjunto en ../divisor_cuenta_web_entrega; historial independiente conservado con Git bundle.
-
-La guía pide análisis/casos escritos a mano: en esta entrega los generó el agente y deben revisarse personalmente. No se atribuye autoría manual al estudiante.

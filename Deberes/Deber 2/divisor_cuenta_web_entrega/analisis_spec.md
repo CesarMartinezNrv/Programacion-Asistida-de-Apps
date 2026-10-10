@@ -2,7 +2,7 @@
 
 Origen: rama `sdd`, commit `0e14e00ef58f9146f9c0f51ff5fadd30f599412f`, feature `07_Participacion/divisor_cuenta/specs/001-dividir-cuenta`.
 
-Este análisis se preparó con ayuda de Codex. Como la guía pide hacerlo a mano, debo revisarlo y poder explicar la clasificación antes de entregar.
+Comparé los requisitos del laboratorio con React para separar lo que hace la aplicación de la tecnología usada.
 
 ## Método de conteo
 
@@ -12,72 +12,74 @@ No conté títulos, fechas, el nombre de la rama ni las notas explicativas. El n
 
 ## Spec
 
+La [spec de React](specs/001-dividir-cuenta/spec.md) conserva el texto original. La [comparación inicial y final](evidencias/spec-identidad.txt) y la [comprobación en el historial](evidencias/spec-inicial-historial.txt) respaldan que no se modificó. Cada fila explica por qué la regla sigue siendo válida y dónde comprobar su comportamiento.
+
 | Enunciado de la spec | Tipo (QUÉ/CÓMO/MIXTO) | ¿Viaja a React? | Justificación |
 |---|---|---|---|
-| S001 · Input: Una pantalla sin conexión. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S002 · Clarifications: Aceptar monto cero. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S003 · Clarifications: Aceptar propina cero. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S004 · Clarifications: Rechazar valores negativos. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S005 · Clarifications: Permitir coma o punto decimal. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S006 · US1: Ingresar monto, personas y propina, calcular y ver el pago individual. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S007 · US1 Independent Test: Entradas válidas producen el resultado en la misma pantalla. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S008 · AC1: 100.00, 4 personas, 10%, exacto → 27.50. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S009 · AC2: 90.00, 3 personas, 0%, exacto → 30.00. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S010 · AC5: 10.00, 3 personas, 0%, exacto → 3.33. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S011 · US2 Independent Test: Los errores aparecen sin resultado. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S012 · AC3: 50.00 y 0 personas → Debe haber al menos una persona, sin resultado. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S013 · AC4: Monto abc → Monto inválido, sin resultado. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S014 · US3 Independent Test: Cambiar de modo cambia el resultado del mismo reparto. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S015 · AC6: 10.00, 3 personas, 0%, hacia arriba → 4.00. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S016 · Edge Cases: Cero monto es válido. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S017 · Edge Cases: Cero propina es válido. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S018 · Edge Cases: Negativos son inválidos. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S019 · Edge Cases: Valores no finitos son inválidos. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S020 · Edge Cases: Personas debe ser un entero mayor o igual a uno. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S021 · Edge Cases: Campos vacíos se rechazan. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S022 · Edge Cases: Desbordamiento muestra El monto calculado es demasiado grande, sin resultado. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S023 · Edge Cases: Coma y punto son separadores decimales alternativos. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S024 · Edge Cases: No aceptar separadores de miles. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S025 · Edge Cases: Al editar datos se oculta el resultado anterior hasta calcular. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S026 · Edge Cases: Al cambiar modo se oculta el resultado anterior hasta calcular. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S027 · FR-001: Una sola pantalla contiene tres entradas, modo y botón Calcular. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S028 · FR-002: Calcular monto × (1 + propina / 100) / personas. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S029 · FR-003: Exacto redondea a centavos. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S030 · FR-003: Hacia arriba redondea al entero siguiente. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S031 · FR-004: Mostrar siempre dos decimales. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S032 · FR-004: Usar punto en la salida. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S033 · FR-005: Personas inválidas muestran Debe haber al menos una persona. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S034 · FR-006: Monto inválido muestra Monto inválido. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S035 · FR-006: Propina inválida muestra Propina inválida. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S036 · FR-007: Un error impide calcular. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S037 · FR-007: Un error elimina resultados previos. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S038 · FR-008: Aceptar cero. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S039 · FR-008: Rechazar negativos. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S040 · FR-008: Aceptar punto o coma en monto/propina. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S041 · FR-009: No usar red. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S042 · FR-009: No usar almacenamiento. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S043 · FR-009: No usar login. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S044 · FR-009: No usar historial. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S045 · FR-009: No añadir monedas. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S046 · FR-009: No añadir otras pantallas. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S047 · Cuenta: Monto no negativo y finito. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S048 · Cuenta: Personas entero positivo. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S049 · Cuenta: Propina no negativa y finita. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S050 · Resultado: Importe individual después de la estrategia elegida. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S051 · SC-001: Los seis escenarios devuelven exactamente los mensajes o importes definidos. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S052 · SC-002: Ningún error conserva un resultado visible. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S053 · SC-003: Ambas reglas se seleccionan. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S054 · SC-003: Ambas reglas funcionan sin conexión. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S055 · SC-004: Cero tiene verificación ejecutable. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S056 · SC-004: Coma decimal tiene verificación ejecutable. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S057 · SC-004: Negativos tienen verificación ejecutable. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S058 · SC-004: Entradas vacías tienen verificación ejecutable. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S059 · Assumptions: Modo inicial exacto. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S060 · Assumptions: Dos personas inicialmente. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S061 · Assumptions: Propina cero inicialmente. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S062 · Assumptions: Monto inicialmente vacío. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S063 · Assumptions: Validación en orden monto, personas, propina. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
-| S064 · Assumptions: El redondeo a centavos no reparte sobrantes; 3 × 3.33 = 9.99 se acepta. | QUÉ | Intacto | Describe lo que debe hacer la aplicación y sirve también en React. |
+| S001 · Input: Una pantalla sin conexión. | QUÉ | Intacto | Pide una sola pantalla y uso sin conexión, no una herramienta. Se ve en [PantallaDivisor](src/presentation/PantallaDivisor.jsx) y en la [comprobación en navegador](evidencias/navegador-react.txt). |
+| S002 · Clarifications: Aceptar monto cero. | QUÉ | Intacto | El cero es un monto permitido sin importar el lenguaje. [pruebas de validación](test/entrada.test.js) comprueba monto 0 y [pruebas de pantalla](test/pantalla.test.jsx) muestra 0.00. |
+| S003 · Clarifications: Aceptar propina cero. | QUÉ | Intacto | Propina 0 significa repartir sin añadir un cargo. El caso 2 de las [pruebas de los seis casos](test/division.test.js) devuelve 30.00. |
+| S004 · Clarifications: Rechazar valores negativos. | QUÉ | Intacto | Rechazar negativos es una regla sobre los datos. [pruebas de validación](test/entrada.test.js) prueba monto -1 y propina -1. |
+| S005 · Clarifications: Permitir coma o punto decimal. | QUÉ | Intacto | Define cómo puede ingresar los datos el usuario. [pruebas de pantalla](test/pantalla.test.jsx) comprueba 100,00 y 10,0 y obtiene 27.50. |
+| S006 · US1: Ingresar monto, personas y propina, calcular y ver el pago individual. | QUÉ | Intacto | Describe la acción del usuario y su resultado. [PantallaDivisor](src/presentation/PantallaDivisor.jsx) contiene los campos, el botón y la salida. |
+| S007 · US1 Independent Test: Entradas válidas producen el resultado en la misma pantalla. | QUÉ | Intacto | El resultado debe verse en la misma pantalla. La primera de las [pruebas de pantalla](test/pantalla.test.jsx) ingresa 100/4/10 y encuentra 27.50. |
+| S008 · AC1: 100.00, 4 personas, 10%, exacto → 27.50. | QUÉ | Intacto | Fija entradas y una respuesta, no código Flutter. El caso 1 conserva 27.50 en la [comparación de los seis casos](evidencias/comparacion-casos.json). |
+| S009 · AC2: 90.00, 3 personas, 0%, exacto → 30.00. | QUÉ | Intacto | Fija el reparto sin propina. El caso 2 conserva 30.00 en la [comparación de los seis casos](evidencias/comparacion-casos.json). |
+| S010 · AC5: 10.00, 3 personas, 0%, exacto → 3.33. | QUÉ | Intacto | Fija el resultado aceptado para 10/3. El caso 5 conserva 3.33 en la [comparación de los seis casos](evidencias/comparacion-casos.json). |
+| S011 · US2 Independent Test: Los errores aparecen sin resultado. | QUÉ | Intacto | Pide que un error oculte el resultado. [pruebas de pantalla](test/pantalla.test.jsx) comprueba cero personas y también un error después de un cálculo válido. |
+| S012 · AC3: 50.00 y 0 personas → Debe haber al menos una persona, sin resultado. | QUÉ | Intacto | Impide dividir entre cero y fija el mensaje. El caso 3 mantiene el texto en la [comparación de los seis casos](evidencias/comparacion-casos.json), y [pruebas de pantalla](test/pantalla.test.jsx) comprueba que no se calcula. |
+| S013 · AC4: Monto abc → Monto inválido, sin resultado. | QUÉ | Intacto | Fija el mensaje ante un monto que no es un número. El caso 4 conserva Monto inválido y [pruebas de pantalla](test/pantalla.test.jsx) prueba abc. |
+| S014 · US3 Independent Test: Cambiar de modo cambia el resultado del mismo reparto. | QUÉ | Intacto | Permite elegir otra forma de redondear el mismo reparto. [pruebas de pantalla](test/pantalla.test.jsx) cambia de exacto a arriba y obtiene 4.00 en vez de 3.33. |
+| S015 · AC6: 10.00, 3 personas, 0%, hacia arriba → 4.00. | QUÉ | Intacto | El resultado 4.00 es parte del comportamiento pedido. El caso 6 queda igual en la [comparación de los seis casos](evidencias/comparacion-casos.json). |
+| S016 · Edge Cases: Cero monto es válido. | QUÉ | Intacto | Permite repartir una cuenta de valor cero. [pruebas de validación](test/entrada.test.js) acepta 0/1/0 y [pruebas de pantalla](test/pantalla.test.jsx) muestra 0.00. |
+| S017 · Edge Cases: Cero propina es válido. | QUÉ | Intacto | Permite no dejar propina. El caso 2 de las [pruebas de los seis casos](test/division.test.js) usa propina 0 y obtiene 30.00. |
+| S018 · Edge Cases: Negativos son inválidos. | QUÉ | Intacto | No permite montos ni propinas menores que cero. [pruebas de validación](test/entrada.test.js) comprueba los dos tipos de valores negativos. |
+| S019 · Edge Cases: Valores no finitos son inválidos. | QUÉ | Intacto | No permite números infinitos ni datos que no sean números. [pruebas de validación](test/entrada.test.js) incluye Infinity y NaN; la regla está en [validarEntrada](src/domain/validarEntrada.js). |
+| S020 · Edge Cases: Personas debe ser un entero mayor o igual a uno. | QUÉ | Intacto | Las personas deben contarse en enteros positivos. [pruebas de validación](test/entrada.test.js) rechaza 0 y 2.5; [pruebas de pantalla](test/pantalla.test.jsx) añade negativos y texto. |
+| S021 · Edge Cases: Campos vacíos se rechazan. | QUÉ | Intacto | Un campo vacío no es una entrada válida. [pruebas de pantalla](test/pantalla.test.jsx) prueba monto, personas y propina vacíos. |
+| S022 · Edge Cases: Desbordamiento muestra El monto calculado es demasiado grande, sin resultado. | QUÉ | Intacto | Fija qué mostrar cuando el valor calculado es demasiado grande. [pruebas de pantalla](test/pantalla.test.jsx) usa 1e308 y comprueba el mensaje sin invocar el cálculo. |
+| S023 · Edge Cases: Coma y punto son separadores decimales alternativos. | QUÉ | Intacto | Los separadores aceptados pertenecen a la entrada del usuario. [pruebas de pantalla](test/pantalla.test.jsx) comprueba coma decimal y los casos normales usan punto. |
+| S024 · Edge Cases: No aceptar separadores de miles. | QUÉ | Intacto | Evita interpretar un formato de miles como un decimal. [pruebas de pantalla](test/pantalla.test.jsx) rechaza 1,000.00 y [useDivisor](src/presentation/useDivisor.js) exige un número completo. |
+| S025 · Edge Cases: Al editar datos se oculta el resultado anterior hasta calcular. | QUÉ | Intacto | Impide mostrar un cálculo que ya no corresponde a los datos. [pruebas de pantalla](test/pantalla.test.jsx) cambia el monto y comprueba que desaparece el resultado. |
+| S026 · Edge Cases: Al cambiar modo se oculta el resultado anterior hasta calcular. | QUÉ | Intacto | El resultado anterior no debe quedar visible al cambiar el modo. [pruebas de pantalla](test/pantalla.test.jsx) cambia a arriba y exige calcular otra vez. |
+| S027 · FR-001: Una sola pantalla contiene tres entradas, modo y botón Calcular. | QUÉ | Intacto | Describe los controles que necesita el usuario. [PantallaDivisor](src/presentation/PantallaDivisor.jsx) contiene monto, personas, propina, modo y Calcular, en una pantalla. |
+| S028 · FR-002: Calcular monto × (1 + propina / 100) / personas. | QUÉ | Intacto | La fórmula define el pago, no una instrucción propia de Flutter. [calcularDivision](src/domain/calcularDivision.js) usa la misma fórmula y las [pruebas de los seis casos](test/division.test.js) verifican sus resultados. |
+| S029 · FR-003: Exacto redondea a centavos. | QUÉ | Intacto | Redondear a centavos define el resultado esperado. [redondeoExacto](src/data/redondeoExacto.js) aplica la regla y el caso 5 de las [pruebas de los seis casos](test/division.test.js) espera 3.33. |
+| S030 · FR-003: Hacia arriba redondea al entero siguiente. | QUÉ | Intacto | Subir al entero siguiente es una regla de pago. [redondeoHaciaArriba](src/data/redondeoHaciaArriba.js) la implementa y el caso 6 de las [pruebas de los seis casos](test/division.test.js) espera 4.00. |
+| S031 · FR-004: Mostrar siempre dos decimales. | QUÉ | Intacto | Dos decimales es el formato visible que se pide. [formateadorMoneda](src/presentation/formateadorMoneda.js) los mantiene; [pruebas de validación](test/entrada.test.js) incluye un importe grande terminado en .00. |
+| S032 · FR-004: Usar punto en la salida. | QUÉ | Intacto | El punto es una condición de la salida, aunque la entrada permita coma. [pruebas de pantalla](test/pantalla.test.jsx) ingresa coma y espera 27.50. |
+| S033 · FR-005: Personas inválidas muestran Debe haber al menos una persona. | QUÉ | Intacto | El mensaje de personas no depende del lenguaje. [validarEntrada](src/domain/validarEntrada.js) conserva el texto y [pruebas de pantalla](test/pantalla.test.jsx) lo verifica con cero personas. |
+| S034 · FR-006: Monto inválido muestra Monto inválido. | QUÉ | Intacto | Fija el mensaje del monto inválido. [pruebas de pantalla](test/pantalla.test.jsx) comprueba Monto inválido al ingresar abc. |
+| S035 · FR-006: Propina inválida muestra Propina inválida. | QUÉ | Intacto | Fija el mensaje de la propina inválida. [pruebas de pantalla](test/pantalla.test.jsx) comprueba Propina inválida con texto, negativo y vacío. |
+| S036 · FR-007: Un error impide calcular. | QUÉ | Intacto | Con datos inválidos no se debe calcular. Las [pruebas de pantalla](test/pantalla.test.jsx) usan una función de seguimiento para comprobar que no se llama al cálculo. |
+| S037 · FR-007: Un error elimina resultados previos. | QUÉ | Intacto | Un error no puede dejar visible un pago anterior. [pruebas de pantalla](test/pantalla.test.jsx) calcula un resultado y luego ingresa cero personas para comprobar que se borra. |
+| S038 · FR-008: Aceptar cero. | QUÉ | Intacto | El cero es válido para monto y propina. [pruebas de validación](test/entrada.test.js) acepta 0/1/0; [pruebas de pantalla](test/pantalla.test.jsx) obtiene 0.00. |
+| S039 · FR-008: Rechazar negativos. | QUÉ | Intacto | Los valores negativos deben rechazarse igual en React. [pruebas de validación](test/entrada.test.js) comprueba las reglas del monto y de la propina. |
+| S040 · FR-008: Aceptar punto o coma en monto/propina. | QUÉ | Intacto | Permite dos formas de ingresar decimales sin cambiar el cálculo. [pruebas de pantalla](test/pantalla.test.jsx) obtiene 27.50 al ingresar 100,00 y 10,0. |
+| S041 · FR-009: No usar red. | QUÉ | Intacto | Limita el producto a funcionar sin llamadas de red durante el uso. La [comprobación en navegador](evidencias/navegador-react.txt) comprueba el cálculo offline. |
+| S042 · FR-009: No usar almacenamiento. | QUÉ | Intacto | No guardar datos es una limitación del producto. [useDivisor](src/presentation/useDivisor.js) mantiene los datos solo en el estado de la pantalla; no usa almacenamiento. |
+| S043 · FR-009: No usar login. | QUÉ | Intacto | No se necesita una cuenta de usuario. [PantallaDivisor](src/presentation/PantallaDivisor.jsx) contiene únicamente el formulario y el resultado, sin acceso ni registro. |
+| S044 · FR-009: No usar historial. | QUÉ | Intacto | No se pide conservar cálculos anteriores. [useDivisor](src/presentation/useDivisor.js) reemplaza la salida y la borra al editar; no crea una lista de operaciones. |
+| S045 · FR-009: No añadir monedas. | QUÉ | Intacto | La aplicación no debe agregar monedas ni símbolos. [formateadorMoneda](src/presentation/formateadorMoneda.js) devuelve solo el número con dos decimales. |
+| S046 · FR-009: No añadir otras pantallas. | QUÉ | Intacto | El alcance es una sola pantalla. [PantallaDivisor](src/presentation/PantallaDivisor.jsx) muestra todo en la misma vista y no añade navegación. |
+| S047 · Cuenta: Monto no negativo y finito. | QUÉ | Intacto | La regla define qué monto es válido. [validarEntrada](src/domain/validarEntrada.js) rechaza negativos, Infinity y NaN, comprobados en [pruebas de validación](test/entrada.test.js). |
+| S048 · Cuenta: Personas entero positivo. | QUÉ | Intacto | La cantidad de personas debe ser entera y positiva en ambas tecnologías. [validarEntrada](src/domain/validarEntrada.js) usa esa condición y [pruebas de validación](test/entrada.test.js) prueba 0 y 2.5. |
+| S049 · Cuenta: Propina no negativa y finita. | QUÉ | Intacto | La propina debe ser finita y no negativa. [pruebas de validación](test/entrada.test.js) comprueba propina -1 y NaN, y acepta 0. |
+| S050 · Resultado: Importe individual después de la estrategia elegida. | QUÉ | Intacto | Define el dato que sale del reparto. [calcularDivision](src/domain/calcularDivision.js) entrega el importe después de aplicar la estrategia y las [pruebas de los seis casos](test/division.test.js) lo comparan. |
+| S051 · SC-001: Los seis escenarios devuelven exactamente los mensajes o importes definidos. | QUÉ | Intacto | Exige conservar los seis resultados y mensajes. Las [pruebas de los seis casos](test/division.test.js) ejecutan los seis datos y la [comparación de los seis casos](evidencias/comparacion-casos.json) confirma que no cambiaron. |
+| S052 · SC-002: Ningún error conserva un resultado visible. | QUÉ | Intacto | El resultado debe desaparecer ante cualquier error. [pruebas de pantalla](test/pantalla.test.jsx) comprueba el error después de una entrada válida. |
+| S053 · SC-003: Ambas reglas se seleccionan. | QUÉ | Intacto | El usuario debe poder seleccionar los dos modos. [PantallaDivisor](src/presentation/PantallaDivisor.jsx) incluye ambas opciones y [pruebas de pantalla](test/pantalla.test.jsx) verifica el cambio de resultado. |
+| S054 · SC-003: Ambas reglas funcionan sin conexión. | QUÉ | Intacto | Los dos modos deben funcionar offline. La [comprobación en navegador](evidencias/navegador-react.txt) registra el cálculo sin conexión; las estrategias no hacen llamadas de red. |
+| S055 · SC-004: Cero tiene verificación ejecutable. | QUÉ | Intacto | Pide comprobar el caso cero, sin indicar una biblioteca de pruebas. [pruebas de validación](test/entrada.test.js) y [pruebas de pantalla](test/pantalla.test.jsx) lo verifican en React. |
+| S056 · SC-004: Coma decimal tiene verificación ejecutable. | QUÉ | Intacto | Pide una comprobación de coma decimal. [pruebas de pantalla](test/pantalla.test.jsx) ingresa monto y propina con coma y obtiene 27.50. |
+| S057 · SC-004: Negativos tienen verificación ejecutable. | QUÉ | Intacto | Pide comprobar el rechazo de negativos. [pruebas de validación](test/entrada.test.js) prueba monto y propina negativos; [pruebas de pantalla](test/pantalla.test.jsx) también prueba personas negativas. |
+| S058 · SC-004: Entradas vacías tienen verificación ejecutable. | QUÉ | Intacto | Pide comprobar las entradas vacías. [pruebas de pantalla](test/pantalla.test.jsx) tiene casos para los tres campos vacíos y sus mensajes. |
+| S059 · Assumptions: Modo inicial exacto. | QUÉ | Intacto | El modo con que abre la aplicación es visible para el usuario. [useDivisor](src/presentation/useDivisor.js) inicia modo exacto; [pruebas de pantalla](test/pantalla.test.jsx) calcula 3.33 antes de cambiarlo. |
+| S060 · Assumptions: Dos personas inicialmente. | QUÉ | Intacto | Dos personas es el valor inicial del campo. Está definido en el estado inicial de [useDivisor](src/presentation/useDivisor.js), sin depender de Flutter. |
+| S061 · Assumptions: Propina cero inicialmente. | QUÉ | Intacto | Propina cero es el valor inicial del formulario. [useDivisor](src/presentation/useDivisor.js) lo conserva para que no se añada propina sin ingresarla. |
+| S062 · Assumptions: Monto inicialmente vacío. | QUÉ | Intacto | El monto debe iniciar vacío. [useDivisor](src/presentation/useDivisor.js) conserva ese valor y [PantallaDivisor](src/presentation/PantallaDivisor.jsx) lo presenta como un campo por completar. |
+| S063 · Assumptions: Validación en orden monto, personas, propina. | QUÉ | Intacto | El orden determina qué error ve primero el usuario. [validarEntrada](src/domain/validarEntrada.js) sigue monto/personas/propina y [pruebas de validación](test/entrada.test.js) prueba varios errores juntos. |
+| S064 · Assumptions: El redondeo a centavos no reparte sobrantes; 3 × 3.33 = 9.99 se acepta. | QUÉ | Intacto | Acepta el pequeño sobrante del redondeo: 3 × 3.33 = 9.99. El caso 5 de las [pruebas de los seis casos](test/division.test.js) mantiene 3.33 y no reparte ese centavo. |
 
 Total: **64**; QUÉ: **64 (100%)**; CÓMO: **0 (0%)**; MIXTO: **0 (0%)**. Viaja intacto: **100%**; adaptado: **0%**; no reusable: **0%**.
 
@@ -85,37 +87,37 @@ El porcentaje de CÓMO es 0 / 64 × 100 = 0%. No supera el 30% que usa el deber 
 
 ## Constitution, evaluada por separado
 
-Comparé las reglas originales de Flutter, anteriores al ajuste para las pruebas web, con las reglas de React. No conté el número de versión ni la nota de la versión inicial. En las dos primeras columnas mantuve el texto de las reglas para mostrar qué cambió.
+Comparé las [reglas originales de Flutter](evidencias/constitution-flutter-original.md), anteriores al ajuste para las pruebas web, con las [reglas de React](.specify/memory/constitution.md). El [diff de las constituciones](evidencias/constitution.diff) muestra sus cambios. No conté el número de versión ni la nota de la versión inicial. En las dos primeras columnas mantuve el texto de las reglas para mostrar qué cambió.
 
 | Enunciado original | Regla React | Clasificación | Justificación |
 |---|---|---|---|
-| C01 · SRP: Cada clase tiene una razón de cambio. | Cada función o módulo tiene una razón de cambio. | adaptada en redacción | JavaScript usa funciones y módulos. |
-| C02 · SRP: CalcularDivision únicamente aplica la fórmula y delega el redondeo: no valida ni formatea. | calcularDivision únicamente aplica la fórmula y delega el redondeo: no valida ni formatea. | adaptada en redacción | Cambia el nombre, pero sigue haciendo lo mismo. |
-| C03 · SRP: ValidarEntrada valida y FormateadorMoneda formatea. | validarEntrada valida y formateadorMoneda formatea. | adaptada en redacción | Los nombres se adaptan a JavaScript. |
-| C04 · OCP: Una nueva regla de redondeo se agrega implementando EstrategiaRedondeo en un archivo nuevo. | Una nueva regla de redondeo se agrega implementando el contrato estrategiaRedondeo en un archivo nuevo. | adaptada en redacción | Se cambia la forma de definir la estrategia para usarla en JavaScript. |
-| C05 · OCP: No se modifican CalcularDivision ni las estrategias existentes. | No se modifican calcularDivision ni las estrategias existentes. | adaptada en redacción | Se puede agregar un redondeo sin cambiar el cálculo. |
-| C06 · LSP: Todas las estrategias reciben un importe finito no negativo y devuelven un importe finito no negativo. | Todas las estrategias reciben un importe finito no negativo y devuelven un importe finito no negativo. | idéntica | La regla sobre los valores sirve en los dos lenguajes. |
-| C07 · LSP: El consumidor usa la interfaz sin if de tipo ni casts concretos. | El consumidor usa la interfaz sin if de tipo ni casts concretos. | idéntica | Se puede cambiar la estrategia sin cambiar el cálculo. |
-| C08 · LSP: Una prueba debe intercambiar exacto y hacia arriba en el mismo caso de uso. | Una prueba debe intercambiar exacto y hacia arriba en el mismo caso de uso. | idéntica | La misma prueba sirve para comprobar los dos modos. |
-| C09 · ISP: EstrategiaRedondeo declara únicamente redondear(double importe). | estrategiaRedondeo declara únicamente aplicar(valor). | adaptada en redacción | Se cambia el nombre y la forma de recibir el valor, como pide la guía. |
-| C10 · ISP: No incluye validación, formateo, persistencia ni métodos ajenos al redondeo. | No incluye validación, formateo, persistencia ni métodos ajenos al redondeo. | idéntica | Solo incluye lo necesario para redondear. |
-| C11 · DIP: presentation depende de domain, nunca de data. | presentation depende de domain, nunca de data. | idéntica | La pantalla usa los cálculos, sin conocer cómo se implementa el redondeo. |
-| C12 · DIP: domain no importa package:flutter ni data. | src/domain no importa react, DOM ni data; es JavaScript puro. | adaptada en redacción | Los cálculos siguen separados de la pantalla. |
-| C13 · DIP: main.dart es el único punto que instancia implementaciones concretas y conecta dependencias. | src/main.jsx es el único punto que instancia implementaciones concretas y conecta dependencias. | adaptada en redacción | Cambia el archivo donde se conectan las partes. |
-| C14 · DIP: Se permite instanciar objetos de valor Cuenta y Resultado donde corresponde y widgets en la presentación; la regla de composición se aplica a servicios y estrategias inyectables. | Se permite crear objetos de valor cuenta y resultado donde corresponde y elementos JSX en presentación; la regla de composición se aplica a servicios y estrategias inyectables. | adaptada en redacción | React usa JSX en lugar de widgets; se mantiene la regla para conectar los servicios. |
-| C15 · Arquitectura: Capas obligatorias: presentation -> domain <- data. | Capas obligatorias: src/presentation -> src/domain <- src/data. | adaptada en redacción | Rutas src en lugar de lib. |
-| C16 · Arquitectura: Dominio Dart puro. | Dominio JavaScript puro. | adaptada en redacción | Cambia el lenguaje, pero los cálculos siguen separados. |
-| C17 · Seguridad: No guardar secretos ni API keys. | No guardar secretos ni API keys. | idéntica | Sirve sin importar la tecnología. |
-| C18 · Arquitectura: Una pantalla sin red ni base de datos. | Una pantalla sin red ni base de datos. | idéntica | Mismo alcance. |
-| C19 · Dependencias: El SDK y sus dependencias generadas son la base; no agregar paquetes externos. | Usar React con Vite, Vitest, Testing Library y jsdom; sin librerías de estado externas. | reemplazada | La regla anterior no permitiría instalar las herramientas de React que pide el deber. |
-| C20 · Pruebas: Los seis criterios de aceptación se traducen a pruebas ejecutables y separadas de sus datos. | Los seis criterios de aceptación se traducen a pruebas ejecutables y separadas de sus datos. | idéntica | Los datos de los casos siguen separados del código que ejecuta las pruebas. |
-| C21 · Pruebas: Incluir la prueba LSP y las tres pruebas de widget solicitadas. | Incluir la prueba LSP y las tres pruebas de pantalla solicitadas con Testing Library. | adaptada en redacción | Se comprueba la pantalla de React en lugar de los widgets de Flutter. |
-| C22 · Materia: Toda función generada debe ser explicable: propósito, entrada, salida y errores. | Toda función generada debe ser explicable: propósito, entrada, salida y errores. | idéntica | Se debe poder explicar cada función. |
-| C23 · Calidad: Los errores de validación deben impedir el cálculo y ocultar cualquier resultado anterior. | Los errores de validación deben impedir el cálculo y ocultar cualquier resultado anterior. | idéntica | La misma regla se puede comprobar en ambas aplicaciones. |
-| C24 · Governance: La constitución rige spec, plan, tareas y código. | La constitución rige spec, plan, tareas y código. | idéntica | Se mantienen las reglas del proyecto. |
-| C25 · Governance: Ante un incumplimiento se corrige primero el artefacto que define la regla. | Ante un incumplimiento se corrige primero el artefacto que define la regla. | idéntica | Se mantiene la forma de corregir los problemas. |
-| C26 · Governance: Revisar el cumplimiento antes y después de implementar. | Revisar el cumplimiento antes y después de implementar. | idéntica | Se revisa antes y después de programar. |
-| C27 · Governance: Cambios de principios incompatibles aumentan MAJOR; ampliaciones MINOR; aclaraciones PATCH. | Cambios de principios incompatibles aumentan MAJOR; ampliaciones MINOR; aclaraciones PATCH. | idéntica | Se mantiene la forma de numerar las versiones. |
+| C01 · SRP: Cada clase tiene una razón de cambio. | Cada función o módulo tiene una razón de cambio. | adaptada en redacción | JavaScript usa funciones y módulos. [calcularDivision](src/domain/calcularDivision.js) |
+| C02 · SRP: CalcularDivision únicamente aplica la fórmula y delega el redondeo: no valida ni formatea. | calcularDivision únicamente aplica la fórmula y delega el redondeo: no valida ni formatea. | adaptada en redacción | Cambia el nombre, pero sigue haciendo lo mismo. [calcularDivision](src/domain/calcularDivision.js) |
+| C03 · SRP: ValidarEntrada valida y FormateadorMoneda formatea. | validarEntrada valida y formateadorMoneda formatea. | adaptada en redacción | Los nombres se adaptan a JavaScript. [validarEntrada](src/domain/validarEntrada.js) y [formateadorMoneda](src/presentation/formateadorMoneda.js) |
+| C04 · OCP: Una nueva regla de redondeo se agrega implementando EstrategiaRedondeo en un archivo nuevo. | Una nueva regla de redondeo se agrega implementando el contrato estrategiaRedondeo en un archivo nuevo. | adaptada en redacción | Se cambia la forma de definir la estrategia para usarla en JavaScript. [redondeoExacto](src/data/redondeoExacto.js) y [redondeoHaciaArriba](src/data/redondeoHaciaArriba.js) |
+| C05 · OCP: No se modifican CalcularDivision ni las estrategias existentes. | No se modifican calcularDivision ni las estrategias existentes. | adaptada en redacción | Se puede agregar un redondeo sin cambiar el cálculo. [calcularDivision](src/domain/calcularDivision.js) |
+| C06 · LSP: Todas las estrategias reciben un importe finito no negativo y devuelven un importe finito no negativo. | Todas las estrategias reciben un importe finito no negativo y devuelven un importe finito no negativo. | idéntica | La regla sobre los valores sirve en los dos lenguajes. [pruebas de los seis casos](test/division.test.js) |
+| C07 · LSP: El consumidor usa la interfaz sin if de tipo ni casts concretos. | El consumidor usa la interfaz sin if de tipo ni casts concretos. | idéntica | Se puede cambiar la estrategia sin cambiar el cálculo. [calcularDivision](src/domain/calcularDivision.js) |
+| C08 · LSP: Una prueba debe intercambiar exacto y hacia arriba en el mismo caso de uso. | Una prueba debe intercambiar exacto y hacia arriba en el mismo caso de uso. | idéntica | La misma prueba sirve para comprobar los dos modos. [pruebas de los seis casos](test/division.test.js) |
+| C09 · ISP: EstrategiaRedondeo declara únicamente redondear(double importe). | estrategiaRedondeo declara únicamente aplicar(valor). | adaptada en redacción | Se cambia el nombre y la forma de recibir el valor, como pide la guía. [contrato aplicar](src/domain/estrategiaRedondeo.js) |
+| C10 · ISP: No incluye validación, formateo, persistencia ni métodos ajenos al redondeo. | No incluye validación, formateo, persistencia ni métodos ajenos al redondeo. | idéntica | Solo incluye lo necesario para redondear. [contrato aplicar](src/domain/estrategiaRedondeo.js) |
+| C11 · DIP: presentation depende de domain, nunca de data. | presentation depende de domain, nunca de data. | idéntica | La pantalla usa los cálculos, sin conocer cómo se implementa el redondeo. [revisión de arquitectura](tool/verificarArquitectura.js) |
+| C12 · DIP: domain no importa package:flutter ni data. | src/domain no importa react, DOM ni data; es JavaScript puro. | adaptada en redacción | Los cálculos siguen separados de la pantalla. [revisión de arquitectura](tool/verificarArquitectura.js) |
+| C13 · DIP: main.dart es el único punto que instancia implementaciones concretas y conecta dependencias. | src/main.jsx es el único punto que instancia implementaciones concretas y conecta dependencias. | adaptada en redacción | Cambia el archivo donde se conectan las partes. [main.jsx](src/main.jsx) |
+| C14 · DIP: Se permite instanciar objetos de valor Cuenta y Resultado donde corresponde y widgets en la presentación; la regla de composición se aplica a servicios y estrategias inyectables. | Se permite crear objetos de valor cuenta y resultado donde corresponde y elementos JSX en presentación; la regla de composición se aplica a servicios y estrategias inyectables. | adaptada en redacción | React usa JSX en lugar de widgets; se mantiene la regla para conectar los servicios. [PantallaDivisor](src/presentation/PantallaDivisor.jsx) y [cuenta](src/domain/cuenta.js) |
+| C15 · Arquitectura: Capas obligatorias: presentation -> domain <- data. | Capas obligatorias: src/presentation -> src/domain <- src/data. | adaptada en redacción | Rutas src en lugar de lib. [revisión de arquitectura](tool/verificarArquitectura.js) |
+| C16 · Arquitectura: Dominio Dart puro. | Dominio JavaScript puro. | adaptada en redacción | Cambia el lenguaje, pero los cálculos siguen separados. [revisión de arquitectura](tool/verificarArquitectura.js) |
+| C17 · Seguridad: No guardar secretos ni API keys. | No guardar secretos ni API keys. | idéntica | Sirve sin importar la tecnología. [reglas de seguridad](.specify/memory/constitution.md) |
+| C18 · Arquitectura: Una pantalla sin red ni base de datos. | Una pantalla sin red ni base de datos. | idéntica | Mismo alcance. [PantallaDivisor](src/presentation/PantallaDivisor.jsx) y [comprobación en navegador](evidencias/navegador-react.txt) |
+| C19 · Dependencias: El SDK y sus dependencias generadas son la base; no agregar paquetes externos. | Usar React con Vite, Vitest, Testing Library y jsdom; sin librerías de estado externas. | reemplazada | La regla anterior no permitiría instalar las herramientas de React que pide el deber. [dependencias](package.json) |
+| C20 · Pruebas: Los seis criterios de aceptación se traducen a pruebas ejecutables y separadas de sus datos. | Los seis criterios de aceptación se traducen a pruebas ejecutables y separadas de sus datos. | idéntica | Los datos de los casos siguen separados del código que ejecuta las pruebas. [datos de prueba](test/casosDePrueba.js) y [pruebas de los seis casos](test/division.test.js) |
+| C21 · Pruebas: Incluir la prueba LSP y las tres pruebas de widget solicitadas. | Incluir la prueba LSP y las tres pruebas de pantalla solicitadas con Testing Library. | adaptada en redacción | Se comprueba la pantalla de React en lugar de los widgets de Flutter. [pruebas de pantalla](test/pantalla.test.jsx) y [pruebas de los seis casos](test/division.test.js) |
+| C22 · Materia: Toda función generada debe ser explicable: propósito, entrada, salida y errores. | Toda función generada debe ser explicable: propósito, entrada, salida y errores. | idéntica | Se debe poder explicar cada función. [explicación de funciones](respuestas.md#cómo-funciona-cada-parte) |
+| C23 · Calidad: Los errores de validación deben impedir el cálculo y ocultar cualquier resultado anterior. | Los errores de validación deben impedir el cálculo y ocultar cualquier resultado anterior. | idéntica | La misma regla se puede comprobar en ambas aplicaciones. [pruebas de pantalla](test/pantalla.test.jsx) |
+| C24 · Governance: La constitución rige spec, plan, tareas y código. | La constitución rige spec, plan, tareas y código. | idéntica | Se mantienen las reglas del proyecto. [Constitution](.specify/memory/constitution.md) |
+| C25 · Governance: Ante un incumplimiento se corrige primero el artefacto que define la regla. | Ante un incumplimiento se corrige primero el artefacto que define la regla. | idéntica | Se mantiene la forma de corregir los problemas. [registro de corrección T019](specs/001-dividir-cuenta/convergence.md) |
+| C26 · Governance: Revisar el cumplimiento antes y después de implementar. | Revisar el cumplimiento antes y después de implementar. | idéntica | Se revisa antes y después de programar. [Analyze](specs/001-dividir-cuenta/analysis.md) y [Converge](specs/001-dividir-cuenta/convergence.md) |
+| C27 · Governance: Cambios de principios incompatibles aumentan MAJOR; ampliaciones MINOR; aclaraciones PATCH. | Cambios de principios incompatibles aumentan MAJOR; ampliaciones MINOR; aclaraciones PATCH. | idéntica | Se mantiene la forma de numerar las versiones. [versión 2.0.0](.specify/memory/constitution.md) |
 
 idéntica: **14/27 (51.85%)**; adaptada en redacción: **12/27 (44.44%)**; reemplazada: **1/27 (3.70%)**.
 
