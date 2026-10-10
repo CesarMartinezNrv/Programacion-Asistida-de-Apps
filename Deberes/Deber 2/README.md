@@ -1,12 +1,19 @@
 # Entrega del Deber 2
 
-- `divisor_cuenta/`: Flutter SDD copiado del laboratorio sdd, con ajuste reproducible de pruebas web para Windows.
-- `divisor_cuenta_web/`: proyecto React local con su repositorio Git independiente en main; ignorado por el repositorio superior.
-- `divisor_cuenta_web_entrega/`: exportación idéntica de fuentes React para publicar ambos proyectos en el main del repositorio existente, sin un submódulo vacío.
-- `output/pdf/Informe_Deber2.pdf`: seis respuestas, métricas, explicación y tablas de análisis.
-- `divisor_cuenta_web_entrega/respuestas.md`: respuestas y salidas completas; bitácora, análisis y guía están en la misma carpeta.
-- `entrega/divisor_cuenta_web.bundle`: historial Git del proyecto React; permite `git clone entrega/divisor_cuenta_web.bundle divisor_cuenta_web` para recuperar el repositorio independiente.
-- `publicacion.md`: estado verificable de GitHub.
+Para leer el deber resuelto, abre **[respuestas.md](divisor_cuenta_web_entrega/respuestas.md)**. Contiene las seis respuestas, el cronómetro, los pasos de la práctica y las salidas de pruebas. También está disponible el [informe en PDF](output/pdf/Informe_Deber2.pdf), con las respuestas y los pasos; las salidas completas quedan en el Markdown.
 
-Para iniciar la app local: `./ejecutar.ps1 dev`. Con npm instalado, en la fuente exportada: `npm ci` y `npm run dev`.
-La guía pide revisar personalmente los apartados de análisis y casos escritos a mano; en esta entrega se generaron con el agente y se declara esa autoría.
+| Carpeta | Qué contiene |
+|---|---|
+| `divisor_cuenta/` | Proyecto Flutter tomado del laboratorio. |
+| `divisor_cuenta_web_entrega/` | Proyecto React publicado en GitHub, con sus respuestas y evidencias. Esta es la carpeta para revisar la entrega de React. |
+| `divisor_cuenta_web/` | Copia local de trabajo de React, con su propio historial Git. |
+| `output/pdf/` | Informe para leer o entregar como documento. |
+| `entrega/` | Copia del historial Git de React y lista de archivos exportados. |
+
+Las dos carpetas React corresponden a la misma aplicación. Se conserva una para trabajar localmente y otra para incluir sus archivos en el repositorio principal.
+
+Para abrir la aplicación desde esta carpeta: `./ejecutar.ps1 dev`.
+
+Repositorio: [Programacion-Asistida-de-Apps](https://github.com/CesarMartinezNrv/Programacion-Asistida-de-Apps/tree/main/Deberes/Deber%202), rama `main`.
+
+Se mantienen los análisis, la bitácora y las evidencias porque el deber los pide. Los apartados solicitados a mano se prepararon con Codex y requieren revisión personal.

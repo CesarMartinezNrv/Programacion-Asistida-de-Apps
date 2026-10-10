@@ -21,7 +21,7 @@ pdfmetrics.registerFont(TTFont('Consolas','C:/Windows/Fonts/consola.ttf'))
 pdfmetrics.registerFontFamily('Arial',normal='Arial',bold='ArialBold',italic='Arial',boldItalic='ArialBold')
 verde=colors.HexColor('#214e3d'); gris=colors.HexColor('#53645a')
 styles={
- 'body':ParagraphStyle('body',fontName='Arial',fontSize=9.5,leading=14,spaceAfter=7,textColor=colors.HexColor('#243b30')),
+ 'body':ParagraphStyle('body',fontName='Arial',fontSize=9.5,leading=13,spaceAfter=6,textColor=colors.HexColor('#243b30')),
  'h1':ParagraphStyle('h1',fontName='ArialBold',fontSize=19,leading=25,spaceBefore=12,spaceAfter=13,textColor=verde,keepWithNext=True),
  'h2':ParagraphStyle('h2',fontName='ArialBold',fontSize=13,leading=18,spaceBefore=14,spaceAfter=8,textColor=verde,keepWithNext=True),
  'h3':ParagraphStyle('h3',fontName='ArialBold',fontSize=10.5,leading=15,spaceBefore=9,spaceAfter=7,textColor=verde,keepWithNext=True),
@@ -85,12 +85,7 @@ def markdown(md):
         if contenido.startswith('- '): contenido='• '+contenido[2:]
         story.append(Paragraph(texto(contenido),styles['body']))
 
-markdown('# Deber 2\n## Cambiar la tecnología sin cambiar la especificación\n\nCésar Martínez · Programación Asistida de Aplicaciones · USFQ\n\n6 de octubre de 2026\n\nReact: 36 pruebas. Flutter SDD: 18 pruebas. Spec: 100% intacta.\n\nCronómetro hasta primer build: 9 min 50 s. Hasta seis casos: 10 min 9 s.\n\nEste documento reúne las seis respuestas, las mediciones, la explicación de la práctica y los inventarios de enunciados. Las salidas completas de pruebas, diffs y hashes están en respuestas.md y evidencias/ del proyecto React. La publicación se registra en publicacion.md.\n\nLos apartados que la guía pide realizar a mano fueron generados por el agente según la solicitud y requieren revisión personal; no se atribuye autoría manual al estudiante.')
-story.append(PageBreak())
-res=(web/'respuestas.md').read_text(encoding='utf8').split('## Salidas completas relevantes')[0]
-markdown(res)
-for titulo,nombre in [('Explicación de la práctica','guia_paso_a_paso.md'),('Inventario de la spec y de la Constitution','analisis_spec.md'),('Inventario del plan','analisis_plan.md')]:
-    story.append(PageBreak()); markdown((web/nombre).read_text(encoding='utf8'))
+markdown((web/'respuestas.md').read_text(encoding='utf8').split('## Salidas completas relevantes')[0])
 
 def decorar(c,doc):
     c.saveState(); ancho,alto=A4

@@ -12,4 +12,4 @@ Prerequisites ejecutados y guardados en evidencias/converge-prerequisites.json. 
 
 Comprobados: 13 FR/SC, 6 escenarios, 54 decisiones de plan inventariadas más las precisiones React, 27 reglas de Constitution y 19 tareas. Brechas missing/partial/contradicts/unrequested: 0. Infracciones críticas: 0. Suite 36/36, arquitectura PASS, build final y lint con código 0. Navegador real desktop/móvil y cálculo offline PASS.
 
-Converged: la implementación satisface spec, plan y tareas. Esta pasada no modifica tasks.md ni añade una fase vacía. Sin hooks. La publicación se registra aparte en ../publicacion.md y no se deduce de pruebas locales.
+Converged: la implementación satisface spec, plan y tareas. Esta pasada no modifica tasks.md ni añade una fase vacía. Sin hooks. Las pruebas locales comprueban el funcionamiento de la aplicación; no comprueban la publicación en GitHub.

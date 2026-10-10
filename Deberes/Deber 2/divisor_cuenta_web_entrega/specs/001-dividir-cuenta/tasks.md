@@ -34,7 +34,7 @@ Prueba independiente: mismo reparto 10/3/0 → 4.00 hacia arriba; LSP.
 ## Phase 6: Polish
 - [X] T016 Verificar arquitectura en tool/verificarArquitectura.js; dominio sin React/DOM/data, estrategias solo data/main, cálculo sin formato/validación.
 - [X] T017 Ejecutar pruebas y build, registrar tiempos reales en evidencias/ y bitacora.md.
-- [X] T018 Medir diffs e inventarios, responder seis preguntas en respuestas.md y explicar funciones en guia_paso_a_paso.md.
+- [X] T018 Medir diffs e inventarios, responder seis preguntas en respuestas.md e incluir la explicación paso a paso en respuestas.md.
 
 ## Dependencias y estrategia
 Setup → fundamentos → US1 → US2 → US3 → verificaciones y entrega. Es la secuencia de ejecución en esta sesión.

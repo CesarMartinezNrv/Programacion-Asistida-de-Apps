@@ -1,114 +1,119 @@
-# Deber 2 - SDD: migración de Flutter a React
+# Respuestas del Deber 2
 
-Programación Asistida de Aplicaciones - USFQ. Fecha: 6 de octubre de 2026.
-Trabajo preparado para César Martínez. Agente: Codex.
+César Martínez - Programación Asistida de Aplicaciones
 
-## Resultado comprobado
+En esta práctica se pasó el divisor de cuenta de Flutter a React. La idea fue mantener lo que hace la aplicación y cambiar la forma de construirla. El trabajo se realizó con ayuda de Codex.
 
-React/Vite con JavaScript, una pantalla y useState, capas presentation → domain ← data. **6/6 casos de aceptación, LSP y tres pruebas obligatorias de pantalla**; suite ampliada **36/36**. Build correcto. Flutter SDD: **18/18**, All tests passed en Chrome, con ajuste de runner para Windows. Cronómetro React: **9.83 min hasta primer build; 10.15 min hasta seis casos**. Sin tiempos históricos Flutter para comparar.
+## 1. ¿Qué porcentaje de la spec se pudo reutilizar?
 
-La especificación viajó intacta: **64/64 enunciados, 100%**, bajo el método publicado en [analisis_spec.md](analisis_spec.md). La constitución original tiene 14 reglas idénticas, 12 adaptadas y 1 reemplazada. El plan modifica 40/54 decisiones inventariadas.
+Se pudo reutilizar el **100%: 64 de 64 enunciados**. No hubo que adaptar ninguno y tampoco se descartó ninguno.
 
-## Ubicación y alcance
+Esto fue posible porque la spec explica lo que debe hacer la aplicación: dividir la cuenta, agregar la propina, validar los datos y mostrar el resultado. No obliga a usar Flutter. Al comparar los archivos, el diff salió vacío, es decir, no encontró cambios.
 
-- Origen inmutable: rama sdd, commit 0e14e00ef58f9146f9c0f51ff5fadd30f599412f; feature 07_Participacion/divisor_cuenta/specs/001-dividir-cuenta.
-- Copia Flutter de entrega: ../divisor_cuenta, creada desde ese commit, más el ajuste de pruebas. No sobrescribe la carpeta anterior de main.
-- React local: divisor_cuenta_web, repositorio propio en main. Constitución: .specify/memory/constitution.md; feature: specs/001-dividir-cuenta.
-- Publicación conjunta: main del repositorio existente; la fuente React se exporta también a ../divisor_cuenta_web_entrega, conservando el proyecto local independiente. El bundle Git acompaña su historial. No hay necesidad de crear una rama feature.
-- SPECIFY_FEATURE_DIRECTORY: specs/001-dividir-cuenta; se configura en ../ejecutar.ps1 y queda persistido por los scripts de Spec Kit. La spec aún dice sdd porque identifica su origen.
-- No se ejecutó speckit-specify. Las skills se ejecutan por el agente, no son ejecutables de shell que generen automáticamente la app. Scripts y reportes prueban las fases.
+En [analisis_spec.md](analisis_spec.md) está la clasificación completa. Se contaron las reglas por cada aparición, incluyendo las que se repiten en otras secciones; no se contaron títulos ni fechas. Todas quedaron como QUÉ y ninguna como CÓMO o MIXTO. Por eso, el CÓMO fue 0% y no superó el 30% que menciona el deber. Ese 30% es una referencia de la práctica, no una regla general.
 
-## 1. ¿Qué porcentaje viajó intacto, adaptado o no reusable?
+El primer build tardó **9 min 50 s** y los seis casos pasaron a los **10 min 9 s**. Estos tiempos sirven como referencia, pero por sí solos no dicen si el trabajo es mejor.
 
-Intacto **100% (64/64)**; adaptado **0%**; no reusable **0%**. Todos los enunciados inventariados describen entradas, resultados, restricciones de producto, validación o criterios ejecutables. Ninguno exige Flutter, Dart, Riverpod ni widgets. La fecha y Feature Branch=sdd son metadatos de origen, no decisiones de implementación; se excluyen del denominador y se conservan en el archivo.
+## 2. ¿Qué pasó con las reglas de la Constitution?
 
-El método cuenta enunciados atómicos por aparición, divide obligaciones independientes y no deduplica reglas repetidas entre FR, Edge Cases y SC. Otra deduplicación cambiaría el denominador, pero aquí seguiría siendo 100% reusable porque ninguna obligación depende de Flutter. %CÓMO = 0/64 × 100 = 0%. No supera el 30%, **umbral pedagógico del deber**, no una regla universal.
+La Constitution es el documento con las reglas para organizar el proyecto. De sus 27 reglas:
 
-Evidencia: diff inicial y final sin salida, código 0, archivos de diff de 0 bytes; comparación adicional del objeto Git inicial 6cce762 contra sdd idéntica; SHA256 de ambas copias igual. El tiempo 10.15 min es contexto descriptivo: no mide calidad ni demuestra que SDD sea más rápido que otro enfoque. No existe cronómetro Flutter histórico comparable.
+| Clasificación | Cantidad | Porcentaje |
+|---|---:|---:|
+| Idénticas | 14 | 51.85% |
+| Adaptadas en redacción | 12 | 44.44% |
+| Reemplazadas | 1 | 3.70% |
 
-## 2. Constitution: regla por regla
+Se mantuvieron reglas como separar las responsabilidades y no guardar contraseñas en el código. Otras cambiaron de nombres: por ejemplo, `main.dart` pasó a `main.jsx`, y la regla de no usar Flutter en los cálculos pasó a no usar React allí.
 
-La tabla completa C01-C27 de [analisis_spec.md](analisis_spec.md) cita cada regla original y la redacción React. Resultado: **14/27 idénticas (51.85%)**, **12/27 adaptadas (44.44%)** y **1/27 reemplazada (3.70%)**. Modificadas: 13/27. Las cifras corresponden a la Constitution original 1.0.0 de sdd, preservada en evidencias/constitution-flutter-original.md, no a la aclaración posterior del runner web en la copia Flutter.
+La regla que se reemplazó era la de no agregar paquetes externos. En React se necesitan las herramientas que pide el deber, como Vite y Vitest. Se conservaron los cinco principios SOLID, que ayudan a organizar el código y evitar que una parte haga todo.
 
-Ejemplos: «presentation depende de domain, nunca de data» y «No guardar secretos ni API keys» permanecen idénticas. «domain no importa package:flutter ni data» se adapta a «src/domain no importa react, DOM ni data; es JavaScript puro». «main.dart es el único punto...» pasa a src/main.jsx. «redondear(double importe)» pasa al contrato aplicar(valor), con una sola operación. No desaparecen SRP, OCP, LSP, ISP ni DIP.
-
-La regla «El SDK y sus dependencias generadas son la base; no agregar paquetes externos» se reemplaza por el stack React/Vite/Vitest/Testing Library/jsdom exigido y la prohibición de librerías externas de estado. Mantener literalmente esa prohibición impediría cumplir el deber. La constitución React es 2.0.0 por esta sustitución incompatible. La copia Flutter añade una excepción de desarrollo en 1.0.1 para package:test; no cambia producto ni reglas de negocio. No se introducen principios nuevos de producto sin equivalente; el catálogo explicativo responde a la regla de la materia.
+La comparación **regla por regla, con el motivo de cada cambio**, está en [analisis_spec.md](analisis_spec.md), tabla C01-C27. Allí se comparan la [Constitution original de Flutter](evidencias/constitution-flutter-original.md) y la [Constitution de React](.specify/memory/constitution.md). Se usó la versión original de Flutter, anterior al ajuste para probarlo en Windows.
 
 ## 3. ¿Se modificó algún enunciado de la spec?
 
-No. Se conservaron los bytes de la spec y su significado. El cálculo, los mensajes, la pantalla única y los modos de redondeo no dependen de tecnología. React implementa las decisiones en plan y código. No hay commit de adaptación de spec porque no hubo adaptación. La presencia de sdd como metadato no es contradicción con trabajar en main, y el análisis lo documenta.
+No se modificó ninguno. La spec ya separaba lo que debía hacer la aplicación de la tecnología utilizada. La fórmula, las validaciones y los mensajes sirven tanto en Flutter como en React.
 
-Los inconvenientes encontrados pertenecen al CÓMO: runner Flutter bloqueado, assets CanvasKit y herramientas Node/npm. Se resolvieron en configuración y scripts; no se alteraron los seis escenarios para conseguir pruebas verdes. El historial conserva el commit de copia 6cce762 y el plan 8731e80. Evidencia de identidad en evidencias/spec-inicial-historial.txt y evidencias/spec-identidad.txt.
+Los problemas con las herramientas se resolvieron en la configuración, sin cambiar los requisitos para que las pruebas pasaran. La comparación está en [spec-identidad.txt](evidencias/spec-identidad.txt) y la copia inicial se comprueba en [spec-inicial-historial.txt](evidencias/spec-inicial-historial.txt). No se volvió a generar la spec.
 
-## 4. Los seis casos en Flutter y React
+## 4. ¿Cambiaron los seis casos de aceptación?
 
-| Caso | Monto / personas / propina / modo | Esperado Flutter | Esperado React | Cambió |
-|---|---|---|---|---|
-| 1. reparto normal | 100 / 4 / 10 / exacto | 27.50 | 27.50 | No |
-| 2. sin propina | 90 / 3 / 0 / exacto | 30.00 | 30.00 | No |
-| 3. cero personas | 50 / 0 / 0 / exacto | Debe haber al menos una persona | Debe haber al menos una persona | No |
-| 4. monto no numerico | NaN / 4 / 0 / exacto | Monto inválido | Monto inválido | No |
-| 5. redondeo exacto | 10 / 3 / 0 / exacto | 3.33 | 3.33 | No |
-| 6. redondeo hacia arriba | 10 / 3 / 0 / arriba | 4.00 | 4.00 | No |
+No. Se probaron las mismas entradas y se obtuvieron los mismos resultados en los dos proyectos.
 
+| Caso | Datos: monto / personas / propina / modo | Flutter y React |
+|---|---|---|
+| Repartir con propina | 100 / 4 / 10 / exacto | 27.50 |
+| Repartir sin propina | 90 / 3 / 0 / exacto | 30.00 |
+| Cero personas | 50 / 0 / 0 / exacto | Debe haber al menos una persona |
+| Monto que no es un número | NaN / 4 / 0 / exacto | Monto inválido |
+| Redondeo exacto | 10 / 3 / 0 / exacto | 3.33 |
+| Redondeo hacia arriba | 10 / 3 / 0 / arriba | 4.00 |
 
-No cambió entrada, valor esperado, mensaje ni escenario. double.nan de Dart se representa como NaN en JavaScript; es una traducción sintáctica, no otra regla. Una comprobación automatizada parseó casos-flutter.dart, importó casosDePrueba.js y comparó los seis objetos; evidencia comparacion-casos.json con iguales=true. Las suites verifican 27.50, 30.00, 3.33, 4.00 y los dos mensajes exactos. Las pruebas de errores comprueban también que no se invoca calcular.
+`NaN` representa un dato que no es un número. Cambió la forma de escribir las pruebas por el lenguaje, pero no los casos ni los mensajes. La comparación quedó guardada en [comparacion-casos.json](evidencias/comparacion-casos.json).
 
-La guía pide que el estudiante escriba a mano ese archivo y el análisis. En esta entrega los produjo el agente según la solicitud del usuario: **0 líneas manuales del estudiante**. Deben revisarse y explicarse personalmente; no se presenta la autoría manual como un dato observado.
+## 5. ¿Qué partes del plan de Flutter cambiaron en React?
 
-## 5. ¿Qué partes del plan Flutter ya no sirven?
+Estos son algunos cambios concretos:
 
-1. **Dart/Flutter y widgets**: .dart, MaterialApp y widgets se sustituyen por módulos .js, JSX y el DOM de React. El plan apunta al navegador, no a Android.
-2. **setState y DivisorController por constructor**: useDivisor usa useState y recibe servicios ordinarios. PantallaDivisor importa el hook estáticamente; main.jsx compone estrategias y servicios. No se inyecta el hook como prop.
-3. **flutter_test/test_api**: Vitest ejecuta dominio; Testing Library interactúa con controles accesibles en jsdom. Se añaden setupFiles y jest-dom, conservando los datos de los seis casos.
-4. **Interfaz Dart redondear(double)**: JavaScript usa el contrato estructural aplicar(valor). La calculadora depende de esa operación y no reconoce clases concretas.
-5. **lib/ y main.dart**: src/domain, src/data, src/presentation y main.jsx conservan la dirección de dependencias pero cambian rutas y composición.
-6. **Herramientas y empaquetado**: Flutter produce APK; npm run build produce dist/ para web. Node ejecuta herramientas; no se añadió backend.
+1. **La pantalla:** los widgets de Flutter se cambiaron por componentes de React. Se mantuvieron los campos y el botón para calcular.
+2. **Los datos de la pantalla:** en Flutter se usaba `setState`; en React se usa `useState` para actualizar los campos y el resultado.
+3. **Las pruebas:** se cambió la herramienta de Flutter por Vitest y Testing Library. Los seis casos se mantuvieron.
+4. **La organización de archivos:** `lib/` pasó a `src/` y `main.dart` pasó a `main.jsx`. Se siguieron separando la pantalla, los cálculos y las formas de redondear.
+5. **La compilación:** en React se usa `npm run build` para preparar la aplicación web.
 
-El inventario P01-P54 está en [analisis_plan.md](analisis_plan.md): **40/54 decisiones modificadas**, 14 intactas. El diff físico tiene **50 líneas añadidas y 44 eliminadas**. No se equiparan estas operaciones a decisiones atómicas: la guía usa ambos términos, por eso se informan separadamente. Sobreviven cálculo puro, almacenamiento ausente, rendimiento constante, alcance y varias comprobaciones SOLID; cambia sobre todo cómo se materializan.
+En total cambiaron **40 de 54 decisiones** del plan y se mantuvieron 14. La comparación del archivo muestra **50 líneas agregadas y 44 eliminadas**. Las líneas y las decisiones se cuentan por separado, porque una decisión puede ocupar varias líneas. El detalle está en [analisis_plan.md](analisis_plan.md).
 
-## 6. Artefacto más y menos reusable
+## 6. ¿Qué fue lo más y lo menos reutilizable?
 
-La **spec** fue el artefacto físico más reusable: copia idéntica, diff vacío y 64/64 enunciados intactos. Los **escenarios de prueba** empatan en significado: mismos seis objetos comparados y resultados verdes. El archivo runner no viaja byte por byte porque la sintaxis cambia.
+Lo más reutilizable fue la **spec**, porque se copió sin cambiar nada. Los seis casos también se mantuvieron en lo que prueban y en sus resultados.
 
-El **código de implementación** fue el menos reusable físicamente: se reescribieron módulos Dart como JavaScript/JSX y controles Flutter como DOM. Se reutilizan las fórmulas y responsabilidades, pero no los archivos ejecutables. Entre los documentos de diseño, plan y tasks son los menos portables: el inventario del plan modifica 40/54 decisiones y las tareas nombran archivos/herramientas distintos. La constitución queda en medio: preserva principios pero adapta lenguaje y una restricción de dependencias.
+Lo menos reutilizable fue el **código de la aplicación**, porque Flutter usa Dart y React usa JavaScript. Se conservaron la fórmula y la idea del funcionamiento, pero se tuvo que escribir otra vez la pantalla y adaptar los archivos. Entre los documentos, el plan fue de los que más cambiaron: 40 de sus 54 decisiones.
 
-Esta evidencia apoya la hipótesis de separación QUÉ/CÓMO **en este repositorio**, no demuestra una superioridad universal ni una diferencia temporal contra vibe coding. Haría falta otra ejecución comparable con criterios y registro iguales para esa conclusión.
+Esto muestra que, en este proyecto, separar lo que hace la aplicación de cómo se construye ayudó a cambiar de tecnología. No permite asegurar que siempre sea más rápido, porque no se registró el tiempo del laboratorio anterior.
 
-## Bitácora y límites de medición
+## Bitácora y cronómetro
 
-| Métrica | Flutter (laboratorio) | React (este deber) |
-|---|---:|---:|
-| Minutos hasta primera compilación | no registrado | 9.83 |
-| Minutos hasta que pasan los 6 casos | no registrado | 10.15 |
-| Iteraciones del usuario después del prompt inicial | no registrado | 0 |
-| Líneas escritas a mano por estudiante | no registrado | 0 |
-| Enunciados spec modificados | — | 0/64 |
-| Enunciados Constitution modificados | — | 13/27 |
-| Plan: enunciados modificados | — | 40/54 |
-| Plan: líneas físicas del diff | — | +50 / -44 |
-| Casos de aceptación que pasan | 6/6 verificados en esta sesión | 6/6 |
-| Suite completa | 18/18 en navegador en esta sesión | 36/36 |
+| Dato | Flutter | React |
+|---|---|---|
+| Tiempo hasta el primer build | No registrado | 9 min 50 s (9.83 min) |
+| Tiempo hasta pasar los seis casos | No registrado | 10 min 9 s (10.15 min) |
+| Mensajes correctivos después de la petición inicial | No registrado | 0 |
+| Líneas de código escritas a mano por el estudiante | No registrado | 0 |
+| Enunciados de la spec modificados | No aplica | 0/64 |
+| Reglas de la Constitution modificadas | No aplica | 13/27 |
+| Decisiones del plan modificadas | No aplica | 40/54 |
+| Líneas del diff del plan | No aplica | +50 / -44 |
+| Casos de aceptación aprobados | 6/6 | 6/6 |
+| Total de pruebas aprobadas | 18/18 | 36/36 |
 
+El registro se tomó el **6 de octubre de 2026, hora de Ecuador (UTC-5)**:
 
+- Inicio: **10:26:00**.
+- Primer build correcto: **10:35:50**.
+- Seis casos aprobados: **10:36:09**.
 
-Inicio: 2026-10-06 10:26:00; build: 2026-10-06 10:35:50; fin: 2026-10-06 10:36:09, UTC-5. Se tomó la ejecución inicial de planificación como equivalente al envío del prompt porque el usuario pidió todo en un solo mensaje. Los tiempos individuales de los runners no son el cronómetro. No hubo mensajes correctivos posteriores del usuario. Ver [bitacora.md](bitacora.md) para el registro íntegro.
+Se empezó a contar al iniciar la planificación, porque todo se pidió en un solo mensaje. No se inventaron tiempos del laboratorio anterior. El registro completo está en [bitacora.md](bitacora.md).
 
-Limitación de orden: la suite Flutter completa pudo ejecutarse tras resolver Windows y CanvasKit durante el avance React; antes de planificar sí se habían verificado seis casos y LSP en Dart puro. Se informa esa desviación del orden indicado, sin atribuir un All tests passed previo que no ocurrió. Al entregar, ambas suites están comprobadas. El bloqueo nativo de Windows sigue aplicando; se usa la alternativa web reproducible.
+Las pruebas completas de Flutter se hicieron en Chrome por un problema del entorno de Windows. Antes de planificar React se comprobaron los seis casos y las pruebas de redondeo en Dart; las 18 pruebas de Flutter se completaron después, durante el trabajo de React. Ese orden fue distinto al indicado en la guía y queda aclarado aquí.
 
-## Evidencias y checklist de entrega
+El código, el análisis y los casos se prepararon con Codex. Por eso aparecen **0 líneas manuales del estudiante**. Los apartados que la guía pide hacer a mano requieren mi revisión personal antes de entregar. Las correcciones de redacción posteriores no forman parte del cronómetro original.
 
-- Spec inicial/final sin cambios; hashes e historial preservados.
-- Análisis de spec y Constitution, plan nuevo y tasks trazables.
-- analyze ejecutado; converge disponible y ejecutado, con limpieza de restos Vite en T019 y pasada final registrada.
-- No nueva spec ni nuevas reglas de negocio; Node 24.19.0 cumple requisito. [Vite](https://vite.dev/guide/) documenta Node 20.19+/22.12+; [Node releases](https://nodejs.org/en/about/previous-releases) permite consultar soporte vigente.
-- React: 36/36; build correcto; dominio sin React/DOM/data; concrete strategies solo data/main; errores impiden cálculo.
-- Flutter SDD: 18/18 en Chrome; script para repetir prueba y excepción de dependencia documentados.
-- Navegador real: desktop/móvil sin desbordamiento, cálculo offline y sin errores JS.
-- main local y exportación para publicación GitHub. Estado real de publicación en ../publicacion.md; no se declara subida antes de verificar remoto.
-- Pendiente personal: revisar el análisis y las pruebas solicitadas a mano y poder explicar las funciones.
+## La práctica paso a paso
+
+1. Se revisó el proyecto del laboratorio y sus documentos para entender el divisor de cuenta.
+2. Se copiaron los requisitos a React sin cambiarlos y se comprobó que fueran iguales.
+3. Se revisaron las reglas del proyecto y se adaptaron las que dependían de Flutter.
+4. Se preparó el plan de React y la lista de tareas.
+5. Se creó la pantalla y se separaron los cálculos de la parte visual.
+6. Se probaron los seis casos, las formas de redondear y el funcionamiento de la pantalla.
+7. Se comprobó que la aplicación compilara y se guardaron las mediciones y las evidencias. El trabajo quedó en `main`, como se pidió.
+
+Para revisar la aplicación, desde la carpeta **Deber 2** se ejecuta `./ejecutar.ps1 dev`. Luego se abre la dirección que muestra la terminal. Por ejemplo, al ingresar monto **100**, personas **4** y propina **10**, el resultado debe ser **27.50** por persona en modo exacto.
 
 ## Salidas completas relevantes
+
+Este anexo conserva las salidas y comparaciones que pide el deber. La explicación sencilla está arriba; aquí quedan los detalles para comprobar los resultados.
+
 
 ### spec-identidad.txt
 
