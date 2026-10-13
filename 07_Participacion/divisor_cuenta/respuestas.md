@@ -1,14 +1,14 @@
 # Deber 3 — Respuestas
 
-Verificación real en GitHub Actions, con Flutter 3.47.1. Se reprodujeron los commits de cada etapa después de escribir los cambios, porque Windows bloqueó dartvm.exe. Por tanto, el rojo se verificó retrospectivamente; no afirmo que se ejecutó antes de implementar.
+Para comprobar el rojo se volvió al commit donde solo estaban las pruebas nuevas, después de haber HECHO la implementación.
 
-1. **Rojo antes de verde.** La prueba de propina 150% esperaba `La propina no puede superar el 100%` y recibió `Actual: <null>`. Ver ese fallo demuestra que la prueba detecta la regla ausente. La prueba con exactamente 100% protege el límite permitido. El fallo se reprodujo sobre el commit que contiene solo las pruebas nuevas.
+1. **Rojo antes de verde.** En la prueba con monto 100, 4 personas y propina de 150%, el error fue `ESPERADO: 'La propina no puede superar el 100%'` y `ACTUAL: <null>`. Esto pasó porque todavía no existía la validación del límite. Era importante ver la prueba fallar para comprobar que sí detectaba el problema. Si solo la veía pasar después del cambio, no podía estar seguro de en realidad la estaba detectando. Posteriormente se confirma que una propina de exactamente 100% sí se permite.
 
-2. **Linter vs. IA.** Al introducir temporalmente una variable sin uso y `print('hola')`, aparecieron `unused_local_variable` y `avoid_print`. Después retiré ambas líneas y el análisis quedó limpio. La IA identificó el número mágico 100 del límite de propina; el linter no lo marcó porque es un literal válido cuyo significado depende de la regla de negocio.
+2. **Linter vs. IA.** Un aviso fue `unused_local_variable`, porque había una variable que no se usaba. También apareció `avoid_print` por el `print('hola')`. Estas dos las agregué solo para ver los avisos y luego se quitaron. El code smell que señaló la IA fue el número "mágico" `100` en la validación de la propina, se recomendó que mejor ese 100 sea una variable constante. El linter no lo encontró porque ese número es válido y no rompe una regla de análisis. El problema era que no quedaba tan claro qué representaba al leer el código.
 
-3. **Refactorización.** Elegí el número mágico y lo reemplacé por la constante `propinaMaxima = 100`. La comparación continúa siendo `>` y el mensaje no cambió. Las mismas pruebas pasaron después del refactor, sin modificar sus expectativas.
+3. **Mi refactorización.** Tomé el númeor mágico y lo cambié por la constante `propinaMaxima`, con valor 100. Así se entiende que es el límite permitido. La comparación siguió siendo `>` y el mensaje de error quedó igual. Para comprobar que la app seguía haciendo lo mismo se ejecutaron las mismas pruebas, sin modificarlas, y las 20 pasaron. Por eso el cambio mejoró la claridad del código sin cambiar su comportamiento.
 
-4. **Coverage.** La menor cobertura medida corresponde a `lib/main.dart`, con 83.33%. Eso indica qué líneas ejecutaron las pruebas, no demuestra errores. Una cobertura alta tampoco garantiza que se hayan comprobado todos los comportamientos. Los archivos ausentes del informe se señalan como no medidos.
+4. **Coverage.** El archivo con menor cobertura medida fue `lib/main.dart`, con 83,33%: las pruebas ejecutaron 5 de sus 6 líneas medibles. Eso no significa que específicamente tenga errores, sino que hubo una línea que las pruebas no ejecutaron. La cobertura ayuda a ver qué falta probar, pero no confirma por sí sola que el código esté bien o mal. `estrategia_redondeo.dart` aparece como no medido porque solo define el contrato y no tiene una implementación ejecutable.
 
 | Archivo | Líneas cubiertas | Cobertura |
 |---|---:|---:|
