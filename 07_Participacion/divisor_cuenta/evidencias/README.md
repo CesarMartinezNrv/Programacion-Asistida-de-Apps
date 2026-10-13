@@ -1,4 +1,15 @@
-# Evidencias y pasos pendientes
+# Evidencias del Deber 3
+
+**Verificación completada:** [ejecución exitosa en GitHub Actions](https://github.com/CesarMartinezNrv/Programacion-Asistida-de-Apps/actions/runs/38438776002).
+
+- 18 pruebas iniciales aprobadas; en rojo falló únicamente la nueva regla de 150%; después del cambio y del refactor pasaron las 20 pruebas.
+- Análisis final: `No issues found!`. La demostración temporal produjo `unused_local_variable` y `avoid_print`, y se retiró sin alterar el comportamiento.
+- [Tabla de cobertura](cobertura.md): mínimo medido `lib/main.dart`, 83,33%.
+- Los `*_captura.jpg` son capturas reales del navegador mostrando los archivos de salida publicados en GitHub. `github_actions_exitoso.jpg` muestra el resultado general de CI.
+- Los PNG solicitados en el enunciado son transcripciones renderizadas de las salidas reales, con su procedencia visible. Los TXT contienen las salidas completas. Se incluyen las capturas JPG como evidencia adicional.
+- Windows bloqueó `dartvm.exe`; por eso se verificaron los commits históricos en Ubuntu. La ejecución del rojo fue retrospectiva; no se presenta como un ciclo ejecutado antes de implementar.
+
+## Registro del bloqueo inicial
 
 Los archivos `parte1_bloqueo.txt` y `parte4_bloqueo.txt` contienen la salida real de los comandos. No se generaron capturas de éxitos ni una tabla de cobertura sin ejecutar las herramientas.
 
@@ -8,7 +19,7 @@ Los archivos `parte1_bloqueo.txt` y `parte4_bloqueo.txt` contienen la salida rea
 - `lib/domain/calcular_division.dart:9` y `lib/presentation/divisor_controller.dart:52`: fórmula de división repetida; puede divergir si cambia el cálculo. Se deja intacta para respetar el alcance de una sola refactorización.
 - `lib/presentation/pantalla_divisor.dart:48`: método `build` largo, con varios campos similares. Puede dificultar la lectura; no se modificó.
 
-## Completar en un entorno donde Flutter esté permitido
+## Procedimiento reproducible (ya ejecutado en CI)
 
 Usar una copia separada para revisar los commits históricos sin alterar esta entrega:
 
@@ -20,4 +31,4 @@ Usar una copia separada para revisar los commits históricos sin alterar esta en
 6. Ejecutar `flutter test --coverage`. Para cada registro `SF:` de `lcov.info`, calcular `100 * LH / LF`; incluir también archivos de `lib/` ausentes como no medidos. Capturar `parte7_coverage.png` y completar la respuesta 4 con los datos reales.
 7. Capturar `git log --oneline` como `parte8_log.png`. Sustituir las respuestas pendientes con observaciones reales y guardar las evidencias.
 
-La historia registra las etapas de escritura; los títulos de los commits indican que rojo y verde no se pudieron comprobar. No equivale a un ciclo TDD verificado. `coverage/` se excluyó en `.gitignore`.
+La historia registra las etapas de escritura; los títulos originales documentan el bloqueo que existía al crear los commits. Las ejecuciones posteriores comprobaron cada etapa sobre su propio commit, conservando esa cronología. `coverage/` se excluyó en `.gitignore`.
