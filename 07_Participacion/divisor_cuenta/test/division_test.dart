@@ -22,6 +22,18 @@ class _EstrategiaContada implements EstrategiaRedondeo {
 }
 
 void main() {
+  test('Propina de 150% supera el máximo permitido', () {
+    expect(
+      const ValidarEntrada().ejecutar(monto: 100, personas: 4, propina: 150),
+      'La propina no puede superar el 100%',
+    );
+  });
+  test('Propina de exactamente 100% está permitida', () {
+    expect(
+      const ValidarEntrada().ejecutar(monto: 100, personas: 4, propina: 100),
+      isNull,
+    );
+  });
   for (final caso in casos) {
     test(caso.nombre, () {
       const validar = ValidarEntrada();
