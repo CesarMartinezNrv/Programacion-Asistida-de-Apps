@@ -1,0 +1,9 @@
+$ git log --oneline -8
+881a9c0 deber3: verificar ciclo y generar evidencias en CI
+9ee651a deber3: respuestas y evidencia del bloqueo de ejecucion
+971c62d refactor: numero magico
+3f7bc31 verde: propina maxima 100 (verificacion pendiente)
+7119c6d rojo: pruebas de propina maxima 100 (ejecucion bloqueada)
+0e14e00 participacion 7: evidencia de analisis y convergencia SDD
+a861558 participacion 7: app SDD con SOLID 18 pruebas y APK verificado
+bc71b0a participacion 7: especificacion aclarada plan y 19 tareas SDD

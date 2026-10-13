@@ -1,11 +1,25 @@
 # Deber 3 — Respuestas
 
-Estado: implementación preparada; ejecución bloqueada por Windows. Estas respuestas distinguen observaciones de resultados pendientes.
+Verificación real en GitHub Actions, con Flutter 3.47.1. Se reprodujeron los commits de cada etapa después de escribir los cambios, porque Windows bloqueó dartvm.exe. Por tanto, el rojo se verificó retrospectivamente; no afirmo que se ejecutó antes de implementar.
 
-1. **Rojo antes de verde.** No pude observar el fallo de la prueba: `flutter test` terminó con `ProcessStarter::StartForExec failed: An Application Control policy has blocked this file`. Antes del cambio, la validación devuelve `null` para 150%; por inspección, la prueba debería esperar el mensaje y fallar al recibir `null`. Ver ese fallo real es importante para demostrar que la prueba detecta la regla ausente; queda pendiente ejecutarlo.
+1. **Rojo antes de verde.** La prueba de propina 150% esperaba `La propina no puede superar el 100%` y recibió `Actual: <null>`. Ver ese fallo demuestra que la prueba detecta la regla ausente. La prueba con exactamente 100% protege el límite permitido. El fallo se reprodujo sobre el commit que contiene solo las pruebas nuevas.
 
-2. **Linter vs. IA.** `flutter analyze` encontró el mismo bloqueo, así que no hay un aviso del linter observado. `unused_local_variable` y `avoid_print` son los avisos esperables al introducir la variable sin uso y `print('hola')` del ejercicio; no afirmo haberlos obtenido. La revisión encontró un número mágico en el límite de propina. El linter no suele señalarlo porque un literal válido no viola una regla sintáctica; su significado depende del negocio.
+2. **Linter vs. IA.** Al introducir temporalmente una variable sin uso y `print('hola')`, aparecieron `unused_local_variable` y `avoid_print`. Después retiré ambas líneas y el análisis quedó limpio. La IA identificó el número mágico 100 del límite de propina; el linter no lo marcó porque es un literal válido cuyo significado depende de la regla de negocio.
 
-3. **Refactorización.** Elegí el número mágico del máximo de propina: reemplacé el literal de la comparación por `propinaMaxima`, una constante de valor 100. La comparación sigue siendo estrictamente `>` y el mensaje conserva exactamente su texto. Por inspección mantiene el comportamiento, pero falta confirmarlo ejecutando las mismas pruebas sin modificarlas.
+3. **Refactorización.** Elegí el número mágico y lo reemplacé por la constante `propinaMaxima = 100`. La comparación continúa siendo `>` y el mensaje no cambió. Las mismas pruebas pasaron después del refactor, sin modificar sus expectativas.
 
-4. **Coverage.** No se generó `coverage/lcov.info` porque no se pudieron ejecutar las pruebas. Por ello no puedo identificar honestamente el archivo con menor cobertura. Un porcentaje bajo indica líneas no ejecutadas por las pruebas, no demuestra errores; tampoco una cobertura alta garantiza que las comprobaciones sean suficientes.
+4. **Coverage.** La menor cobertura medida corresponde a `lib/main.dart`, con 83.33%. Eso indica qué líneas ejecutaron las pruebas, no demuestra errores. Una cobertura alta tampoco garantiza que se hayan comprobado todos los comportamientos. Los archivos ausentes del informe se señalan como no medidos.
+
+| Archivo | Líneas cubiertas | Cobertura |
+|---|---:|---:|
+| `lib/data/redondeo_exacto.dart` | 3/3 | 100.00% |
+| `lib/data/redondeo_hacia_arriba.dart` | 3/3 | 100.00% |
+| `lib/domain/calcular_division.dart` | 4/4 | 100.00% |
+| `lib/domain/cuenta.dart` | 1/1 | 100.00% |
+| `lib/domain/estrategia_redondeo.dart` | — | No medido |
+| `lib/domain/resultado.dart` | 1/1 | 100.00% |
+| `lib/domain/validar_entrada.dart` | 6/6 | 100.00% |
+| `lib/main.dart` | 5/6 | 83.33% |
+| `lib/presentation/divisor_controller.dart` | 20/21 | 95.24% |
+| `lib/presentation/formateador_moneda.dart` | 2/2 | 100.00% |
+| `lib/presentation/pantalla_divisor.dart` | 46/46 | 100.00% |
