@@ -1,0 +1,7 @@
+2026-10-27T13:54:09.7252576Z ##[group]❌ /home/runner/work/Programacion-Asistida-de-Apps/Programacion-Asistida-de-Apps/07_Participacion/divisor_cuenta/test/division_test.dart: 1. reparto normal (failed)
+2026-10-27T13:54:09.7272334Z Expected: a numeric value within <0.001> of <27.0>
+2026-10-27T13:54:09.7272976Z   Actual: <27.5>
+2026-10-27T13:54:09.7273444Z    Which:  differs by <0.5>
+2026-10-27T13:54:09.7274092Z test/division_test.dart 79:9  main.<fn>
+2026-10-27T13:54:11.0366018Z ##[error]19 tests passed, 1 failed.
+2026-10-27T13:54:11.1012734Z ##[error]Process completed with exit code 1.
