@@ -1,0 +1,31 @@
+name: Deber 3 - TDD y evidencias
+on:
+  push:
+    branches: [deber3]
+    paths:
+      - '07_Participacion/divisor_cuenta/lib/**'
+      - '07_Participacion/divisor_cuenta/test/**'
+      - '07_Participacion/divisor_cuenta/pubspec.*'
+      - '.github/scripts/verificar_deber3.py'
+permissions:
+  contents: read
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.1'
+          channel: stable
+          cache: true
+      - run: python -m pip install pillow
+      - name: Ejecutar etapas y preparar entrega
+        run: python .github/scripts/verificar_deber3.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deber3-evidencias
+          path: 07_Participacion/divisor_cuenta/evidencias/
