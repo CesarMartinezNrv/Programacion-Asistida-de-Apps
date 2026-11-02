@@ -1,0 +1,139 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Codex CLI · llamadas MCP reales</title><style>body{margin:28px;font:15px system-ui;background:#f5f6f8;color:#17202a}h1{font-size:24px}h2{font-size:18px;margin:10px 0}p{color:#44515d}article{background:white;border:1px solid #ccd3da;border-radius:8px;padding:18px;margin:18px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.55 Consolas,monospace;margin:8px 0}.ok{color:#176139}code{font-family:Consolas}small{color:#53616e}</style><h1>Codex CLI · llamadas MCP reales</h1><p>Visor de salida real de <code>codex exec --json</code> · Sesión independiente 01a19e0e-adc3-77c3-8694-91b092db4b85<br>Fuente original: <code>evidencias/agente.jsonl</code>. Cada bloque corresponde a un evento <code>item.completed</code>; no se simulan llamadas.</p><article><h2>Codex · mensaje del agente</h2><pre>Descubriré las herramientas de detective y usaré únicamente sus resultados para revisar los casos y registrar la alerta simulada.
+</pre></article><article><h2>detective.listar_casos · completed</h2><small>Argumentos enviados por el agente</small><pre>{}</pre><small>Resultado MCP devuelto al agente</small><pre>{
+  &quot;id&quot;: &quot;INC-001&quot;,
+  &quot;sistema&quot;: &quot;portal_acceso&quot;,
+  &quot;cantidad_eventos&quot;: 2
+}</pre><pre>{
+  &quot;id&quot;: &quot;INC-002&quot;,
+  &quot;sistema&quot;: &quot;portal_acceso&quot;,
+  &quot;cantidad_eventos&quot;: 6
+}</pre><pre>{
+  &quot;id&quot;: &quot;INC-003&quot;,
+  &quot;sistema&quot;: &quot;panel_administracion&quot;,
+  &quot;cantidad_eventos&quot;: 5
+}</pre></article><article><h2>detective.consultar_eventos · completed</h2><small>Argumentos enviados por el agente</small><pre>{&quot;caso_id&quot;: &quot;INC-001&quot;}</pre><small>Resultado MCP devuelto al agente</small><pre>{
+  &quot;hora&quot;: &quot;08:41&quot;,
+  &quot;usuario&quot;: &quot;ana&quot;,
+  &quot;ip&quot;: &quot;198.51.100.10&quot;,
+  &quot;evento&quot;: &quot;LOGIN_FAILED&quot;
+}</pre><pre>{
+  &quot;hora&quot;: &quot;08:42&quot;,
+  &quot;usuario&quot;: &quot;ana&quot;,
+  &quot;ip&quot;: &quot;198.51.100.10&quot;,
+  &quot;evento&quot;: &quot;LOGIN_SUCCESS&quot;
+}</pre></article><article><h2>detective.consultar_eventos · completed</h2><small>Argumentos enviados por el agente</small><pre>{&quot;caso_id&quot;: &quot;INC-002&quot;}</pre><small>Resultado MCP devuelto al agente</small><pre>{
+  &quot;hora&quot;: &quot;02:10&quot;,
+  &quot;usuario&quot;: &quot;admin&quot;,
+  &quot;ip&quot;: &quot;203.0.113.25&quot;,
+  &quot;evento&quot;: &quot;LOGIN_FAILED&quot;
+}</pre><pre>{
+  &quot;hora&quot;: &quot;02:11&quot;,
+  &quot;usuario&quot;: &quot;admin&quot;,
+  &quot;ip&quot;: &quot;203.0.113.25&quot;,
+  &quot;evento&quot;: &quot;LOGIN_FAILED&quot;
+}</pre><pre>{
+  &quot;hora&quot;: &quot;02:12&quot;,
+  &quot;usuario&quot;: &quot;admin&quot;,
+  &quot;ip&quot;: &quot;203.0.113.25&quot;,
+  &quot;evento&quot;: &quot;LOGIN_FAILED&quot;
+}</pre><pre>{
+  &quot;hora&quot;: &quot;02:13&quot;,
+  &quot;usuario&quot;: &quot;admin&quot;,
+  &quot;ip&quot;: &quot;203.0.113.25&quot;,
+  &quot;evento&quot;: &quot;LOGIN_FAILED&quot;
+}</pre><pre>{
+  &quot;hora&quot;: &quot;02:14&quot;,
+  &quot;usuario&quot;: &quot;admin&quot;,
+  &quot;ip&quot;: &quot;203.0.113.25&quot;,
+  &quot;evento&quot;: &quot;LOGIN_FAILED&quot;
+}</pre><pre>{
+  &quot;hora&quot;: &quot;02:15&quot;,
+  &quot;usuario&quot;: &quot;admin&quot;,
+  &quot;ip&quot;: &quot;203.0.113.25&quot;,
+  &quot;evento&quot;: &quot;LOGIN_FAILED&quot;
+}</pre></article><article><h2>detective.consultar_eventos · completed</h2><small>Argumentos enviados por el agente</small><pre>{&quot;caso_id&quot;: &quot;INC-003&quot;}</pre><small>Resultado MCP devuelto al agente</small><pre>{
+  &quot;hora&quot;: &quot;03:00&quot;,
+  &quot;usuario&quot;: &quot;admin&quot;,
+  &quot;ip&quot;: &quot;192.0.2.50&quot;,
+  &quot;evento&quot;: &quot;LOGIN_FAILED&quot;
+}</pre><pre>{
+  &quot;hora&quot;: &quot;03:01&quot;,
+  &quot;usuario&quot;: &quot;admin&quot;,
+  &quot;ip&quot;: &quot;192.0.2.50&quot;,
+  &quot;evento&quot;: &quot;LOGIN_FAILED&quot;
+}</pre><pre>{
+  &quot;hora&quot;: &quot;03:02&quot;,
+  &quot;usuario&quot;: &quot;admin&quot;,
+  &quot;ip&quot;: &quot;192.0.2.50&quot;,
+  &quot;evento&quot;: &quot;LOGIN_FAILED&quot;
+}</pre><pre>{
+  &quot;hora&quot;: &quot;03:03&quot;,
+  &quot;usuario&quot;: &quot;admin&quot;,
+  &quot;ip&quot;: &quot;192.0.2.50&quot;,
+  &quot;evento&quot;: &quot;LOGIN_FAILED&quot;
+}</pre><pre>{
+  &quot;hora&quot;: &quot;03:04&quot;,
+  &quot;usuario&quot;: &quot;admin&quot;,
+  &quot;ip&quot;: &quot;192.0.2.50&quot;,
+  &quot;evento&quot;: &quot;LOGIN_SUCCESS&quot;
+}</pre></article><article><h2>Codex · mensaje del agente</h2><pre>Evidencia exacta obtenida (`hora | usuario | ip | evento`):
+
+```text
+INC-001 — portal_acceso — 2 eventos
+08:41 | ana   | 198.51.100.10 | LOGIN_FAILED
+08:42 | ana   | 198.51.100.10 | LOGIN_SUCCESS
+
+INC-002 — portal_acceso — 6 eventos
+02:10 | admin | 203.0.113.25 | LOGIN_FAILED
+02:11 | admin | 203.0.113.25 | LOGIN_FAILED
+02:12 | admin | 203.0.113.25 | LOGIN_FAILED
+02:13 | admin | 203.0.113.25 | LOGIN_FAILED
+02:14 | admin | 203.0.113.25 | LOGIN_FAILED
+02:15 | admin | 203.0.113.25 | LOGIN_FAILED
+
+INC-003 — panel_administracion — 5 eventos
+03:00 | admin | 192.0.2.50 | LOGIN_FAILED
+03:01 | admin | 192.0.2.50 | LOGIN_FAILED
+03:02 | admin | 192.0.2.50 | LOGIN_FAILED
+03:03 | admin | 192.0.2.50 | LOGIN_FAILED
+03:04 | admin | 192.0.2.50 | LOGIN_SUCCESS
+```
+
+Registraré una alerta alta para INC-003: cuatro fallos seguidos de un acceso exitoso para `admin` desde la misma IP justifican revisión prioritaria, pero no confirman una intrusión.
+</pre></article><article><h2>detective.registrar_alerta · completed</h2><small>Argumentos enviados por el agente</small><pre>{&quot;caso_id&quot;: &quot;INC-003&quot;, &quot;nivel&quot;: &quot;alto&quot;, &quot;motivo&quot;: &quot;Cuatro LOGIN_FAILED de admin desde 192.0.2.50 a las 03:00, 03:01, 03:02 y 03:03, seguidos de LOGIN_SUCCESS a las 03:04 desde la misma IP. La secuencia justifica revisión prioritaria por posible acceso no autorizado, sin confirmar una intrusión.&quot;}</pre><small>Resultado MCP devuelto al agente</small><pre>{
+  &quot;caso_id&quot;: &quot;INC-003&quot;,
+  &quot;nivel&quot;: &quot;alto&quot;,
+  &quot;motivo&quot;: &quot;Cuatro LOGIN_FAILED de admin desde 192.0.2.50 a las 03:00, 03:01, 03:02 y 03:03, seguidos de LOGIN_SUCCESS a las 03:04 desde la misma IP. La secuencia justifica revisión prioritaria por posible acceso no autorizado, sin confirmar una intrusión.&quot;,
+  &quot;estado&quot;: &quot;registrada&quot;
+}</pre></article><article><h2>detective.consultar_eventos · failed</h2><small>Argumentos enviados por el agente</small><pre>{&quot;caso_id&quot;: &quot;INC-999&quot;}</pre><small>Resultado MCP devuelto al agente</small><pre>Error executing tool consultar_eventos: El caso &#x27;INC-999&#x27; no existe.</pre></article><article><h2>Codex · mensaje del agente</h2><pre>Herramientas descubiertas: `listar_casos`, `consultar_eventos` y `registrar_alerta`.
+
+Evidencia exacta (`hora | usuario | ip | evento`):
+
+```text
+INC-001 | portal_acceso | 2 eventos
+08:41 | ana | 198.51.100.10 | LOGIN_FAILED
+08:42 | ana | 198.51.100.10 | LOGIN_SUCCESS
+
+INC-002 | portal_acceso | 6 eventos
+02:10 | admin | 203.0.113.25 | LOGIN_FAILED
+02:11 | admin | 203.0.113.25 | LOGIN_FAILED
+02:12 | admin | 203.0.113.25 | LOGIN_FAILED
+02:13 | admin | 203.0.113.25 | LOGIN_FAILED
+02:14 | admin | 203.0.113.25 | LOGIN_FAILED
+02:15 | admin | 203.0.113.25 | LOGIN_FAILED
+
+INC-003 | panel_administracion | 5 eventos
+03:00 | admin | 192.0.2.50 | LOGIN_FAILED
+03:01 | admin | 192.0.2.50 | LOGIN_FAILED
+03:02 | admin | 192.0.2.50 | LOGIN_FAILED
+03:03 | admin | 192.0.2.50 | LOGIN_FAILED
+03:04 | admin | 192.0.2.50 | LOGIN_SUCCESS
+```
+
+Alerta INC-003 **registrada**, nivel **alto**: cuatro fallos seguidos de un acceso exitoso para `admin` desde la misma IP justifican revisión prioritaria por posible acceso no autorizado; no confirman una intrusión.
+
+La consulta INC-999 devolvió este error exacto, sin eventos:
+
+```text
+Error executing tool consultar_eventos: El caso &#x27;INC-999&#x27; no existe.
+```</pre></article></html>

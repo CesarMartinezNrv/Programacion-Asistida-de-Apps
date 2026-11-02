@@ -4,6 +4,12 @@ import json
 from pathlib import Path
 
 from mcp.server import MCPServer
+from mcp.server.mcpserver.exceptions import ToolError
+from mcp.types import ToolAnnotations
+
+
+class ErrorValidacion(ValueError, ToolError):
+    """Es ValueError y permite que MCP v2 comunique el motivo al cliente."""
 
 
 class Centinela:
@@ -16,7 +22,7 @@ class Centinela:
 
     def _validar_caso(self, caso_id: str) -> None:
         if not isinstance(caso_id, str) or caso_id not in self._casos:
-            raise ValueError(f"El caso {caso_id!r} no existe.")
+            raise ErrorValidacion(f"El caso {caso_id!r} no existe.")
 
     def listar_casos(self) -> list[dict]:
         """Devuelve identificadores, sistemas y cantidades, sin interpretarlos."""
@@ -34,11 +40,11 @@ class Centinela:
         """Valida los argumentos y guarda una sola alerta por caso en memoria."""
         self._validar_caso(caso_id)
         if not isinstance(nivel, str) or nivel not in ("bajo", "medio", "alto"):
-            raise ValueError("El nivel debe ser bajo, medio o alto.")
+            raise ErrorValidacion("El nivel debe ser bajo, medio o alto.")
         if not isinstance(motivo, str) or not motivo.strip():
-            raise ValueError("El motivo debe ser texto y no puede estar vacío ni contener solo espacios.")
+            raise ErrorValidacion("El motivo debe ser texto y no puede estar vacío ni contener solo espacios.")
         if caso_id in self._alertas:
-            raise ValueError(f"Ya existe una alerta para {caso_id}; no se permiten duplicados.")
+            raise ErrorValidacion(f"Ya existe una alerta para {caso_id}; no se permiten duplicados.")
         alerta = {"caso_id": caso_id, "nivel": nivel, "motivo": motivo, "estado": "registrada"}
         self._alertas[caso_id] = alerta
         return dict(alerta)
@@ -48,19 +54,19 @@ mcp = MCPServer("MCP Detective")
 centinela = Centinela()
 
 
-@mcp.tool()
+@mcp.tool(annotations=ToolAnnotations(read_only_hint=True, open_world_hint=False))
 def listar_casos() -> list[dict]:
     """Lista el id, sistema y cantidad de eventos de cada caso, sin conclusiones."""
     return centinela.listar_casos()
 
 
-@mcp.tool()
+@mcp.tool(annotations=ToolAnnotations(read_only_hint=True, open_world_hint=False))
 def consultar_eventos(caso_id: str) -> list[dict]:
     """Consulta los eventos exactos de un caso; falla si el identificador no existe."""
     return centinela.consultar_eventos(caso_id)
 
 
-@mcp.tool()
+@mcp.tool(annotations=ToolAnnotations(read_only_hint=False, destructive_hint=False, open_world_hint=False))
 def registrar_alerta(caso_id: str, nivel: str, motivo: str) -> dict:
     """Registra una alerta en memoria, validando caso, nivel, motivo y duplicados."""
     return centinela.registrar_alerta(caso_id, nivel, motivo)
