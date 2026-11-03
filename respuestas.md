@@ -2,7 +2,7 @@
 
 ## 1. Arquitectura
 
-El LLM decidió qué herramienta usar y explicó los eventos que recibió. El host, en este caso Codex CLI, mantuvo la conversación y coordinó las llamadas. El cliente MCP conectó al agente con el servidor por stdio, envió los argumentos y recibió los resultados. El servidor ejecutó las funciones de Python: leyó los casos, validó las entradas y guardó la alerta en memoria. El LLM propuso la acción; el proceso del servidor fue el que realmente ejecutó Python.
+El LLM decidió qué herramienta usar y me explicó los eventos que recibió. El host, en este caso es Codex CLI, mantuvo la conversación y coordinó las llamadas. El cliente MCP conectó al agente con el servidor por stdio, envió los argumentos y recibió los resultados. El servidor ejecutó las funciones de Python quiere decir que leyó los casos, validó las entradas y guardó la alerta en memoria. El LLM propuso la acción; el proceso del servidor fue el que realmente ejecutó Python.
 
 ## 2. Evidencia
 
