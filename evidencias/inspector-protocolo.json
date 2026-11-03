@@ -1,0 +1,601 @@
+[
+  {
+    "id": "cc1d8641-5287-4db1-9be6-ce3a12bf8098",
+    "timestamp": "2026-11-02T20:55:41.684Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "initialize",
+      "params": {
+        "protocolVersion": "2025-11-25",
+        "capabilities": {
+          "sampling": {},
+          "elicitation": {
+            "form": {},
+            "url": {}
+          },
+          "roots": {
+            "listChanged": true
+          },
+          "tasks": {
+            "list": {},
+            "cancel": {},
+            "requests": {
+              "sampling": {
+                "createMessage": {}
+              },
+              "elicitation": {
+                "create": {}
+              }
+            }
+          },
+          "extensions": {
+            "io.modelcontextprotocol/tasks": {},
+            "io.modelcontextprotocol/ui": {
+              "mimeTypes": [
+                "text/html;profile=mcp-app"
+              ],
+              "elicitation": {}
+            },
+            "io.modelcontextprotocol/skills": {}
+          }
+        },
+        "clientInfo": {
+          "name": "mcp-inspector",
+          "version": "2.13.0"
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 0
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 0,
+      "result": {
+        "capabilities": {
+          "prompts": {
+            "listChanged": false
+          },
+          "resources": {
+            "listChanged": false,
+            "subscribe": false
+          },
+          "tools": {
+            "listChanged": false
+          }
+        },
+        "protocolVersion": "2025-11-25",
+        "serverInfo": {
+          "name": "MCP Detective",
+          "version": ""
+        }
+      }
+    },
+    "duration": 3159
+  },
+  {
+    "id": "a39f6bdf-6de0-4d5f-a377-55cead2eeccc",
+    "timestamp": "2026-11-02T20:55:44.872Z",
+    "direction": "notification",
+    "origin": "client",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications/initialized"
+    }
+  },
+  {
+    "id": "32cd557c-29de-4201-aad9-1a218e7f0d67",
+    "timestamp": "2026-11-02T20:55:44.959Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "resources/list",
+      "jsonrpc": "2.0",
+      "id": 1,
+      "params": {
+        "_meta": {
+          "progressToken": 1
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "resources": []
+      }
+    },
+    "duration": 277
+  },
+  {
+    "id": "b357bf6c-a395-4d33-8556-312869e3fb4b",
+    "timestamp": "2026-11-02T20:55:44.960Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/list",
+      "jsonrpc": "2.0",
+      "id": 2,
+      "params": {
+        "_meta": {
+          "progressToken": 2
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "tools": [
+          {
+            "description": "Lista el id, sistema y cantidad de eventos de cada caso, sin conclusiones.",
+            "inputSchema": {
+              "properties": {},
+              "type": "object",
+              "title": "listar_casosArguments"
+            },
+            "name": "listar_casos",
+            "outputSchema": {
+              "properties": {
+                "result": {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "title": "Result",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "result"
+              ],
+              "type": "object",
+              "title": "listar_casosOutput"
+            }
+          },
+          {
+            "description": "Consulta los eventos exactos de un caso; falla si el identificador no existe.",
+            "inputSchema": {
+              "properties": {
+                "caso_id": {
+                  "title": "Caso Id",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "caso_id"
+              ],
+              "type": "object",
+              "title": "consultar_eventosArguments"
+            },
+            "name": "consultar_eventos",
+            "outputSchema": {
+              "properties": {
+                "result": {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "title": "Result",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "result"
+              ],
+              "type": "object",
+              "title": "consultar_eventosOutput"
+            }
+          },
+          {
+            "description": "Registra una alerta en memoria, validando caso, nivel, motivo y duplicados.",
+            "inputSchema": {
+              "properties": {
+                "caso_id": {
+                  "title": "Caso Id",
+                  "type": "string"
+                },
+                "nivel": {
+                  "title": "Nivel",
+                  "type": "string"
+                },
+                "motivo": {
+                  "title": "Motivo",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "caso_id",
+                "nivel",
+                "motivo"
+              ],
+              "type": "object",
+              "title": "registrar_alertaArguments"
+            },
+            "name": "registrar_alerta"
+          }
+        ]
+      }
+    },
+    "duration": 351
+  },
+  {
+    "id": "2abc6e40-6c35-4d69-82e3-9deebd4cb144",
+    "timestamp": "2026-11-02T20:55:44.961Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "prompts/list",
+      "jsonrpc": "2.0",
+      "id": 3,
+      "params": {
+        "_meta": {
+          "progressToken": 3
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "prompts": []
+      }
+    },
+    "duration": 429
+  },
+  {
+    "id": "5480a935-8fd2-4569-9bed-1e08d43c6ee4",
+    "timestamp": "2026-11-02T20:55:44.962Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "resources/templates/list",
+      "jsonrpc": "2.0",
+      "id": 4,
+      "params": {
+        "_meta": {
+          "progressToken": 4
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "resourceTemplates": []
+      }
+    },
+    "duration": 507
+  },
+  {
+    "id": "58c2c6e7-0ebc-48d5-add1-3bffc8b3236f",
+    "timestamp": "2026-11-02T20:55:59.778Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/call",
+      "params": {
+        "name": "listar_casos",
+        "arguments": {},
+        "_meta": {
+          "progressToken": 5
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 5
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "content": [
+          {
+            "text": "{\n  \"id\": \"INC-001\",\n  \"sistema\": \"portal_acceso\",\n  \"cantidad_eventos\": 2\n}",
+            "type": "text"
+          },
+          {
+            "text": "{\n  \"id\": \"INC-002\",\n  \"sistema\": \"portal_acceso\",\n  \"cantidad_eventos\": 6\n}",
+            "type": "text"
+          },
+          {
+            "text": "{\n  \"id\": \"INC-003\",\n  \"sistema\": \"panel_administracion\",\n  \"cantidad_eventos\": 5\n}",
+            "type": "text"
+          }
+        ],
+        "isError": false,
+        "structuredContent": {
+          "result": [
+            {
+              "id": "INC-001",
+              "sistema": "portal_acceso",
+              "cantidad_eventos": 2
+            },
+            {
+              "id": "INC-002",
+              "sistema": "portal_acceso",
+              "cantidad_eventos": 6
+            },
+            {
+              "id": "INC-003",
+              "sistema": "panel_administracion",
+              "cantidad_eventos": 5
+            }
+          ]
+        }
+      }
+    },
+    "duration": 77
+  },
+  {
+    "id": "fa6b3c22-2e88-4862-9155-9eaa8b7aa723",
+    "timestamp": "2026-11-02T20:56:06.565Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/call",
+      "params": {
+        "name": "consultar_eventos",
+        "arguments": {
+          "caso_id": "INC-002"
+        },
+        "_meta": {
+          "progressToken": 6
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 6
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "result": {
+        "content": [
+          {
+            "text": "{\n  \"hora\": \"02:10\",\n  \"usuario\": \"admin\",\n  \"ip\": \"203.0.113.25\",\n  \"evento\": \"LOGIN_FAILED\"\n}",
+            "type": "text"
+          },
+          {
+            "text": "{\n  \"hora\": \"02:11\",\n  \"usuario\": \"admin\",\n  \"ip\": \"203.0.113.25\",\n  \"evento\": \"LOGIN_FAILED\"\n}",
+            "type": "text"
+          },
+          {
+            "text": "{\n  \"hora\": \"02:12\",\n  \"usuario\": \"admin\",\n  \"ip\": \"203.0.113.25\",\n  \"evento\": \"LOGIN_FAILED\"\n}",
+            "type": "text"
+          },
+          {
+            "text": "{\n  \"hora\": \"02:13\",\n  \"usuario\": \"admin\",\n  \"ip\": \"203.0.113.25\",\n  \"evento\": \"LOGIN_FAILED\"\n}",
+            "type": "text"
+          },
+          {
+            "text": "{\n  \"hora\": \"02:14\",\n  \"usuario\": \"admin\",\n  \"ip\": \"203.0.113.25\",\n  \"evento\": \"LOGIN_FAILED\"\n}",
+            "type": "text"
+          },
+          {
+            "text": "{\n  \"hora\": \"02:15\",\n  \"usuario\": \"admin\",\n  \"ip\": \"203.0.113.25\",\n  \"evento\": \"LOGIN_FAILED\"\n}",
+            "type": "text"
+          }
+        ],
+        "isError": false,
+        "structuredContent": {
+          "result": [
+            {
+              "hora": "02:10",
+              "usuario": "admin",
+              "ip": "203.0.113.25",
+              "evento": "LOGIN_FAILED"
+            },
+            {
+              "hora": "02:11",
+              "usuario": "admin",
+              "ip": "203.0.113.25",
+              "evento": "LOGIN_FAILED"
+            },
+            {
+              "hora": "02:12",
+              "usuario": "admin",
+              "ip": "203.0.113.25",
+              "evento": "LOGIN_FAILED"
+            },
+            {
+              "hora": "02:13",
+              "usuario": "admin",
+              "ip": "203.0.113.25",
+              "evento": "LOGIN_FAILED"
+            },
+            {
+              "hora": "02:14",
+              "usuario": "admin",
+              "ip": "203.0.113.25",
+              "evento": "LOGIN_FAILED"
+            },
+            {
+              "hora": "02:15",
+              "usuario": "admin",
+              "ip": "203.0.113.25",
+              "evento": "LOGIN_FAILED"
+            }
+          ]
+        }
+      }
+    },
+    "duration": 76
+  },
+  {
+    "id": "64d316e7-ca4b-4dcf-84d7-d2955235125b",
+    "timestamp": "2026-11-02T20:56:27.054Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/call",
+      "params": {
+        "name": "consultar_eventos",
+        "arguments": {
+          "caso_id": "INC-999"
+        },
+        "_meta": {
+          "progressToken": 7
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 7
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "result": {
+        "content": [
+          {
+            "text": "Error executing tool consultar_eventos: El caso 'INC-999' no existe.",
+            "type": "text"
+          }
+        ],
+        "isError": true
+      }
+    },
+    "duration": 201
+  },
+  {
+    "id": "0ce67615-5cb6-4e4e-b82c-6cb593ff6484",
+    "timestamp": "2026-11-02T20:56:35.334Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/call",
+      "params": {
+        "name": "registrar_alerta",
+        "arguments": {
+          "caso_id": "INC-003",
+          "nivel": "alto",
+          "motivo": "Cuatro fallos y un acceso exitoso desde la misma IP; requiere investigación"
+        },
+        "_meta": {
+          "progressToken": 8
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 8
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 8,
+      "result": {
+        "content": [
+          {
+            "text": "{\n  \"caso_id\": \"INC-003\",\n  \"nivel\": \"alto\",\n  \"motivo\": \"Cuatro fallos y un acceso exitoso desde la misma IP; requiere investigación\",\n  \"estado\": \"registrada\"\n}",
+            "type": "text"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "duration": 79
+  },
+  {
+    "id": "d0893afe-b27c-4cd5-ac30-d0352bc7f12c",
+    "timestamp": "2026-11-02T20:56:39.484Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/call",
+      "params": {
+        "name": "registrar_alerta",
+        "arguments": {
+          "caso_id": "INC-003",
+          "nivel": "alto",
+          "motivo": "Cuatro fallos y un acceso exitoso desde la misma IP; requiere investigación"
+        },
+        "_meta": {
+          "progressToken": 9
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 9
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 9,
+      "result": {
+        "content": [
+          {
+            "text": "Error executing tool registrar_alerta: Ya existe una alerta para INC-003; no se permiten duplicados.",
+            "type": "text"
+          }
+        ],
+        "isError": true
+      }
+    },
+    "duration": 222
+  },
+  {
+    "id": "d81b8f3e-8421-4e85-b0fe-a3a5b4ac37d8",
+    "timestamp": "2026-11-02T20:56:44.345Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/call",
+      "params": {
+        "name": "registrar_alerta",
+        "arguments": {
+          "caso_id": "INC-002",
+          "nivel": "critico",
+          "motivo": "Intentos repetidos"
+        },
+        "_meta": {
+          "progressToken": 10
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 10
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 10,
+      "result": {
+        "content": [
+          {
+            "text": "Error executing tool registrar_alerta: El nivel debe ser bajo, medio o alto.",
+            "type": "text"
+          }
+        ],
+        "isError": true
+      }
+    },
+    "duration": 218
+  },
+  {
+    "id": "19602e86-5aa8-4c6d-aff7-cdae4395973a",
+    "timestamp": "2026-11-02T20:56:49.197Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/call",
+      "params": {
+        "name": "registrar_alerta",
+        "arguments": {
+          "caso_id": "INC-002",
+          "nivel": "medio",
+          "motivo": "   "
+        },
+        "_meta": {
+          "progressToken": 11
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 11
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 11,
+      "result": {
+        "content": [
+          {
+            "text": "Error executing tool registrar_alerta: El motivo debe ser texto y no puede estar vacío ni contener solo espacios.",
+            "type": "text"
+          }
+        ],
+        "isError": true
+      }
+    },
+    "duration": 220
+  }
+]

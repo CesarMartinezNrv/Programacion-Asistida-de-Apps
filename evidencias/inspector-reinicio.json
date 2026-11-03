@@ -1,0 +1,319 @@
+[
+  {
+    "id": "9e3a9f11-2a34-4203-9ed6-282fceed4125",
+    "timestamp": "2026-11-02T20:59:39.117Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "initialize",
+      "params": {
+        "protocolVersion": "2025-11-25",
+        "capabilities": {
+          "sampling": {},
+          "elicitation": {
+            "form": {},
+            "url": {}
+          },
+          "roots": {
+            "listChanged": true
+          },
+          "tasks": {
+            "list": {},
+            "cancel": {},
+            "requests": {
+              "sampling": {
+                "createMessage": {}
+              },
+              "elicitation": {
+                "create": {}
+              }
+            }
+          },
+          "extensions": {
+            "io.modelcontextprotocol/tasks": {},
+            "io.modelcontextprotocol/ui": {
+              "mimeTypes": [
+                "text/html;profile=mcp-app"
+              ],
+              "elicitation": {}
+            },
+            "io.modelcontextprotocol/skills": {}
+          }
+        },
+        "clientInfo": {
+          "name": "mcp-inspector",
+          "version": "2.13.0"
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 0
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 0,
+      "result": {
+        "capabilities": {
+          "prompts": {
+            "listChanged": false
+          },
+          "resources": {
+            "listChanged": false,
+            "subscribe": false
+          },
+          "tools": {
+            "listChanged": false
+          }
+        },
+        "protocolVersion": "2025-11-25",
+        "serverInfo": {
+          "name": "MCP Detective",
+          "version": ""
+        }
+      }
+    },
+    "duration": 2367
+  },
+  {
+    "id": "89bbdfc7-09aa-4c04-ab3f-193fcc9955f2",
+    "timestamp": "2026-11-02T20:59:41.492Z",
+    "direction": "notification",
+    "origin": "client",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications/initialized"
+    }
+  },
+  {
+    "id": "0731e23c-963d-45ae-84ab-addf8d0186b6",
+    "timestamp": "2026-11-02T20:59:41.521Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "resources/list",
+      "jsonrpc": "2.0",
+      "id": 1,
+      "params": {
+        "_meta": {
+          "progressToken": 1
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "resources": []
+      }
+    },
+    "duration": 93
+  },
+  {
+    "id": "09ec9a30-7147-4df4-963f-db0659edbf63",
+    "timestamp": "2026-11-02T20:59:41.521Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/list",
+      "jsonrpc": "2.0",
+      "id": 2,
+      "params": {
+        "_meta": {
+          "progressToken": 2
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "tools": [
+          {
+            "annotations": {
+              "openWorldHint": false,
+              "readOnlyHint": true
+            },
+            "description": "Lista el id, sistema y cantidad de eventos de cada caso, sin conclusiones.",
+            "inputSchema": {
+              "properties": {},
+              "type": "object",
+              "title": "listar_casosArguments"
+            },
+            "name": "listar_casos",
+            "outputSchema": {
+              "properties": {
+                "result": {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "title": "Result",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "result"
+              ],
+              "type": "object",
+              "title": "listar_casosOutput"
+            }
+          },
+          {
+            "annotations": {
+              "openWorldHint": false,
+              "readOnlyHint": true
+            },
+            "description": "Consulta los eventos exactos de un caso; falla si el identificador no existe.",
+            "inputSchema": {
+              "properties": {
+                "caso_id": {
+                  "title": "Caso Id",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "caso_id"
+              ],
+              "type": "object",
+              "title": "consultar_eventosArguments"
+            },
+            "name": "consultar_eventos",
+            "outputSchema": {
+              "properties": {
+                "result": {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "title": "Result",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "result"
+              ],
+              "type": "object",
+              "title": "consultar_eventosOutput"
+            }
+          },
+          {
+            "annotations": {
+              "destructiveHint": false,
+              "openWorldHint": false,
+              "readOnlyHint": false
+            },
+            "description": "Registra una alerta en memoria, validando caso, nivel, motivo y duplicados.",
+            "inputSchema": {
+              "properties": {
+                "caso_id": {
+                  "title": "Caso Id",
+                  "type": "string"
+                },
+                "nivel": {
+                  "title": "Nivel",
+                  "type": "string"
+                },
+                "motivo": {
+                  "title": "Motivo",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "caso_id",
+                "nivel",
+                "motivo"
+              ],
+              "type": "object",
+              "title": "registrar_alertaArguments"
+            },
+            "name": "registrar_alerta"
+          }
+        ]
+      }
+    },
+    "duration": 125
+  },
+  {
+    "id": "dce88a6f-73f2-4f0f-8085-ffda224b68c9",
+    "timestamp": "2026-11-02T20:59:41.521Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "prompts/list",
+      "jsonrpc": "2.0",
+      "id": 3,
+      "params": {
+        "_meta": {
+          "progressToken": 3
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "prompts": []
+      }
+    },
+    "duration": 158
+  },
+  {
+    "id": "0067ba5b-a07e-4368-b684-3803442713b1",
+    "timestamp": "2026-11-02T20:59:41.522Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "resources/templates/list",
+      "jsonrpc": "2.0",
+      "id": 4,
+      "params": {
+        "_meta": {
+          "progressToken": 4
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "resourceTemplates": []
+      }
+    },
+    "duration": 188
+  },
+  {
+    "id": "507bde93-d6a4-4e5c-a35e-926b12e9d6f9",
+    "timestamp": "2026-11-02T21:01:20.097Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/call",
+      "params": {
+        "name": "registrar_alerta",
+        "arguments": {
+          "caso_id": "INC-003",
+          "nivel": "alto",
+          "motivo": "Cuatro fallos y un acceso exitoso desde la misma IP; requiere investigación"
+        },
+        "_meta": {
+          "progressToken": 5
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 5
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "content": [
+          {
+            "text": "{\n  \"caso_id\": \"INC-003\",\n  \"nivel\": \"alto\",\n  \"motivo\": \"Cuatro fallos y un acceso exitoso desde la misma IP; requiere investigación\",\n  \"estado\": \"registrada\"\n}",
+            "type": "text"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "duration": 61
+  }
+]
