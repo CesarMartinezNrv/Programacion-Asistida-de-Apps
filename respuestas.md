@@ -18,7 +18,7 @@ El servidor rechaza INC-999 y los parámetros inválidos. También revisa si ya 
 
 Usé Codex CLI en una sesión independiente para la investigación. Se conectó con el Python del entorno virtual y la ruta absoluta de `server.py`. Comprobé la conexión por las llamadas reales: `listar_casos`, las consultas de INC-001, INC-002 e INC-003, el registro de la alerta y la consulta de INC-999. La sesión no ejecutó comandos ni leyó `casos.json` directamente; toda la evidencia vino de MCP.
 
-La traza original está en [evidencias/agente.jsonl](evidencias/agente.jsonl) y el resultado de la investigación en [evidencias/investigacion.md](evidencias/investigacion.md). La captura [agente_tools.png](evidencias/agente_tools.png) muestra esa salida JSONL en un visor local, con los argumentos y resultados de las llamadas; no es una captura de la interfaz original de Codex.
+La traza original está en [evidencias/agente.jsonl](evidencias/agente.jsonl) y el resultado de la investigación en [evidencias/investigacion.md](evidencias/investigacion.md). Repetí la investigación en una sesión independiente y abrí sus llamadas en la interfaz original de Codex. La captura [agente_tools.png](evidencias/agente_tools.png) muestra el nombre, los argumentos y el resultado del registro de la alerta. Las capturas adicionales muestran la lista de casos, una consulta válida y el error de INC-999. La traza de esta ejecución está en [agente-captura.jsonl](evidencias/agente-captura.jsonl).
 
 ## Instalación y ejecución
 
