@@ -1,0 +1,18 @@
+Aplicaré el skill `incident-investigator` y sus reglas usando las copias proporcionadas por el invocador, sin ejecutar herramientas. Citaré las líneas originales y ocultaré cualquier valor de token.
+
+Analicé **logs_sinteticos.csv** con el skill `incident-investigator` y las reglas proporcionadas por el invocador, sin ejecutar herramientas ni abrir archivos.
+
+Los datos están declarados como **sintéticos**. Están presentes las seis columnas requeridas: `timestamp`, `ip`, `user`, `event`, `result` y `detail`. Las fechas tienen formato ISO 8601 y zona uniforme `-05:00`, sin ambigüedad visible. El rango es **2026-11-05, 01:01–02:29 (-05:00)**. Las referencias siguientes son líneas físicas originales; el encabezado ocupa la fila 1.
+
+| Alerta | Severidad orientativa | Regla | Timestamp o intervalo | IP | Usuario | Filas/evidencia | Limitaciones |
+|---|---|---|---|---|---|---|---|
+| Fuerza bruta probable | Alta: afecta a `admin` y existe un éxito posterior | R1 | 01:14–01:18; éxito 01:19 | 198.51.100.77 | admin | **17, 19, 20, 22, 23, 25, 26, 27**: ocho `login/failed` en cuatro minutos. **28**: `login/success`, un minuto después del último fallo | El éxito no demuestra compromiso. Hay registros idénticos sin identificador que permita deduplicarlos |
+| Password spraying probable | Media: intentos contra seis cuentas | R2 | 02:01–02:03 | 203.0.113.89 | ana, carlos, luisa, diego, maria, sofia | **67, 68, 70, 71, 73, 74**: seis usuarios distintos con `login/failed` en dos minutos | No se observa un éxito desde esta IP en el archivo; no se demuestra acceso |
+| Token potencialmente expuesto | Media: aparece un valor en una salida de depuración | R3 | 01:27 | 192.0.2.44 | api_service | **33**: `debug/warning`; contiene `token=[REDACTED]` | No acredita validez, uso ni filtración externa |
+| Cambio de rol no aprobado según el registro | Alta: registra elevación a administrador sin aprobación | R4 | 01:50 | 203.0.113.42 | guest | **59**: `role_change/success`, `role=user->admin; approved=false`. **57**: acceso previo denegado a `/admin` a las 01:49 | `approved=false` es un campo completo. El registro no permite atribuir autoría ni culpabilidad |
+
+**Verificación directa:** contrasté R1 con las filas originales proporcionadas: los ocho fallos corresponden a la misma IP y a `admin`, entre 01:14 y 01:18. La fila 28 registra el éxito a las 01:19, exactamente un minuto después. La secuencia se presenta como una sola alerta, agrupando sus ventanas solapadas.
+
+**Falsos positivos evitados:** los tres fallos de `maria` desde `192.0.2.25` —filas **38, 39 y 41**— no alcanzan R1 ni R2. El éxito de la fila **42** y su descripción son compatibles con errores de escritura, aunque no verifican por sí solos la legitimidad. Los seis `healthcheck/success` de las filas **78, 80–84** no cuentan como intentos de autenticación. R1 y R2 no se solapan en estas secuencias.
+
+**Incertidumbres:** las parejas **19/20, 22/23 y 25/26** tienen contenido idéntico y se conservaron conforme a las reglas. Si fueran duplicados de ingestión, R1 podría dejar de alcanzar el umbral. Las severidades son prioridades orientativas según el contexto disponible, no medidas forenses objetivas; faltan identificadores de evento y evidencia independiente para confirmar compromiso, uso del token o responsabilidad.

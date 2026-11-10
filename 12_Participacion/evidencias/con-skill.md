@@ -1,0 +1,26 @@
+Aplicaré el skill `incident-investigator` y sus reglas usando los textos proporcionados por el invocador, sin ejecutar herramientas. Citaré las filas físicas y ocultaré cualquier valor de token.
+
+El análisis identifica **cuatro alertas justificadas por las reglas**, sin demostrar por sí solo una intrusión.
+
+Archivo: `logs_sinteticos.csv`, declarado sintético. El texto proporcionado contiene las seis columnas requeridas (`timestamp`, `ip`, `user`, `event`, `result`, `detail`), sin campos requeridos ausentes. Las fechas son ISO 8601 con zona uniforme `-05:00`, sin ambigüedad visible. Rango: **2026-11-05, 01:01–02:29 (-05:00)**. Las referencias corresponden a líneas físicas originales; el encabezado es la fila 1.
+
+| Alerta | Severidad orientativa | Regla | Timestamp o intervalo | IP | Usuario | Filas/evidencia | Limitaciones |
+|---|---|---|---|---|---|---|---|
+| Fuerza bruta probable | Alta: cuenta administrativa y éxito posterior | R1 | 01:14–01:18; éxito 01:19 | 198.51.100.77 | admin | **17, 19, 20, 22, 23, 25, 26, 27:** ocho `login/failed` en cuatro minutos. **28:** `login/success`, un minuto después del último fallo. | El éxito no prueba compromiso. Las repeticiones afectan al umbral; véase abajo. |
+| Token potencialmente expuesto | Media: dato sensible registrado en depuración | R3 | 01:27 | 192.0.2.44 | api_service | **33:** evento `debug/warning`; contiene `token=[REDACTED]`. | No acredita validez, uso del token ni filtración externa. |
+| Cambio de rol no aprobado según el registro | Alta: elevación a administrador | R4 | 01:50 | 203.0.113.42 | guest | **59:** `role_change/success`, `role=user->admin; approved=false`. **57:** acceso denegado a `/admin` un minuto antes, para la misma IP y usuario. | `approved=false` es un campo completo. No identifica al responsable ni demuestra acceso posterior a `/admin`. |
+| Password spraying probable | Media: intentos contra varias cuentas | R2 | 02:01–02:03 | 203.0.113.89 | ana, carlos, luisa, diego, maria, sofia | **67, 68, 70, 71, 73, 74:** seis `login/failed` contra seis usuarios distintos en dos minutos. | No consta éxito para esa IP. Los registros no revelan qué contraseñas se probaron. |
+
+La severidad expresa una prioridad de revisión basada en el contexto del registro, no una medida forense objetiva.
+
+**Verificación directa:** contrasté la alerta R4 con la fila original 59 proporcionada: coinciden exactamente `event=role_change` y `result=success`; el detalle registra la transición a administrador y el indicador completo `approved=false`. La fila 57 aporta contexto, pero no es necesaria para cumplir R4.
+
+**Repeticiones relevantes:** las filas **19/20, 22/23 y 25/26** son pares idénticos. Se conservaron porque no hay un identificador que permita descartarlos. Si cada par fuese una duplicación de captura, quedarían cinco fallos en esa secuencia y **R1 dejaría de alcanzar el umbral de seis**. La alerta depende de contar los registros tal como fueron suministrados. Las ventanas solapadas de esa secuencia se agrupan en una sola alerta.
+
+Se distinguieron estas actividades de las alertas:
+
+- **María, 192.0.2.25, filas 38, 39, 41 y 42:** tres fallos y un éxito posterior. No alcanza R1 ni R2; el detalle describe errores de contraseña y un usuario legítimo.
+- **Healthbot, filas 78 y 80–84:** comprobaciones programadas `healthcheck/success`; no cuentan como intentos de autenticación fallidos.
+- Los fallos ordinarios restantes no forman ventanas que alcancen R1 o R2. Las dos alertas de autenticación detectadas no se solapan entre sí.
+
+El archivo no incluye identificadores de evento, sesiones, MFA ni auditoría posterior suficiente para confirmar compromiso, atribuir acciones o determinar su impacto. La ausencia de otras alertas bajo estas reglas no demuestra que el sistema sea seguro.

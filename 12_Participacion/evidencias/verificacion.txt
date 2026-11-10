@@ -1,0 +1,52 @@
+Archivo: logs_sinteticos.csv
+SHA256 inicial: 7D8219E9F8C9DD995BE0C2DC038F4F7E67F0F12446B4FDC07FADF508BEFB5DA8
+Registros: 93
+Columnas: timestamp, ip, user, event, result, detail
+Rango: 2026-11-05T01:01:00.0000000-05:00 / 2026-11-05T02:29:00.0000000-05:00
+Conteos por hora:
+2026-11-05 01:00 -05:00: 63
+2026-11-05 02:00 -05:00: 30
+Ventanas R1 que alcanzan umbral (sin eliminar duplicados):
+198.51.100.77/admin: 8 fallos; filas 17, 19, 20, 22, 23, 25, 26, 27
+198.51.100.77/admin: 7 fallos; filas 19, 20, 22, 23, 25, 26, 27
+198.51.100.77/admin: 7 fallos; filas 19, 20, 22, 23, 25, 26, 27
+Ventanas R2 que alcanzan umbral:
+203.0.113.89: 6 usuarios; filas 67, 68, 70, 71, 73, 74
+203.0.113.89: 6 usuarios; filas 67, 68, 70, 71, 73, 74
+Repeticiones exactas en las seis columnas, sin deduplicar:
+Filas 19, 20; registros: 2
+Filas 22, 23; registros: 2
+Filas 25, 26; registros: 2
+Filas con token= (sin imprimir valores): 33
+Cambios de rol no aprobados: 59
+Verificación directa de líneas originales (campo detail completo oculto si contiene token=):
+17: 2026-11-05T01:14:00-05:00,198.51.100.77,admin,login,failed,incorrect password
+19: 2026-11-05T01:15:00-05:00,198.51.100.77,admin,login,failed,incorrect password
+20: 2026-11-05T01:15:00-05:00,198.51.100.77,admin,login,failed,incorrect password
+22: 2026-11-05T01:16:00-05:00,198.51.100.77,admin,login,failed,incorrect password
+23: 2026-11-05T01:16:00-05:00,198.51.100.77,admin,login,failed,incorrect password
+25: 2026-11-05T01:17:00-05:00,198.51.100.77,admin,login,failed,incorrect password
+26: 2026-11-05T01:17:00-05:00,198.51.100.77,admin,login,failed,incorrect password
+27: 2026-11-05T01:18:00-05:00,198.51.100.77,admin,login,failed,incorrect password
+28: 2026-11-05T01:19:00-05:00,198.51.100.77,admin,login,success,login after multiple failures
+33: 2026-11-05T01:27:00-05:00,192.0.2.44,api_service,debug,warning,token=[REDACTED]
+38: 2026-11-05T01:35:00-05:00,192.0.2.25,maria,login,failed,mistyped password
+39: 2026-11-05T01:36:00-05:00,192.0.2.25,maria,login,failed,mistyped password
+41: 2026-11-05T01:37:00-05:00,192.0.2.25,maria,login,failed,mistyped password
+42: 2026-11-05T01:38:00-05:00,192.0.2.25,maria,login,success,legitimate user
+57: 2026-11-05T01:49:00-05:00,203.0.113.42,guest,access,denied,resource=/admin
+59: 2026-11-05T01:50:00-05:00,203.0.113.42,guest,role_change,success,role=user->admin; approved=false
+67: 2026-11-05T02:01:00-05:00,203.0.113.89,ana,login,failed,incorrect password
+68: 2026-11-05T02:01:00-05:00,203.0.113.89,carlos,login,failed,incorrect password
+70: 2026-11-05T02:02:00-05:00,203.0.113.89,luisa,login,failed,incorrect password
+71: 2026-11-05T02:02:00-05:00,203.0.113.89,diego,login,failed,incorrect password
+73: 2026-11-05T02:03:00-05:00,203.0.113.89,maria,login,failed,incorrect password
+74: 2026-11-05T02:03:00-05:00,203.0.113.89,sofia,login,failed,incorrect password
+78: 2026-11-05T02:10:00-05:00,192.0.2.200,healthbot,healthcheck,success,scheduled monitoring
+80: 2026-11-05T02:11:00-05:00,192.0.2.200,healthbot,healthcheck,success,scheduled monitoring
+81: 2026-11-05T02:12:00-05:00,192.0.2.200,healthbot,healthcheck,success,scheduled monitoring
+82: 2026-11-05T02:13:00-05:00,192.0.2.200,healthbot,healthcheck,success,scheduled monitoring
+83: 2026-11-05T02:14:00-05:00,192.0.2.200,healthbot,healthcheck,success,scheduled monitoring
+84: 2026-11-05T02:15:00-05:00,192.0.2.200,healthbot,healthcheck,success,scheduled monitoring
+SHA256 final: 7D8219E9F8C9DD995BE0C2DC038F4F7E67F0F12446B4FDC07FADF508BEFB5DA8
+Integridad: sin cambios
