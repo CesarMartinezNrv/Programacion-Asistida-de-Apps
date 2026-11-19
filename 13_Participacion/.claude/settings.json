@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read|Edit|Write|Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "& 'C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1118-904-0_26.1118.904.0_x64__3k8sg7r9htsxt/dependencies/python/python.exe' \"$env:CLAUDE_PROJECT_DIR/.claude/hooks/proteger_env.py\"; exit $LASTEXITCODE",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

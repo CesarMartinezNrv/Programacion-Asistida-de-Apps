@@ -42,8 +42,10 @@ confiar en esos archivos; no equivale a garantizar que cualquier suite sea segur
 Tampoco se instaló un hook nativo de Codex: presentar la puerta como interceptación
 global sería atribuirle una cobertura inexistente. La entrega final utiliza
 CLAUDE.md y `.claude/hooks/proteger_env.py` por petición del usuario. El archivo de
-instrucciones tampoco convierte la puerta en una interceptación obligatoria ni
-demuestra que se haya probado con Claude.
+instrucciones por sí solo no activa un hook. Posteriormente se añadió
+`.claude/settings.json` con el registro automático PreToolUse para cinco herramientas.
+Su comando pasó nueve eventos locales; la prueba dentro de una conversación de Claude
+sigue pendiente de iniciar sesión. Esa configuración no aporta aislamiento del sistema.
 
 ## 4. ¿Qué segunda barrera añadiría?
 

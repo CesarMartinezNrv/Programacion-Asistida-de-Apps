@@ -160,7 +160,7 @@ incluidos loopback y LAN según una política probada. No se probó una polític
 
 ## Entrega
 
-Se conservan como entregables CLAUDE.md, el control, los tres documentos pedidos y
+Se conservan como entregables CLAUDE.md, `.claude/settings.json`, el control, los tres documentos pedidos y
 `calculadora.py` corregida. El clon, el `.env` ficticio y las cachés de esta práctica
 se eliminan tras validar. Los cambios preexistentes de otras actividades se conservan.
 
@@ -194,3 +194,40 @@ documentos y se eliminó la carpeta guardrail vacía. La adaptación intermedia 
 se conserva únicamente como historial real, no como estructura vigente.
 No se registró un hook automático ni se ejecutó una sesión con Claude: las pruebas
 originales siguen siendo las realizadas con Codex y la puerta local explícita.
+
+## Registro automático posterior en Claude Code
+
+Por petición del usuario, se creó `.claude/settings.json` con un handler PreToolUse
+para Read, Edit, Write, Bash y PowerShell. A diferencia de las etapas históricas,
+la entrega final sí incluye el registro automático. El script recibe stdin y no se
+invoca con --ejecutar para evitar duplicar la operación de la herramienta.
+
+Claude Code detectado: 2.1.259. `claude doctor` terminó con código 0 e informó:
+
+```text
+No installation issues found.
+Not signed in to claude.ai
+```
+
+No se pudo observar una llamada en una conversación autenticada de Claude. No se
+presenta la prueba local siguiente como una prueba completa de integración del agente.
+Se leyó settings.json, se verificó que el matcher cubriera cada herramienta y se ejecutó
+su comando exacto con powershell.exe, CLAUDE_PROJECT_DIR y eventos JSON por stdin:
+
+```text
+Read protegido: esperado=2 obtenido=2
+Edit protegido: esperado=2 obtenido=2
+Write protegido: esperado=2 obtenido=2
+Bash protegido: esperado=2 obtenido=2
+PowerShell protegido: esperado=2 obtenido=2
+Simulador: esperado=2 obtenido=2
+Read permitido: esperado=0 obtenido=0
+Edit permitido: esperado=0 obtenido=0
+Tests permitidos: esperado=0 obtenido=0
+9/9 eventos pasan usando el comando exacto de settings.json.
+```
+
+Estos eventos solo validan: no abren el archivo protegido ni ejecutan el simulador,
+no modifican la calculadora ni vuelven a ejecutar la suite de ocho tests. La integración
+se comprueba en `/hooks` al iniciar sesión en Claude desde la carpeta de participación.
+El matcher y la versión limitan la cobertura como se explica en configuracion_guardrail.md.

@@ -1,4 +1,4 @@
-"""Filtro de eventos JSON y puerta local explícita; no es un hook nativo de Codex.
+"""Hook PreToolUse de Claude Code y puerta local opcional; no es un hook de Codex.
 
 stdin: {tool_name, tool_input}; salida 0 permite, 2 bloquea.
 --ejecutar RAIZ: valida y despacha una operación dentro del laboratorio.

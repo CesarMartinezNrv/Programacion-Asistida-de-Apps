@@ -15,8 +15,14 @@ seguridad con datos ficticios y evidencia real.
 
 ## Uso del control local
 
-- Para leer, editar o escribir archivos de la calculadora y ejecutar sus pruebas,
-  usa `.claude/hooks/proteger_env.py --ejecutar RAIZ` con un evento JSON por stdin.
+- En Claude Code, `.claude/settings.json` registra automáticamente
+  `.claude/hooks/proteger_env.py` en PreToolUse para Read, Edit, Write, Bash y
+  PowerShell. El hook valida el evento y termina; Claude realiza la operación
+  únicamente si la permite. No uses --ejecutar dentro del hook automático.
+- Inicia Claude Code desde esta carpeta para cargar la configuración del laboratorio.
+  Comprueba su registro con `/hooks` antes de probarlo en una conversación.
+- Para reproducir manualmente el control fuera de Claude, puedes usar
+  `.claude/hooks/proteger_env.py --ejecutar RAIZ` con un evento JSON por stdin.
   RAIZ es la carpeta del laboratorio revisado que contiene la calculadora y sus tests.
   Desde esta carpeta, si se trabaja directamente con la entrega, RAIZ es `.`.
 - El evento contiene `tool_name` y `tool_input`. Para Read/Edit/Write utiliza
