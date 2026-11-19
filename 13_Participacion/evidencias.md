@@ -67,7 +67,7 @@ OK    Shell: python -m unittest                esperado=0 obtenido=0
 Resultado: todas las básicas pasan
 ```
 
-Archivo y activación: `.claude/hooks/proteger_env.py`, invocado explícitamente con
+Archivo y activación originales: `.claude/hooks/proteger_env.py`, invocado explícitamente con
 `--ejecutar` para despachar operaciones. No fue cargado automáticamente por Codex.
 Detalles y comandos reproducibles en `configuracion_guardrail.md`.
 
@@ -160,6 +160,28 @@ incluidos loopback y LAN según una política probada. No se probó una polític
 
 ## Entrega
 
-Se conservan como entregables el control, los tres documentos pedidos y
+Se conservan como entregables AGENTS.md, el control, los tres documentos pedidos y
 `calculadora.py` corregida. El clon, el `.env` ficticio y las cachés de esta práctica
 se eliminan tras validar. Los cambios preexistentes de otras actividades se conservan.
+
+## Adaptación posterior a Codex
+
+Por petición del usuario, se añadió `AGENTS.md` y se trasladó el script a
+`guardrail/proteger_env.py`, sin modificar su lógica. Se eliminó la carpeta `.claude`
+de la entrega. Las menciones anteriores a esa ruta describen la ejecución original.
+AGENTS.md instruye a Codex a utilizar el control; no instala un hook ni garantiza
+interceptación global. No se presenta esta adaptación como una nueva sesión con carga
+automática comprobada. Véase la configuración para activar y verificar las instrucciones.
+
+Tras moverlo se comparó el script con el contenido del commit anterior: misma lógica.
+Se repitieron tres llamadas reales con la nueva ruta y `--ejecutar`:
+
+```text
+Lectura protegida: exit 2
+Simulador prohibido: exit 2
+Calculadora permitida: exit 0
+Script trasladado sin cambios; no existe carpeta .claude: True
+```
+
+No se repitió la suite docente completa por un traslado sin cambios de código; sus
+ocho resultados anteriores siguen identificados como pruebas de la sesión original.

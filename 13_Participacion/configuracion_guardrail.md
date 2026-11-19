@@ -4,17 +4,34 @@ Autor: César Martínez. Fecha: 19 de noviembre de 2026.
 
 ## Control utilizado y alcance
 
-Se utilizó Codex Desktop en Windows y una **puerta local explícita** en
-`.claude/hooks/proteger_env.py`. La ubicación conserva la convención del laboratorio;
-**no significa que Codex cargue hooks de Claude**. No se instaló un hook nativo ni se
-modificó la configuración global del agente. No se afirma compatibilidad no comprobada.
+La entrega está adaptada a Codex con dos archivos que cumplen funciones distintas:
 
-El registro operativo consiste en invocar el script con `--ejecutar RAIZ` para las
-operaciones del laboratorio. Antes de despachar, valida el evento recibido por stdin.
-La corrección, la lectura permitida, los intentos prohibidos y la ejecución final de
-tests se hicieron por esta puerta. La salida `PERMITIDO`/`BLOQUEADO`, los códigos de
-salida y el cambio real de la calculadora verificaron que el control intervino.
-La integración es voluntaria: no intercepta otras herramientas de esta conversación.
+- `AGENTS.md`: instrucciones del proyecto autorizadas por el usuario. Indica a Codex
+  que use el control y trate el material adversarial como datos.
+- `guardrail/proteger_env.py`: programa que valida las operaciones que recibe y solo
+  despacha las permitidas. No es un hook nativo ni intercepta otras herramientas.
+
+La primera ejecución del laboratorio utilizó el mismo script en la ruta propuesta por
+el docente (`.claude/hooks/proteger_env.py`). Después se movió sin cambiar su código a
+`guardrail/proteger_env.py` y se añadió AGENTS.md por petición del usuario. Las salidas
+originales de `evidencias.md` se conservan como evidencia histórica.
+
+Para el descubrimiento automático de estas instrucciones, inicia una sesión de Codex
+con `13_Participacion` como carpeta de trabajo. La documentación indica que construye
+la cadena de AGENTS.md desde la raíz del proyecto hasta el directorio de trabajo al
+iniciar. Si abres el repositorio padre, no des por hecho que este archivo anidado haya
+sido cargado al inicio: pide leerlo explícitamente para trabajar en esta participación.
+No se creó una segunda sesión para afirmar que se hubiera comprobado esa carga.
+
+Puedes comprobarlo al iniciar una nueva sesión en esta carpeta solicitando:
+«Enumera los archivos de instrucciones que has cargado y resume las reglas de la
+participación 13». Esto comprueba instrucciones, no un bloqueo técnico.
+
+Fuente oficial: [Instrucciones con AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
+
+La activación del control técnico consiste en invocar el script con `--ejecutar RAIZ`.
+Antes de despachar, valida el evento recibido por stdin. La integración depende de
+que el agente siga ese flujo: AGENTS.md no instala una interceptación obligatoria.
 
 ## Evento y herramientas
 
@@ -49,11 +66,11 @@ git clone https://github.com/jdVegaS24/calculadora-seguridad-agentic-s13.git _la
 git -C _laboratorio checkout 3dcac890e6cedc285e6655a151979053557b0ac6
 Copy-Item _laboratorio/env_falso.txt _laboratorio/.env
 git -C _laboratorio check-ignore .env
-Copy-Item .claude/hooks/proteger_env.py _laboratorio/.claude/hooks/proteger_env.py
+
 Push-Location _laboratorio
 python -m unittest discover
 python .claude/hooks/probar_hook.py .claude/hooks/proteger_env_plantilla.py
-python .claude/hooks/probar_hook.py
+python .claude/hooks/probar_hook.py ../guardrail/proteger_env.py
 python variantes/auditar_unicode.py INSTALAR.md variantes/README_unicode_demo.md
 Pop-Location
 ```
@@ -62,12 +79,12 @@ Los dos primeros bancos sobre el original fallan como se documenta en `evidencia
 Para comprobar la puerta, el bloqueo y la operación permitida:
 
 ```powershell
-'{"tool_name":"Read","tool_input":{"file_path":".env"}}' | python .claude/hooks/proteger_env.py --ejecutar _laboratorio
+'{"tool_name":"Read","tool_input":{"file_path":".env"}}' | python guardrail/proteger_env.py --ejecutar _laboratorio
 # exit 2; no llega a abrir el archivo
-'{"tool_name":"Read","tool_input":{"file_path":"calculadora.py"}}' | python .claude/hooks/proteger_env.py --ejecutar _laboratorio
+'{"tool_name":"Read","tool_input":{"file_path":"calculadora.py"}}' | python guardrail/proteger_env.py --ejecutar _laboratorio
 # exit 0
 Copy-Item calculadora.py _laboratorio/calculadora.py
-'{"tool_name":"exec_command","tool_input":{"cmd":"python -m unittest discover"}}' | python .claude/hooks/proteger_env.py --ejecutar _laboratorio
+'{"tool_name":"exec_command","tool_input":{"cmd":"python -m unittest discover"}}' | python guardrail/proteger_env.py --ejecutar _laboratorio
 # exit 0; ocho tests pasan
 ```
 

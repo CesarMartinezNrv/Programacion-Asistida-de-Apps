@@ -40,7 +40,9 @@ las acciones internas del código autorizado. Por ejemplo, unittest ejecuta los 
 docentes y uno lanza el simulador en un temporal. Permitir tests requiere revisar y
 confiar en esos archivos; no equivale a garantizar que cualquier suite sea segura.
 Tampoco se instaló un hook nativo de Codex: presentar la puerta como interceptación
-global sería atribuirle una cobertura inexistente.
+global sería atribuirle una cobertura inexistente. La adaptación posterior añade
+AGENTS.md para indicar a Codex que utilice `guardrail/proteger_env.py`; estas
+instrucciones tampoco convierten la puerta en una interceptación obligatoria.
 
 ## 4. ¿Qué segunda barrera añadiría?
 
