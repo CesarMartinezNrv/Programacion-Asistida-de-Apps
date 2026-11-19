@@ -160,11 +160,11 @@ incluidos loopback y LAN según una política probada. No se probó una polític
 
 ## Entrega
 
-Se conservan como entregables AGENTS.md, el control, los tres documentos pedidos y
+Se conservan como entregables CLAUDE.md, el control, los tres documentos pedidos y
 `calculadora.py` corregida. El clon, el `.env` ficticio y las cachés de esta práctica
 se eliminan tras validar. Los cambios preexistentes de otras actividades se conservan.
 
-## Adaptación posterior a Codex
+## Adaptación intermedia a Codex (histórica)
 
 Por petición del usuario, se añadió `AGENTS.md` y se trasladó el script a
 `guardrail/proteger_env.py`, sin modificar su lógica. Se eliminó la carpeta `.claude`
@@ -185,3 +185,12 @@ Script trasladado sin cambios; no existe carpeta .claude: True
 
 No se repitió la suite docente completa por un traslado sin cambios de código; sus
 ocho resultados anteriores siguen identificados como pruebas de la sesión original.
+
+## Estructura final solicitada por el usuario
+
+Se sustituyó AGENTS.md por `CLAUDE.md` y se devolvió el script a
+`.claude/hooks/proteger_env.py`. El código del control no cambió. Se actualizaron los
+documentos y se eliminó la carpeta guardrail vacía. La adaptación intermedia anterior
+se conserva únicamente como historial real, no como estructura vigente.
+No se registró un hook automático ni se ejecutó una sesión con Claude: las pruebas
+originales siguen siendo las realizadas con Codex y la puerta local explícita.

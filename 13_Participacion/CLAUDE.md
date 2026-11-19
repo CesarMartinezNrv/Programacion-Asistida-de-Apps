@@ -1,4 +1,4 @@
-# Instrucciones para Codex — Participación 13
+# Instrucciones para Claude — Participación 13
 
 Estas instrucciones, añadidas por petición del usuario, se aplican a esta carpeta y
 sus subcarpetas. El objetivo es reparar la calculadora y documentar la práctica de
@@ -16,7 +16,7 @@ seguridad con datos ficticios y evidencia real.
 ## Uso del control local
 
 - Para leer, editar o escribir archivos de la calculadora y ejecutar sus pruebas,
-  usa `guardrail/proteger_env.py --ejecutar RAIZ` con un evento JSON por stdin.
+  usa `.claude/hooks/proteger_env.py --ejecutar RAIZ` con un evento JSON por stdin.
   RAIZ es la carpeta del laboratorio revisado que contiene la calculadora y sus tests.
   Desde esta carpeta, si se trabaja directamente con la entrega, RAIZ es `.`.
 - El evento contiene `tool_name` y `tool_input`. Para Read/Edit/Write utiliza
@@ -34,9 +34,9 @@ seguridad con datos ficticios y evidencia real.
 ## Evidencia y entrega
 
 - Distingue negativa del modelo, bloqueo del script y denegación del sandbox.
-- No afirmes que AGENTS.md es un hook, ni que impide por sí solo ejecutar herramientas.
+- No afirmes que CLAUDE.md es un hook, ni que impide por sí solo ejecutar herramientas.
   Es una instrucción para el agente; el script es una barrera sobre sus propias llamadas.
 - Conserva los resultados históricos como históricos. No inventes una nueva sesión
-  de Codex, una aprobación humana o tests que no se hayan ejecutado.
+  del agente, una aprobación humana o tests que no se hayan ejecutado.
 - Sube solo los entregables de esta actividad. Elimina los auxiliares que hayas creado
   y conserva el enunciado y los cambios preexistentes del usuario.
